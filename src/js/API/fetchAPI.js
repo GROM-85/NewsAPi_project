@@ -6,6 +6,7 @@ export class NewsAPI{
     #query;
     #beginDate;
     #page;
+    #offset;
 
     #params = {
         "api-key":this.#API_KEY,
@@ -19,6 +20,7 @@ export class NewsAPI{
         this.category = "all";
         this.#page = 1;
         this.#beginDate = "20120101";
+        this.#offset = 0;
     }
 
     async getPopularNews(){
@@ -42,22 +44,24 @@ export class NewsAPI{
             throw new Error(error); 
         }
         
-        const{response:{docs,meta}}  = await response.json();
-        console.log(meta) // {hits: 29412, offset: 10, time: 30}
+        const{response:{docs,meta}} = await response.json();
+        // console.log(meta) // {hits: 29412, offset: 10, time: 30}
         this.updatePage();
-        return docs;
+        return {docs,meta};
     }
 
     async getNewsByCategories(){
-        let page = this.updatePage();
+        
         const response = await fetch(this.#BASE_URL + `/news/v3/content/inyt/${this.category}.json?` + new URLSearchParams({
             "api-key": this.#API_KEY,
-            offset: page, // divisible by 20
+            offset: this.#offset, // divisible by 20
         }));
         if(!response.ok){
             throw new Error(error); 
         }
-        return await response.json();
+        this.updateOffset();
+        const {results,num_results} = await response.json();
+        return {results,num_results};
     }
 
     async getCategories(){
@@ -94,5 +98,12 @@ export class NewsAPI{
     }
     set date(newDate){
         this.#beginDate = newDate;
+    }
+
+    updateOffset(){
+        this.#offset += 20;
+    }
+    resetOffset(){
+        this.#offset = 0;
     }
 }
