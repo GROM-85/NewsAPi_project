@@ -9,31 +9,43 @@ export class NewsAPI{
 
     #params = {
         "api-key":this.#API_KEY,
-        q:this.#query, 
+        q: this.#query, 
+        page: this.#page,
+        begin_date: this.#beginDate,
     }
 
     constructor(){
         this.#period = 7;
         this.category = "all";
+        this.#page = 1;
+        this.#beginDate = "20120101";
     }
 
     async getPopularNews(){
-        const response = await fetch(this.#BASE_URL + `mostpopular/v2/viewed/${period}.json`);
+        const response = await fetch(this.#BASE_URL + `mostpopular/v2/viewed/${this.#period}.json?api-key=${this.#API_KEY}`);
         if(!response.ok){
             throw new Error(error); 
         }
-        return await response.json();
-
+        const {results} =  await response.json();
+        return results;
     }
 
     async getNewsByQuery(){
-        Object.assign(this.#params,{q:this.#query});
+        Object.assign(this.#params,{
+            q:this.#query,
+            page:this.#page,
+            begin_date: this.#beginDate,
+        });
 
-        const response = await fetch(this.#BASE_URL + "search/v2/articlesearch.json" + new URLSearchParams(this.#params));
+        const response = await fetch(this.#BASE_URL + "search/v2/articlesearch.json?" + new URLSearchParams(this.#params));
         if(!response.ok){
             throw new Error(error); 
         }
-        return await response.json();
+        
+        const{response:{docs,meta}}  = await response.json();
+        console.log(meta) // {hits: 29412, offset: 10, time: 30}
+        this.updatePage();
+        return docs;
     }
 
     async getNewsByCategories(){
@@ -49,14 +61,15 @@ export class NewsAPI{
     }
 
     async getCategories(){
-        const response = await fetch(this.#BASE_URL + `news/v3/content/section-list.json?api-key=${this.#BASE_URL}`)
+        const response = await fetch(this.#BASE_URL + `news/v3/content/section-list.json?api-key=${this.#API_KEY}`)
         if(!response.ok){
             throw new Error(error); 
         }
-        return await response.json();
+        const {results} =  await response.json();
+        return results;
     }
 
-    async getDataById(array){
+    async getNewsById(array){
         const promises = array.map(id =>{
             return fetch(this.#BASE_URL)
         })
@@ -67,5 +80,19 @@ export class NewsAPI{
     }
     set query(newQuery){
         this.#query = newQuery;
+    }
+
+    updatePage(){
+        this.#page++;
+    }
+    resetPage(){
+        this.#page = 1;
+    }
+
+    get date(){
+        this.#beginDate;
+    }
+    set date(newDate){
+        this.#beginDate = newDate;
     }
 }
