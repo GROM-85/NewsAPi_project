@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/NewsAPI_project.git"
+    "url": "git+https://github.com/grom-85/NewsAPI_project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/goitacademy/NewsAPI_project/issues"
+    "url": "https://github.com/grom-85/NewsAPI_project/issues"
   },
   "dependencies": {
     "modern-normalize": "^1.1.0",
