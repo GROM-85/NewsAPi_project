@@ -52,7 +52,7 @@ export class NewsAPI{
         let page = this.updatePage();
         const response = await fetch(this.#BASE_URL + `/news/v3/content/inyt/${this.category}.json?` + new URLSearchParams({
             "api-key": this.#API_KEY,
-            offset: page,
+            offset: page, // divisible by 20
         }));
         if(!response.ok){
             throw new Error(error); 
@@ -70,7 +70,7 @@ export class NewsAPI{
     }
 
     async getNewsById(array){
-        const promises = array.map(id =>{
+        const promises = array.map(id => {
             return fetch(this.#BASE_URL)
         })
     }

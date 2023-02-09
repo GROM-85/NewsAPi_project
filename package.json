@@ -5,17 +5,17 @@
   "homepage": "https://grom-85.github.io/NewsAPi_project/",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /NewsAPI_project/"
+    "build": "parcel build src/*.html --public-url /NewsAPi_project/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grom-85/NewsAPI_project.git"
+    "url": "git+https://github.com/grom-85/NewsAPi_project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/grom-85/NewsAPI_project/issues"
+    "url": "https://github.com/grom-85/NewsAPi_project/issues"
   },
   "dependencies": {
     "modern-normalize": "^1.1.0",
