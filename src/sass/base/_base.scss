@@ -1,4 +1,19 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+:root{
+  //color
+  --blue-color: #4440F6;
+  --text-main-color: #111321;
+  --grey-color: #A8A8A8;
+  --bcg-main-color: #ffff;
+  --green-color:#00DD73;
+  --white-color: #ffff;
+  --black-color:#111321;
+
+  body.darkMode{
+    --text-main-color:#ffff;
+    --bcg-main-color:#2E2E2E;
+  }
+  }
 
 a {
     color: inherit;
@@ -36,8 +51,9 @@ a {
   }
   
   body {
-    font-family: $main-font;
-    background-color: $white-color;
+    font-family: $main-font,sans-serif;
+    color:var(--text-main-color);
+    background-color: var(--bcg-main-color);
   
     &.no-scroll {
       overflow: hidden;
