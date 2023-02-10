@@ -26,7 +26,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: var(--bcg-main-color);
   z-index: 2;
 
   transform: translateY(-101%);
@@ -47,7 +47,14 @@
   position: absolute;
   top: 26px;
   right: 16px;
-  color: #000;
+  color: var(--text-main-color);
+}
+
+.logo__link-menu {
+  position: absolute;
+  margin: 0;
+  top: 25px;
+  left: 16px;
 }
 
 .mobile-menu-list {
@@ -64,24 +71,29 @@
   font-weight: 400;
   font-size: 16px;
 
-  color: #111321;
+  color: var(--text-main-color);
 }
+
+// CLASS FOR OTHERS//
 
 .current-list__item {
   background-color: #4440f6;
 
   & .menu-link {
-    color: #f4f4f4;
+    color: #fff;
   }
 
   & .mobile-menu-icon {
-    border: 1px solid #f4f4f4;
+    border: 1px solid #fff;
     border-radius: 50%;
   }
   & .mobile-arrow-icon {
     display: inline-block;
+    fill: #fff;
   }
 }
+
+// UNDER //
 
 .mobile-list__item {
   padding: 6px 16px;
@@ -97,11 +109,11 @@
 }
 
 .mobile-arrow-icon {
-  fill: #f4f4f4;
+  fill: var(--bcg-main-color);
   display: none;
   margin-left: auto;
 }
 
 .cross__icon {
-  stroke: #000;
+  stroke: var(--text-main-color);
 }

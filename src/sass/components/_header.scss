@@ -1,3 +1,5 @@
+// BASE AND PHONE STYLES
+
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -9,6 +11,9 @@
   align-items: center;
   align-content: center;
   padding: 0 16px;
+  @media screen and (min-width: 767.9px) {
+    height: 106px;
+  }
 }
 
 .logo__link {
@@ -17,20 +22,28 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 1;
-  z-index: 3;
+  @media screen and (min-width: 767.9px) {
+    margin-right: 48px;
+    font-size: 32px;
+  }
 }
 
 .search-form {
   position: relative;
-  margin-right: 15px;
+  margin-right: 16px;
   margin-left: auto;
+  @media screen and (min-width: 767.9px) {
+    margin-left: 32px;
+  }
 }
 
 .form__input-close {
-  opacity: 0;
-  display: none;
-  visibility: hidden;
-  pointer-events: none;
+  @media screen and (max-width: 767.9px) {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .form__input-show {
@@ -40,7 +53,7 @@
   pointer-events: auto;
   max-width: 173px;
   padding: 4px 0 6px 48px;
-  border: 1px solid #111321;
+  border: 1px solid var(--text-main-color);
   border-radius: 20px;
 
   &::placeholder {
@@ -55,7 +68,11 @@
     left: 96px;
     width: 50px;
     height: 15px;
-    color: #111321;
+    color: var(--text-main-color);
+  }
+  @media screen and (min-width: 767.9px) {
+    max-width: 213px;
+    margin-right: 24px;
   }
 }
 
@@ -78,10 +95,44 @@
   display: none;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
+  pointer-events: auto;
+  & svg {
+    fill: purple;
+  }
+}
+
+.search__button-show {
+  & svg {
+    fill: var(--text-main-color);
+  }
+  @media screen and (min-width: 767.99px) {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .menu-icon {
-  stroke: black;
+  stroke: var(--text-main-color);
   display: inline-block;
+}
+
+// TABLET STYLES //
+
+.list-navigation {
+  display: none;
+  @media screen and (min-width: 767.9px) {
+    display: flex;
+  }
+}
+
+.list-navigation__item:not(:last-child) {
+  margin-right: 44px;
+}
+
+.list-navigation__link {
+  color: var(--text-main-color);
+  font-size: 16px;
+  font-weight: 700;
 }
