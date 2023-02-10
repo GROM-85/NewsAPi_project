@@ -50,17 +50,22 @@
     background-color: var(--blue-color);
   }
 
-  &__icon {
+  &__icon-up,  &__icon-down {
+    fill: var(--blue-color);
     margin-left: 10px;
   }
 
-  &__icon:hover {
+ 
+
+  &__btn-menu:hover &__icon-up,
+&__icon-down {
     fill: var(--white-color);
   }
 
   &__menu {
     display: inline-block;
     padding: 14px;
+    overflow: auto;
 
     background-color: #f8f8f8;
     border-radius: 20px;
@@ -69,12 +74,20 @@
     filter: drop-shadow(0px 10px 60px rgba(0, 0, 0, 0.1));
   }
 
+  &__list {
+    overflow: auto;
+  }
+
   &__item {
     color: var(--blue-color);
-    padding-top: 12px;
+    padding-bottom: 12px;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.01em;
   }
 }
+
+ .invisible {
+     display: none;
+ }
