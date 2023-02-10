@@ -1,0 +1,160 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.woff") format("woff"), url("../fonts/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Regular.woff") format("woff"), url("../fonts/Manrope-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Medium.woff") format("woff"), url("../fonts/Manrope-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Bold.woff") format("woff"), url("../fonts/Manrope-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --blue-color: #4440F6;
+  --text-main-color: #111321;
+  --grey-color: #A8A8A8;
+  --bcg-main-color: #ffff;
+  --green-color:#00DD73;
+  --white-color: #ffff;
+  --black-color:#111321;
+}
+:root body.darkMode {
+  --text-main-color:#ffff;
+  --bcg-main-color:#2E2E2E;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  color: var(--text-main-color);
+  background-color: var(--bcg-main-color);
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media screen and (min-width: 480px) {
+  .container {
+    max-width: 480px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .categories {
+    display: flex;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .categories {
+    display: flex;
+  }
+}
+.categories__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 21px;
+  height: 31px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4b48db;
+  border: 1px solid #4440f7;
+  border-radius: 20px;
+}
+.categories__btn:hover {
+  color: var(--white-color);
+  background-color: var(--blue-color);
+}
+.categories__icon {
+  fill: #4b48db;
+}
+.categories__icon:hover {
+  fill: var(--blue-color);
+}
+.categories__menu {
+  padding: 14px;
+  color: var(--blue-color);
+  width: 380px;
+  filter: drop-shadow(0px 10px 60px rgba(0, 0, 0, 0.1));
+}
+.categories___item {
+  padding-top: 12px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+}/*# sourceMappingURL=index.css.map */
