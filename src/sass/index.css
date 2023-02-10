@@ -1,0 +1,208 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff") format("woff"), url("../fonts/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.woff") format("woff"), url("../fonts/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Regular.woff") format("woff"), url("../fonts/Manrope-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Medium.woff") format("woff"), url("../fonts/Manrope-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Bold.woff") format("woff"), url("../fonts/Manrope-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background-color: white;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media screen and (min-width: 480px) {
+  .container {
+    max-width: 480px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+.card {
+  padding: 40px 0;
+}
+
+.card__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.card__list {
+  margin-bottom: 28px;
+}
+
+.card__item {
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.thumb {
+  position: relative;
+  width: 100%;
+  height: 395px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 4px;
+}
+
+.thumb__item {
+  position: absolute;
+  top: 40;
+  display: inline-block;
+  padding: 4px 8px;
+  text-align: center;
+  vertical-align: text-bottom;
+  background: rgba(68, 64, 247, 0.7);
+  border-radius: 0px 4px 4px 0px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: white;
+}
+
+.info__title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.37;
+  letter-spacing: -0.01em;
+  color: #111321;
+  margin-bottom: 20px;
+}
+
+.info__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.37;
+  color: #111321;
+  margin-bottom: 20px;
+}
+
+.info__meta {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.info__date {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.37;
+  color: #A8A8A8;
+}
+
+.info__link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.37;
+  color: #4440F7;
+}
+
+.favorite-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border: none;
+  background: var(--bcg-main-color);
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--black-color);
+}
+
+.favorite-icon {
+  margin-left: 4px;
+  fill: transparent;
+  stroke: var(--blue-color);
+}
+
+.favorite-active-icon {
+  margin-left: 4px;
+  fill: var(--favorite-color);
+}/*# sourceMappingURL=index.css.map */
