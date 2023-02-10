@@ -1,7 +1,8 @@
 export class NewsAPI{
 
     #BASE_URL = "https://api.nytimes.com/svc/";
-    #API_KEY = "Y0rMFldQHIhCKPc5jiggZphSD4GPFMzb";
+      #API_KEY = "Y0rMFldQHIhCKPc5jiggZphSD4GPFMzb";
+    // #API_KEY = "y51TDIyoUz3P8HMaw9DL3hWHoIZ6PAG1";
     #period;
     #query;
     #beginDate;
@@ -26,7 +27,8 @@ export class NewsAPI{
         if(!response.ok){
             throw new Error(error); 
         }
-        const {results} =  await response.json();
+        const { results } = await response.json();
+        console.log("res",results)
         return results;
     }
 
@@ -38,6 +40,8 @@ export class NewsAPI{
         });
 
         const response = await fetch(this.#BASE_URL + "search/v2/articlesearch.json?" + new URLSearchParams(this.#params));
+        const p =new URLSearchParams(this.#params)
+        console.log( p) 
         if(!response.ok){
             throw new Error(error); 
         }
@@ -50,9 +54,10 @@ export class NewsAPI{
 
     async getNewsByCategories(){
         let page = this.updatePage();
-        const response = await fetch(this.#BASE_URL + `/news/v3/content/inyt/${this.category}.json?` + new URLSearchParams({
+    
+        const response = await fetch(this.#BASE_URL + `news/v3/content/inyt/${this.category}.json?` + new URLSearchParams({
             "api-key": this.#API_KEY,
-            offset: page, // divisible by 20
+            //offset: page, // divisible by 20
         }));
         if(!response.ok){
             throw new Error(error); 
