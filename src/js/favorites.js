@@ -1,5 +1,50 @@
 // newsList - refs на li(card)
-//
+
+//  <li class="card__item">
+// <div class="thumb" style="background-image=url("${newApiObject.media}")>
+// <span class="thumb__item" >${newApiObject.nytdsection}</span>
+<button type="button" data-action="favorite-btn" class="favorite-btn">
+  Add to favorite
+  <svg class="favorite-icon">
+    <use href="../images/icons.svg#favorite"></use>
+  </svg>
+</button>;
+// <img src="${newApiObject.media}"  alt="${newApiObject.title}" loading="lazy" />
+// </a>
+// </div>
+// <div class="info">
+// <h2 class="info__title">${newApiObject.title}</h2>
+// <p class="info__text">${newApiObject.text}</p>
+// <div class=info__meta>
+// <p class="info__date">${newApiObject.date}</p>
+// <a class="info__link" href="${newApiObject.url}">Read more</a>
+// </div>
+// </div>
+// </li>`;
+<svg class="mobile-btn__icon" width="40" height="40">
+  <use href="./images/icons.svg#iconmenu"></use>
+</svg>;
+
+// let html = "";
+//             if (data.meals) {
+//                 data.meals.forEach(meal => {
+//                     html += `
+//                     <div class = "meal-item" data-id = "${meal.idMeal}">
+//                         <div class = "meal-img">
+//                             <img src = "${meal.strMealThumb}" alt = "food">
+//                         </div>
+//                         <div class = "meal-name">
+//                             <h3>${meal.strMeal}</h3>
+//                         </div>
+//                         <div class = "meal-buttons">
+//                             <button type="button" data-action='recipe-btn' class="recipe-btn">Get Recipe</button>
+//                             <button type="button" data-action='favorite-btn' class="favorite-btn">Add to favorite</button>
+//                         </div>
+//                     </div>
+//                 `;
+//                 });
+
+newsList.addEventListener('click', addToFavorite);
 
 function addToFavorite(event) {
   // if (event.target.classList.contains)  якщо по класу
