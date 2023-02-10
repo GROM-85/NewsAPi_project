@@ -80,3 +80,4 @@ function showCategoriesList() {
   refs.categoriesMenu.classList.toggle('invisible');
 }
 
+
