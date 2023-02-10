@@ -4,10 +4,32 @@
 // @media screen and (min-width: $desktop) {
 // }
 
-.categories {
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid red;
+  padding: 24px 16px 40px 16px;
   @media screen and (min-width: $tablet) {
-    display: flex;
+    padding: 28px 16px 48px 16px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 28px 52px 60px 16px;
+  }
+}
+
+.categories {
+  display: flex;
+  margin-right: 24px;
+
+  @media screen and (min-width: $tablet) {
+    margin-right: 40px;
     gap: 14px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-right: 0;
+    gap: 16px;
   }
 
   &__btn {
@@ -35,6 +57,7 @@
     align-items: center;
 
     padding: 8px 21px;
+
     height: 31px;
 
     font-weight: 400;
@@ -45,26 +68,27 @@
     border-radius: 20px;
   }
 
-  &__btn:hover, &__btn-menu:hover {
+  &__btn:hover,
+  &__btn-menu:hover {
     color: var(--white-color);
     background-color: var(--blue-color);
   }
 
-  &__icon-up,  &__icon-down {
+  &__icon-up,
+  &__icon-down {
     fill: var(--blue-color);
     margin-left: 10px;
   }
 
- 
-
   &__btn-menu:hover &__icon-up,
-&__icon-down {
+  &__icon-down {
     fill: var(--white-color);
   }
 
   &__menu {
     display: inline-block;
     padding: 14px;
+    margin-left: 14px;
     overflow: auto;
     position: absolute;
 
@@ -89,10 +113,33 @@
   }
 }
 
- .invisible {
-     display: none;
- }
+.invisible {
+  display: none;
+}
 
- .menu-box {
+.menu-box {
   position: relative;
- }
+}
+
+.calendar__input {
+  padding-left: 46px;
+  height: 31px;
+  border: 1px solid rgba(17, 19, 33, 1);
+  border-radius: 20px;
+  width: 168px;
+}
+
+.filter-text {
+  display: none;
+
+  @media screen and (min-width: $desktop) {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+  }
+}
