@@ -61,9 +61,9 @@
   border: 1px solid #fff;
 }
 
-.input-switch:checked + .switch-icon {
-  fill: #4b48db;
-}
+// .input-switch:checked + .switch-icon {
+//   fill: #4b48db;
+// }
 
 .input-switch:checked + .slider:before {
   transform: translateX(18.5px);
