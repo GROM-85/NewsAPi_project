@@ -52,6 +52,7 @@ function fetchCategories(results) {
         'afterbegin',
         markupCategoriesInList(results)
       );
+        refs.categoriesBtnMenu.textContent = "Categories"
     }
   });
 }
