@@ -32,6 +32,18 @@
     gap: 16px;
   }
 
+  &__btn-list {
+    display: flex;
+
+    @media screen and (min-width: $tablet) {
+      gap: 14px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      gap: 16px;
+    }
+  }
+
   &__btn {
     display: none;
     @media screen and (min-width: $tablet) {
@@ -74,6 +86,12 @@
     background-color: var(--blue-color);
   }
 
+    &__btn:focus,
+    &__btn-menu:focus {
+      color: var(--white-color);
+      background-color: var(--blue-color);
+    }
+
   &__icon-up,
   &__icon-down {
     fill: var(--blue-color);
@@ -81,14 +99,18 @@
   }
 
   &__btn-menu:hover &__icon-up,
-  &__icon-down {
+  &__btn-menu:hover &__icon-down {
     fill: var(--white-color);
   }
+
+     &__btn-menu:focus &__icon-up,
+     &__btn-menu:focus &__icon-down {
+       fill: var(--white-color);
+     }
 
   &__menu {
     display: inline-block;
     padding: 14px;
-    margin-left: 14px;
     overflow: auto;
     position: absolute;
 
@@ -117,7 +139,7 @@
   display: none;
 }
 
-.menu-box {
+.menu {
   position: relative;
 }
 
@@ -131,10 +153,11 @@
 
 .filter-text {
   display: none;
+  color: #111321;
 
   @media screen and (min-width: $desktop) {
     display: block;
-    margin-right: auto;
+    margin-right: 37px;
     margin-left: auto;
 
     font-weight: 700;
