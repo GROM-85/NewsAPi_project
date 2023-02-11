@@ -15,3 +15,4 @@ newsFetch.getNewsByQuery().then(console.log)
 
 // get by category name
 newsFetch.getNewsByCategories().then(console.log)
+
