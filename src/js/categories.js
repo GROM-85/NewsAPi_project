@@ -1,4 +1,4 @@
-import { NewsAPI } from './js/API/fetchAPI';
+import { NewsAPI } from './fetchAPI';
 
 const newsFetch = new NewsAPI();
 
