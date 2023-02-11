@@ -73,12 +73,6 @@ export class NewsAPI{
         return results;
     }
 
-    async getNewsById(array){
-        const promises = array.map(id => {
-            return fetch(this.#BASE_URL)
-        })
-    }
-
     get query(){
         return this.#query;
     }
