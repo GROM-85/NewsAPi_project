@@ -11,8 +11,3 @@ newsFetch.getPopularNews().then(console.log);
 // // get news by query/date 10 results
 newsFetch.query = 'apple';
 newsFetch.getNewsByQuery().then(console.log);
-
-// // get by category name
-newsFetch.getNewsByCategories().then(console.log);
-
-newsFetch.getCategories().then(console.log);
