@@ -1,4 +1,6 @@
-import { NewsAPI } from './js/API/fetchAPI';
+import { NewsAPI } from "./js/API/fetchAPI";
+import "./js/calendar";
+import "./js/categories"
 
 const newsFetch = new NewsAPI();
 
