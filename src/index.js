@@ -1,11 +1,14 @@
 import { NewsAPI } from "./js/API/fetchAPI";
-import "./js/calendar"
+import "./js/calendar";
+import "./js/categories"
 
 const newsFetch = new NewsAPI();
 
 // get categories 50 results
 newsFetch.getCategories().then(console.log);
 
+// // get popular 20 results
+newsFetch.getPopularNews().then(console.log);
 
 // get popular 20 results
 newsFetch.getPopularNews().then(console.log)
