@@ -17,3 +17,4 @@ newsFetch.getNewsByQuery().then(console.log)
 newsFetch.getNewsByCategories().then(console.log)
 
 
+
