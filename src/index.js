@@ -15,8 +15,11 @@ import "./js/weather"
 
 const newsFetch = new NewsAPI();
 
-// get categories 50 results
-newsFetch.getCategories().then(console.log);
+// // get categories 50 results
+// newsFetch.getCategories().then(console.log);
+
+// // // get popular 20 results
+// newsFetch.getPopularNews().then(console.log);
 
 // get popular 20 results
 newsFetch.getPopularNews().then(console.log);
