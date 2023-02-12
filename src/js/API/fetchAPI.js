@@ -1,3 +1,4 @@
+import format from "date-fns/format";
 export class NewsAPI{
 
     #BASE_URL = "https://api.nytimes.com/svc/";
@@ -19,7 +20,7 @@ export class NewsAPI{
         this.#period = 7;
         this.category = "all";
         this.#page = 1;
-        this.#beginDate = "20120101";
+        this.#beginDate = format(Date.now(),'yyyyMMdd');
         this.#offset = 0;
     }
 

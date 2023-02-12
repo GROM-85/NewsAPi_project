@@ -1,10 +1,17 @@
+
 import { NewsAPI } from './js/API/fetchAPI';
-// import mobile-menu.js(dima naumets)
+
 import './js/mobile-menu';
-// import input-actions.js(dima naumets)
+
 import './js/input-actions';
-// import theme-switch.js(dima naumets)
+
 import './js/theme-switch';
+
+import { NewsAPI } from "./js/API/fetchAPI";
+import "./js/calendar";
+import "./js/categories"
+import "./js/weather"
+
 
 const newsFetch = new NewsAPI();
 

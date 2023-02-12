@@ -7,10 +7,19 @@
         margin: 0;
         width: 20px;
         height: 20px;
-        right: 138px;
+        right: 137px;
         fill: #4440f6;
+
         &.opened {
             fill: white;
+        }
+
+        @media screen and (min-width: $mobile) {
+            right: 153px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            right: 190px;
         }
     }
     &__input {
@@ -18,7 +27,7 @@
         height: 31px;
         border: 1px solid rgba(17, 19, 33, 1);
         border-radius: 20px;
-        width: 168px;
+        width: 152px;
         font-family: $main-font;
         font-weight: 400;
         font-size: 14px;
@@ -30,6 +39,10 @@
             background: #4440f6;
             color: white;
         }
+
+        @media screen and (min-width: $mobile) {
+            width: 168px;
+        }
     }
 
     &__arrow {
@@ -37,7 +50,7 @@
         margin: 0;
         width: 20px;
         height: 15px;
-        right: 10px;
+        right: 25px;
         fill: #a2a2a2;
 
         &.opened {
@@ -46,6 +59,10 @@
 
         &.hidden {
             display: none;
+        }
+
+        @media screen and (min-width: $desktop) {
+            right: 63px;
         }
     }
 }

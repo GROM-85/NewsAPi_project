@@ -86,11 +86,11 @@
     background-color: var(--blue-color);
   }
 
-    &__btn:focus,
-    &__btn-menu:focus {
-      color: var(--white-color);
-      background-color: var(--blue-color);
-    }
+  &__btn:focus,
+  &__btn-menu:focus {
+    color: var(--white-color);
+    background-color: var(--blue-color);
+  }
 
   &__icon-up,
   &__icon-down {
@@ -103,10 +103,10 @@
     fill: var(--white-color);
   }
 
-     &__btn-menu:focus &__icon-up,
-     &__btn-menu:focus &__icon-down {
-       fill: var(--white-color);
-     }
+  &__btn-menu:focus &__icon-up,
+  &__btn-menu:focus &__icon-down {
+    fill: var(--white-color);
+  }
 
   &__menu {
     display: inline-block;
@@ -141,14 +141,6 @@
 
 .menu {
   position: relative;
-}
-
-.calendar__input {
-  padding-left: 46px;
-  height: 31px;
-  border: 1px solid rgba(17, 19, 33, 1);
-  border-radius: 20px;
-  width: 168px;
 }
 
 .filter-text {
