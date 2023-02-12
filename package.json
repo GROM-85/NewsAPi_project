@@ -19,11 +19,13 @@
   },
   "dependencies": {
     "air-datepicker": "^3.3.5",
+    "calendar-dates": "^2.7.2",
     "modern-normalize": "^1.1.0",
     "parcel": "^2.8.3"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
+    "date-fns": "^2.29.3",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
   },
