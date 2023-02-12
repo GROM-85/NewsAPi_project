@@ -23,6 +23,7 @@ export class NewsAPI{
         this.#beginDate = format(Date.now(),'yyyyMMdd');
         this.#offset = 0;
     }
+   
 
     async getPopularNews(){
         const response = await fetch(this.#BASE_URL + `mostpopular/v2/viewed/${this.#period}.json?api-key=${this.#API_KEY}`);
@@ -53,7 +54,7 @@ export class NewsAPI{
 
     async getNewsByCategories(){
         
-        const response = await fetch(this.#BASE_URL + `/news/v3/content/inyt/${this.category}.json?` + new URLSearchParams({
+        const response = await fetch(this.#BASE_URL + `news/v3/content/nyt/${this.category}.json?` + new URLSearchParams({
             "api-key": this.#API_KEY,
             offset: this.#offset, // divisible by 20
         }));
