@@ -1,89 +1,126 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
-:root{
+:root {
   //color
-  --blue-color: #4440F6;
-  --favorite-color:#4B48DA;
-  --text-main-color: #111321;
-  --grey-color: #A8A8A8;
-  --bcg-main-color: #ffff;
-  --green-color:#00DD73;
-  --white-color: #ffff;
-  --black-color:#111321;
+  --blue-color: #4440f6;
+  --favorite-color: #4b48da;
 
-  body.darkMode{
-    --text-main-color:#ffff;
-    --bcg-main-color:#2E2E2E;
+  --text-main-color: #111321;
+  --grey-color: #a8a8a8;
+  --bcg-main-color: #ffff;
+  --green-color: #00dd73;
+  --white-color: #ffff;
+  --black-color: #111321;
+
+  body.darkMode {
+    --text-main-color: #ffff;
+    --bcg-main-color: #2e2e2e;
   }
-  }
+}
 
 a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  p {
-    margin: 0;
-  }
-  
-  ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-  
-  button {
-    margin: 0;
-    padding: 0;
-    font-family: inherit;
-    background-color: transparent;
-    cursor: pointer;
-    box-shadow: none;
-    border: none;
-  }
-  
-  body {
-    font-family: $main-font,sans-serif;
-    color:var(--text-main-color);
-    background-color: var(--bcg-main-color);
-    min-height: 100vh;
-    display:flex;
-    flex-direction: column;
-  
-    &.no-scroll {
-      overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
 
-    }
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+}
+
+body {
+  font-family: $main-font, sans-serif;
+  color: var(--text-main-color);
+  background-color: var(--bcg-main-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &.no-scroll {
+    overflow: hidden;
   }
-  
-  main{
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+}
+
+body {
+  font-family: $main-font, sans-serif;
+  color: var(--text-main-color);
+  background-color: var(--bcg-main-color);
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+
+  main {
     flex: 1 1 auto;
   }
   .container {
     margin: 0 auto;
     padding: 0 16px;
-  
+
     @media screen and (min-width: $mobile) {
       max-width: $mobile;
     }
-  
+
     @media screen and (min-width: $tablet) {
       max-width: $tablet;
     }
-  
+
     @media screen and (min-width: $desktop) {
       max-width: $desktop;
     }
   }
-  
-  
-  
+}

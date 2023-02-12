@@ -1,1 +1,1 @@
-export const KEY_COLLECTION = 'collection';
+export const KEY_THEME = 'theme';

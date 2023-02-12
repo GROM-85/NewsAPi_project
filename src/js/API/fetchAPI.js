@@ -20,7 +20,7 @@ export class NewsAPI{
         this.#period = 7;
         this.category = "all";
         this.#page = 1;
-        this.#beginDate = `20220406`;
+        this.#beginDate = format(Date.now(),'yyyyMMdd');
         this.#offset = 0;
     }
    
