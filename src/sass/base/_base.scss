@@ -2,7 +2,7 @@
 :root{
   //color
   --blue-color: #4440F6;
-  --favotite:#4B48DA;
+  --favorite-color:#4B48DA;
   --text-main-color: #111321;
   --grey-color: #A8A8A8;
   --bcg-main-color: #ffff;
@@ -55,6 +55,9 @@ a {
     font-family: $main-font,sans-serif;
     color:var(--text-main-color);
     background-color: var(--bcg-main-color);
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
   
     &.no-scroll {
       overflow: hidden;
@@ -62,6 +65,9 @@ a {
     }
   }
   
+  main{
+    flex: 1 1 auto;
+  }
   .container {
     margin: 0 auto;
     padding: 0 16px;
