@@ -78,7 +78,7 @@
     font-size: 12px;
     line-height: 16px;
     color: #4b48db;
-    border: 1px solid #4440f7;
+    border: 1px solid var(--blue-color);
     border-radius: 20px;
 
     @include transition(color);
@@ -122,7 +122,7 @@
     position: absolute;
     z-index: 1;
 
-    background-color: #f8f8f8;
+    background-color: var(--text-main-color);
     border-radius: 20px;
     height: 383px;
     border: 1px solid #4813db;
@@ -174,7 +174,7 @@
 
 .filter-text {
   display: none;
-  color: #111321;
+  color: var(--black-color);
 
   @media screen and (min-width: $desktop) {
     display: block;

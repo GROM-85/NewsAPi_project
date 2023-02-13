@@ -1,4 +1,5 @@
 import { NewsAPI } from './API/fetchAPI';
+import * as storage from './storageLogic';
 
 const newsFetch = new NewsAPI();
 
