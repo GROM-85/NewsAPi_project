@@ -1,6 +1,6 @@
 import { NewsAPI } from './API/fetchAPI';
 import getRefs from './refs';
-import { renderMarkup, clear, renderWether } from './renderMarkup';
+import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as storage from './storageLogic';
 import * as key from './const';
 import * as newsCard from './newsCard';

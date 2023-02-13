@@ -1,6 +1,6 @@
 import { NewsAPI } from './API/fetchAPI';
 import getRefs from './refs';
-import { renderMarkup, clear, renderWether } from './renderMarkup';
+import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as key from './const';
 import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
@@ -12,14 +12,7 @@ const refs = getRefs();
 
 
 refs.filter.addEventListener(`submit`, filterQuery);
-// refs.calendar.addEventListener(`blur`, onCalenderChange);
-// async function onCalenderChange(e) {
-//   e.preventDefault();
-//   newsFetch.resetPage();
-//   // const input = e.currentTarget.elements.value;
-//   // console.log("calenderInput", input)
-//   console.log("selectedDate",selectedDate)
-// }
+
 
 async function filterQuery(e) {
   e.preventDefault();
