@@ -4,15 +4,20 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.header-container {
+body .container.header-container {
   display: flex;
   justify-content: center;
   height: 81px;
   align-items: center;
   align-content: center;
-  padding: 0 16px;
-  @media screen and (min-width: 767.9px) {
-    height: 106px;
+  padding: 24px 0 22px;
+
+  @media screen and (min-width: $tablet) {
+    padding: 32px 0 28px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 28px 0 28px;
   }
 }
 
@@ -30,7 +35,6 @@
   @media screen and (min-width: 1279.99px) {
     margin-right: auto;
     font-size: 42px;
-    padding-bottom: 10px;
   }
 }
 
@@ -44,7 +48,7 @@
   }
 
   @media screen and (min-width: 1279.9px) {
-    margin-left: 147px;
+    margin-left: unset;
     margin-right: 147px;
   }
 }
@@ -73,7 +77,7 @@
     border: 1.6px solid var(--text-main-color);
   }
   &::placeholder {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     line-height: 1.17;
     @media screen and (min-width: 1279.99px) {
@@ -139,6 +143,7 @@
   display: none;
   @media screen and (min-width: 767.9px) {
     display: flex;
+    margin-right: auto;
   }
 }
 
@@ -154,6 +159,8 @@
 }
 
 .list-navigation__link {
+  padding-top: 30px;
+  padding-bottom: 30px;
   color: var(--text-main-color);
   font-size: 16px;
   font-weight: 700;

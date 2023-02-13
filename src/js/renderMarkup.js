@@ -1,27 +1,34 @@
-export function renderMarkup({imgUrl,title,text,date,url,id,categorie}){
-    return `<li class="card__item"  id=${id}>
-         <div class="thumb" style="background-image: url('${imgUrl}')">
-         <span class="thumb__item" >${categorie}</span>
-         <button type="button" data-action="favorite-btn" class="favorite-btn">
-        Add to favorite
-        <svg class="favorite-icon" width="16" height="16">
-             <use href="/icons.adfc4680.svg#heart_empty"/>
-        </svg>
-    </button>
-      </div class="info__helper">
-    <div class="info">
-     <h2 class="info__title">${title}</h2>
-     <div class="info__helper">
-     <p class="info__text">${formatText(text)}</p>
-     <div class=info__meta>
-     <p class="info__date">${date}</p>
-     <a class="info__link" href="${url}">Read more</a>
-     </div>
-     </div>
-   </div>     
+export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) {
+  return `<li class="card__item"  id=${id}>
+            <div class="thumb" style="background-image: url('${imgUrl}')">
+              <span 
+                class="thumb__item" >${categorie}
+              </span>
+                <button type="button" 
+                        data-action="favorite-btn" 
+                        class="favorite-btn">
+                              Add to favorite
+                  <svg class="favorite-icon" width="16" height="16">
+                      <use href="/icons.adfc4680.svg#heart_empty"/>
+                  </svg>
+                </button>
+            </div>
+            <div class="info__helper">
+                <h2 class="info__title">${title}</h2>
+                  <div class="info__helper">
+                    <p class="info__text">${formatText(text)}
+                    </p>
+                    <div class=info__meta>
+                      <p class="info__date">${date}
+                      </p>
+                      <a class="info__link" href="${url}">Read more
+                      </a>
+                    </div>
+                  </div> 
+            </div>     
   </li>`
 }
-
+// 
 export function renderWether() {
   return `<li class="wether">
     <div class="weather__container">
@@ -58,11 +65,11 @@ const MAXLENGHT = 110;
 function formatText(text) {
   let result;
   // Change code below this line
-  if(text.length > MAXLENGHT){
-   text= text.slice(0, MAXLENGHT);
-    result= text + `...`;
-  }else{
-    result=text;
+  if (text.length > MAXLENGHT) {
+    text = text.slice(0, MAXLENGHT);
+    result = text + `...`;
+  } else {
+    result = text;
   }
   return result;
 }

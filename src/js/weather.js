@@ -21,7 +21,7 @@ const fetchWeather = async (lat, lon) => {
       }
       return await response.json();
     })
-    .catch(error => {});
+    .catch(error => { });
 };
 
 const fetchDefaultWeather = async () => {
@@ -32,7 +32,7 @@ const fetchDefaultWeather = async () => {
       }
       return await response.json();
     })
-    .catch(error => {});
+    .catch(error => { });
 };
 
 async function renderDefaultWeather() {

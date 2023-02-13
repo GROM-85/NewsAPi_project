@@ -1,9 +1,9 @@
 import { NewsAPI } from './API/fetchAPI';
 import getRefs from './refs';
-import { renderMarkup, clear,renderWether } from './renderMarkup';
+import { renderMarkup, clear, renderWether } from './renderMarkup';
 import * as storage from './storageLogic';
 import * as key from './const';
-import * as newsCard from './newsCard'; 
+import * as newsCard from './newsCard';
 
 const newsFetch = new NewsAPI();
 const REFS = getRefs();
@@ -126,121 +126,121 @@ function showCategoriesList() {
 
 //*****filter categories Btn*****************/
 refs.categoriesBox.addEventListener(`click`, onCategoriesBtnClick);
- async function onCategoriesBtnClick(e) {
+async function onCategoriesBtnClick(e) {
   e.preventDefault();
   // if (e.target.nodeName !== 'BUTTON') {
   //   return;
   //  }
-   newsFetch.resetOffset();
-   
-   newsFetch.category = e.target.dataset.value
-   const docs = await newsFetch.getNewsByCategories();
+  newsFetch.resetOffset();
 
-   
- 
-     let collectionByCategorie = [];
-   collectionByCategorie = docs.results.map(result => {
-     const {abstract,published_date,uri,url,multimedia,section,title} = result;
-    console.log('result',result)
-    
-     if (multimedia) {
-      
-       imgUrl = multimedia[2]['url'];
-       
-       console.log(imgUrl)
-     } else {
+  newsFetch.category = e.target.dataset.value
+  const docs = await newsFetch.getNewsByCategories();
+
+
+
+  let collectionByCategorie = [];
+  collectionByCategorie = docs.results.map(result => {
+    const { abstract, published_date, uri, url, multimedia, section, title } = result;
+    console.log('result', result)
+
+    if (multimedia) {
+
+      imgUrl = multimedia[2]['url'];
+
+      console.log(imgUrl)
+    } else {
       imgUrl =
-        'https://www.shutterstock.com/image-photo/canadian-national-flag-overlay-false-260nw-1720481365.jpg';
-  }
-
-    const newDateFormat= corectDateInCategories(published_date);
-
-     let obj = {
-     imgUrl,
-      title,
-       text: abstract,
-       date: newDateFormat,
-     url,
-      categorie: section,
-       id: uri,
-    };
-     return obj;
-   });
-
-   clear(REFS.gallery)
- 
- 
- storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
-  
-    categoriesOnPageLoadGallery();
-   categoriesOnResizeGallery();
-}
-     function categoriesOnResizeGallery() {
-         window.addEventListener('resize', e => {
-          let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-          if (e.currentTarget.innerWidth <= 768) {
-              collection = collection.slice(0, 3);
-       } else if (e.currentTarget.innerWidth <= 1280) {
-              collection = collection.slice(0, 7);
-         } else {
-               collection = collection.slice(0, 8);
-             }
-             clear(refs.gallery);  
-        collectionByPopular = collection.map(renderMarkup).join(``);
-           renderGallery(collectionByPopular);
-      
-             wetherRender(); 
-     });
+        'https://static01.nyt.com/images/2022/10/30/nyregion/30sandy-anniversary-intro/merlin_192440457_cbe91abf-e7f4-467f-b83d-4e7815ef45b7-articleLarge.jpg?quality=75&auto=webp&disable=upscale';
     }
-  function categoriesOnPageLoadGallery() {
-     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-     let collectionByPopular;
-     if (window.matchMedia('(max-width: 768px)').matches) {
-         collection = collection.slice(0, 3);
-      //   collectionByPopular = collection.map(renderMarkup).join(``);
-       //   renderGallery(collectionByPopular);         
-    }  else if (window.matchMedia('(max-width: 1280px)').matches) {
-       collection = collection.slice(0, 7);
-     } else {
-         collection = collection.slice(0, 8);
-     }
-     collectionByPopular = collection.map(renderMarkup).join(``);
-      renderGallery(collectionByPopular);
-       wetherRender();  
-   }
+
+    const newDateFormat = corectDateInCategories(published_date);
+
+    let obj = {
+      imgUrl,
+      title,
+      text: abstract,
+      date: newDateFormat,
+      url,
+      categorie: section,
+      id: uri,
+    };
+    return obj;
+  });
+
+  clear(REFS.gallery)
+
+
+  storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
+
+  categoriesOnPageLoadGallery();
+  categoriesOnResizeGallery();
+}
+function categoriesOnResizeGallery() {
+  window.addEventListener('resize', e => {
+    let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+    if (e.currentTarget.innerWidth <= 768) {
+      collection = collection.slice(0, 3);
+    } else if (e.currentTarget.innerWidth <= 1280) {
+      collection = collection.slice(0, 7);
+    } else {
+      collection = collection.slice(0, 8);
+    }
+    clear(refs.gallery);
+    collectionByPopular = collection.map(renderMarkup).join(``);
+    renderGallery(collectionByPopular);
+
+    wetherRender();
+  });
+}
+function categoriesOnPageLoadGallery() {
+  let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+  let collectionByPopular;
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    collection = collection.slice(0, 3);
+    //   collectionByPopular = collection.map(renderMarkup).join(``);
+    //   renderGallery(collectionByPopular);         
+  } else if (window.matchMedia('(max-width: 1280px)').matches) {
+    collection = collection.slice(0, 7);
+  } else {
+    collection = collection.slice(0, 8);
+  }
+  collectionByPopular = collection.map(renderMarkup).join(``);
+  renderGallery(collectionByPopular);
+  wetherRender();
+}
 
 function renderGallery(markup) {
   REFS.gallery.insertAdjacentHTML(`beforeend`, markup);
 }
 //*******renderedWether******************* */
 function wetherRender() {
-   
-    if (window.matchMedia('(min-width: 1279.98px)').matches) { 
-        replacedItem = REFS.gallery.childNodes[1]; 
-        console.log(replacedItem)
-        const markup = renderWether(); 
-        replacedItem.insertAdjacentHTML(`afterend`, markup);
-        
-    } else if(window.matchMedia('(min-width: 767.98px)').matches){
-        replacedItem = REFs.gallery.firstElementChild;
-        const markup = renderWether(); 
-                replacedItem.insertAdjacentHTML(`afterend`, markup);
-    } else {
-        replacedItem =REFS.gallery.firstElementChild; 
-        const markup = renderWether(); 
-        replacedItem.insertAdjacentHTML(`beforebegin`, markup);
-    }
-      
+
+  if (window.matchMedia('(min-width: 1279.98px)').matches) {
+    replacedItem = REFS.gallery.childNodes[1];
+    console.log(replacedItem)
+    const markup = renderWether();
+    replacedItem.insertAdjacentHTML(`afterend`, markup);
+
+  } else if (window.matchMedia('(min-width: 767.98px)').matches) {
+    replacedItem = REFs.gallery.firstElementChild;
+    const markup = renderWether();
+    replacedItem.insertAdjacentHTML(`afterend`, markup);
+  } else {
+    replacedItem = REFS.gallery.firstElementChild;
+    const markup = renderWether();
+    replacedItem.insertAdjacentHTML(`beforebegin`, markup);
+  }
+
 }
 
 function corectDateInCategories(date) {
-   let newDateFormat = date.split('-');
-   
-     if (newDateFormat.length > 3) {
-       newDateFormat[2] = newDateFormat[2].slice(0, 2)
-       newDateFormat = newDateFormat.slice(0, 3);
-         
+  let newDateFormat = date.split('-');
+
+  if (newDateFormat.length > 3) {
+    newDateFormat[2] = newDateFormat[2].slice(0, 2)
+    newDateFormat = newDateFormat.slice(0, 3);
+
     newDateFormat = newDateFormat.join('/');
-     }
+  }
   return newDateFormat;
 }
