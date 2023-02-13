@@ -7,7 +7,7 @@ import * as newsCard from './newsCard';
 
 const newsFetch = new NewsAPI();
 const REFS = getRefs();
-
+let imgUrl;
 const arrCategories = JSON.parse(localStorage.getItem('results'));
 const refs = {
   categoriesBtnMenu: document.querySelector('.categories__btn-menu'),
