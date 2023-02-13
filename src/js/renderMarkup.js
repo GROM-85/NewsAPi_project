@@ -18,7 +18,7 @@ export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) 
             <div class="info__helper">
                 <h2 class="info__title">${text}</h2>
                   <div class="info__helper">
-                    <p class="info__text">${formatText(text,maxLength)}
+                    <p class="info__text">${formatText(text)}
                     </p>
                     <div class=info__meta>
                       <p class="info__date">${date}
@@ -66,10 +66,9 @@ export function renderWeather({temp, icon, main, name }) {
 }
 
 
-const maxLength = 110;
-const maxLengthTitle = 57;
-function formatText(text,maxLength) {
-  
+
+function formatText(text) {
+  const maxLength = 110;
   let result;
   // Change code below this line
   if(text.length > maxLength){
@@ -85,7 +84,3 @@ function formatText(text,maxLength) {
 export function clear(item) {
   item.innerHTML = ``;
 }
-//get String with first letter uppercase
-// function capitalizeFirstLetter(string) {
-//     return string.charAt(0).toUpperCase()+ string.slice(1);
-// }

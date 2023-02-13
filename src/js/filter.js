@@ -1,5 +1,5 @@
 import { NewsAPI } from './API/fetchAPI';
-import getRefs from './refs';
+import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as key from './const';
 import * as storage from './storageLogic';
@@ -8,13 +8,10 @@ import format from 'date-fns/format';
 import { selectedDate } from './calendar';
 
 const newsFetch = new NewsAPI();
-const refs = getRefs();
-
 
 refs.filter.addEventListener(`submit`, filterQuery);
 
 
-let imgUrl;
 async function filterQuery(e) {
   e.preventDefault();
   newsFetch.resetPage();
@@ -37,6 +34,7 @@ async function filterQuery(e) {
     const { abstract, pub_date, uri, web_url, multimedia, section_name, headline } =
       result;
     console.log('result', result);
+    let imgUrl;
     if (multimedia.length !== 0) {
       imgUrl = 'https://www.nytimes.com/' + multimedia[2]['url'];
       console.log(imgUrl);
@@ -78,10 +76,10 @@ function categoriesOnResizeGallery() {
       collection = collection.slice(0, 8);
     }
     clear(refs.gallery);
-    collectionByPopular = collection.map(renderMarkup).join(``);
+    let collectionByPopular = collection.map(renderMarkup).join(``);
     renderGallery(collectionByPopular);
 
-    // wetherRender();
+    // weatherRender();
   });
 }
 function categoriesOnPageLoadGallery() {
@@ -98,25 +96,26 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-  // wetherRender();
+  //   weather.renderDefaultWeather();
 }
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
 }
 //*******renderedWether******************* */
-function wetherRender() {
+function weatherRender() {
+  let replacedItem;
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     replacedItem = refs.gallery.childNodes[1];
     console.log(replacedItem);
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else if (window.matchMedia('(min-width: 767.98px)').matches) {
     replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else {
     replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`beforebegin`, markup);
   }
 }
