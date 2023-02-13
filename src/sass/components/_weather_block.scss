@@ -1,45 +1,37 @@
-.weather {
-  margin-right: 16px;
-  @media screen and (min-width: $mobile) {
-    max-width: $mobile;
-  }
 
-  @media screen and (max-width: $tablet) {
-    padding-left: 16px;
-    padding-right: 16px;
-    margin: 0 auto;
-  }
-
-  @media screen and (min-width: $tablet) {
-    width: 353px;
-    float: right;
-  }
-
-  @media screen and (min-width: $desktop) {
-    width: 395px;
-  }
-}
 
 .weather__container {
+  padding:40px 32px 32px 32px;
   color: #fff;
   background-color: var(--blue-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+display: flex;
+justify-content: space-between;
+flex-direction: column; 
+  border-radius: 4px;
+  height: 469px;
+
+  
+    @media screen and (min-width: $tablet) {
+      height: 675px;
+      padding: 40px 32px 60px 32px;
+    }
+  
+    @media screen and (min-width: $desktop) {
+      height: 676px;
+    }
+  
+  
+  
 }
 
 .weather__info {
   display: flex;
   align-items: center;
   gap: 11px;
+  justify-content: center;
 
-  @media screen and (max-width: $tablet) {
-    margin: 37px 37px 54px 35px;
-  }
 
-  @media screen and (min-width: $tablet) {
-    margin-top: 40px;
-  }
+
 }
 
 .weather__temp {
@@ -106,30 +98,23 @@
 }
 
 .weather__img {
-  @media screen and (min-width: $tablet) {
-    margin: 90px 0;
-  }
+ display: block;
 }
 
-.weather__date {
-  @media screen and (max-width: $tablet) {
-    margin: 40px 66px 18px 67px;
-  }
-
-  @media screen and (min-width: $tablet) {
-    margin-bottom: 28px;
-  }
+.weather__date{
+  margin-bottom: 18px;
+  text-align: center;
 }
 
 .weather__day {
   font-family: $weather-font;
   font-size: 27px;
   line-height: calc(33 / 28);
-  text-align: center;
-  margin-bottom: 12px;
+  text-align: center;  
+ 
 
   @media screen and (min-width: $tablet) {
-    margin-bottom: 16px;
+ 
     font-size: 36px;
     line-height: calc(42 / 36);
   }
@@ -153,10 +138,11 @@
   font-size: 16px;
   line-height: calc(19 / 16);
   padding: 8px 16px;
-  margin-bottom: 32px;
+  text-align: center;
+ 
 
   @media screen and (min-width: $tablet) {
-    margin-bottom: 60px;
+  
     font-size: 20px;
     line-height: calc(23 / 20);
     padding: 10px 12px;
