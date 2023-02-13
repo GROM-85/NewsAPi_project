@@ -1,18 +1,11 @@
 .weather {
-  margin-right: 16px;
   @media screen and (min-width: $mobile) {
     max-width: $mobile;
   }
 
-  @media screen and (max-width: $tablet) {
-    padding-left: 16px;
-    padding-right: 16px;
-    margin: 0 auto;
-  }
 
   @media screen and (min-width: $tablet) {
     width: 353px;
-    float: right;
   }
 
   @media screen and (min-width: $desktop) {
