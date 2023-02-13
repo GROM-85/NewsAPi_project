@@ -4,17 +4,16 @@
 // @media screen and (min-width: $desktop) {
 // }
 
-.filter-container {
+.filters {
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
-  padding: 24px 16px 40px 16px;
-  position: relative;
+  padding: 24px 0 40px 0;
+  // position: relative;
   @media screen and (min-width: $tablet) {
-    padding: 28px 16px 48px 16px;
+    padding: 28px 0 48px 0;
   }
   @media screen and (min-width: $desktop) {
-    padding: 28px 52px 60px 16px;
+    padding: 28px 52px 60px 0;
   }
 }
 
@@ -57,8 +56,8 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 16px;
-      color: #4b48db;
-      border: 1px solid #4440f7;
+      color: var(--blue-color);
+      border: 1px solid var(--blue-color);
       border-radius: 20px;
 
       @include transition(color);
@@ -77,7 +76,7 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    color: #4b48db;
+    color: var(--blue-color);
     border: 1px solid var(--blue-color);
     border-radius: 20px;
 
@@ -125,7 +124,6 @@
     background-color: var(--text-main-color);
     border-radius: 20px;
     height: 383px;
-    border: 1px solid #4813db;
     filter: drop-shadow(0px 10px 60px rgba(0, 0, 0, 0.1));
 
     @media screen and (min-width: $tablet) {

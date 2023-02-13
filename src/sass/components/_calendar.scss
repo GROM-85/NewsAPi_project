@@ -2,12 +2,15 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
     &__icon {
+        display: flex;
         position: absolute;
         margin: 0;
         width: 20px;
         height: 20px;
         right: 137px;
+        left: 14px;
         fill: #4440f6;
 
         &.opened {
@@ -135,4 +138,8 @@
             border-radius: 50%;
         }
     }
+}
+
+.calendar_down_arrow {
+    position: relative;
 }
