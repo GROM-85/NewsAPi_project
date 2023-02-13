@@ -1,5 +1,3 @@
-// BASE AND PHONE STYLES
-
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -11,6 +9,7 @@
   align-items: center;
   align-content: center;
   padding: 0 16px;
+
   @media screen and (min-width: 767.9px) {
     height: 106px;
   }
@@ -22,6 +21,7 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 1;
+
   @media screen and (min-width: 767.99px) {
     margin-right: 48px;
     font-size: 32px;
@@ -30,7 +30,6 @@
   @media screen and (min-width: 1279.99px) {
     margin-right: auto;
     font-size: 42px;
-    padding-bottom: 10px;
   }
 }
 
@@ -38,13 +37,14 @@
   position: relative;
   margin-right: 16px;
   margin-left: auto;
+
   @media screen and (min-width: 767.9px) {
     margin-left: 32px;
     margin-right: 24px;
   }
 
   @media screen and (min-width: 1279.9px) {
-    margin-left: 147px;
+    margin-left: unset;
     margin-right: 147px;
   }
 }
@@ -72,10 +72,12 @@
   &:focus {
     border: 1.6px solid var(--text-main-color);
   }
+
   &::placeholder {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     line-height: 1.17;
+
     @media screen and (min-width: 1279.99px) {
       font-size: 14px;
     }
@@ -111,6 +113,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: auto;
+
   & svg {
     fill: purple;
   }
@@ -120,6 +123,7 @@
   & svg {
     fill: var(--text-main-color);
   }
+
   @media screen and (min-width: 767.99px) {
     display: none;
     opacity: 0;
@@ -134,11 +138,12 @@
 }
 
 // TABLET STYLES //
-
 .list-navigation {
   display: none;
+
   @media screen and (min-width: 767.9px) {
     display: flex;
+    margin-right: auto;
   }
 }
 
@@ -148,15 +153,19 @@
 
 .list-navigation__item:not(:last-child) {
   margin-right: 44px;
+
   @media screen and (min-width: 1279.99px) {
     margin-right: 69px;
   }
 }
 
 .list-navigation__link {
+  padding-top: 30px;
+  padding-bottom: 30px;
   color: var(--text-main-color);
   font-size: 16px;
   font-weight: 700;
+  cursor: pointer;
 
   @media screen and (min-width: 1279.99px) {
     font-size: 18px;
