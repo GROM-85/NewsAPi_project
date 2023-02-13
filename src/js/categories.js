@@ -11,15 +11,18 @@ const refs = {
   categoriesBox: document.querySelector('.categories'),
   categoriesList: document.querySelector('.categories__list'),
   categoriesMenu: document.querySelector('.categories__menu'),
+  menu: document.querySelector('.menu'),
   categoriesIconUp: document.querySelector('.categories__icon-up'),
   categoriesIconDown: document.querySelector('.categories__icon-down'),
   categoriesBtnList: document.querySelector('.categories__btn-list'),
+  categoriesBtnMenuText: document.querySelector('.categories__btn-text'),
 };
 
 saveCategories();
 categoriesOnResize();
 categoriesOnPageLoad();
-refs.categoriesBtnMenu.addEventListener('click', showCategoriesList);
+refs.categoriesBtnMenu.addEventListener('mouseenter', showCategoriesList);
+refs.menu.addEventListener('mouseleave', showCategoriesList);
 
 function saveCategories() {
   newsFetch.getCategories().then(results => {
@@ -69,6 +72,7 @@ function markupTablet() {
     'afterbegin',
     markupCategoriesInList(arrCategories, 4)
   );
+  refs.categoriesBtnMenuText.textContent = 'Others';
 }
 
 function markupDesktop() {
@@ -80,6 +84,7 @@ function markupDesktop() {
     'afterbegin',
     markupCategoriesInList(arrCategories, 6)
   );
+  refs.categoriesBtnMenuText.textContent = 'Others';
 }
 
 function markupMobile() {
@@ -87,11 +92,7 @@ function markupMobile() {
     'afterbegin',
     markupCategoriesInList(arrCategories)
   );
-  refs.categoriesBtnMenu.textContent = 'Categories';
-  // refs.categoriesBtnMenu.insertAdjacentHTML(
-  //   'beforeend',
-  //   '<svg class="categories__icon-up invisible" width="14" height="14"><use href="./images/icons.svg#arrowDown"></use></svg>'
-  // );
+  refs.categoriesBtnMenuText.textContent = 'Categories';
 }
 
 function markupCategoriesInBtn(arrCategories, begin, end) {
@@ -99,7 +100,7 @@ function markupCategoriesInBtn(arrCategories, begin, end) {
     .slice(begin, end)
     .map(
       result =>
-        `<li> <button class="categories__btn">${result.display_name}
+        `<li> <button class="categories__btn" data-value="${result.section}">${result.display_name}
     </button> </li>`
     )
     .join(' ');
@@ -108,12 +109,12 @@ function markupCategoriesInBtn(arrCategories, begin, end) {
 function markupCategoriesInList(arrCategories, begin, end) {
   return arrCategories
     .slice(begin, end)
-    .map(result => `<li class="categories__item">${result.display_name}</li>`)
+    .map(result => `<li class="categories__item" data-value="${result.section}">${result.display_name}</li>`)
     .join(' ');
 }
 
 function showCategoriesList() {
-  refs.categoriesIconUp.classList.toggle("invisible");
-  refs.categoriesIconDown.classList.toggle("invisible");
-  refs.categoriesMenu.classList.toggle("invisible");
+  refs.categoriesIconUp.classList.toggle('invisible');
+  refs.categoriesIconDown.classList.toggle('invisible');
+  refs.categoriesMenu.classList.toggle('invisible');
 }
