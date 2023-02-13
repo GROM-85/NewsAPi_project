@@ -10,6 +10,7 @@ const newsFetch = new NewsAPI();
 const refs = getRefs();
 
 newsFetch.query = 'apple';
+let imgUrl;
 
 //listener update main page with popular news//
 window.addEventListener('load', fetchByPopular);

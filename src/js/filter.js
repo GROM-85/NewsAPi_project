@@ -14,6 +14,7 @@ const refs = getRefs();
 refs.filter.addEventListener(`submit`, filterQuery);
 
 
+let imgUrl;
 async function filterQuery(e) {
   e.preventDefault();
   newsFetch.resetPage();
