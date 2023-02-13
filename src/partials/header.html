@@ -1,0 +1,40 @@
+<header class="header">
+  <div class="container header-container">
+    <a href="/src/index.html" class="logo__link">News</a>
+    <ul class="list-navigation">
+      <li class="list-navigation__item current-list__item"><span class="list-navigation__link js-home">Home</span></li>
+      <li class="list-navigation__item"><span class="list-navigation__link js-favorite">Favorite</span></li>
+      <li class="list-navigation__item"><span class="list-navigation__link js-read">Read</span></li>
+    </ul>
+    <form action="" class="search-form">
+      <input type="text" name="searchArt" class="form__input-close" placeholder="Search">
+      <svg width="20" height="20" class="search__icon-hidden">
+        <use href="./images/icons.svg#search"></use>
+      </svg>
+      <button type="button" class="js-button-search search__button-show"><svg width="20" height="20">
+          <use href="./images/icons.svg#search"></use>
+        </svg></button>
+    </form>
+    <div class="toggle-switch">
+      <svg width="21" height="21" class="switch-icon">
+        <use href="./images/icons.svg#sun"></use>
+      </svg>
+      <p class="text-switch">Light</p>
+      <span>
+        <label class="switch">
+          <input id="theme-switch" type="checkbox" class="input-switch" />
+          <span class="slider round"></span>
+        </label>
+      </span>
+      <svg width="21" height="21" class="switch-icon">
+        <use href="./images/icons.svg#moon"></use>
+      </svg>
+      <p class="text-switch">Dark</p>
+    </div>
+    <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="24" height="24" class="menu-icon">
+        <use href="./images/icons.svg#menu"></use>
+      </svg>
+    </button>
+  </div>
+</header>

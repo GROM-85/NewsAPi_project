@@ -9,10 +9,10 @@
   justify-content: space-between;
   border: 1px solid red;
   padding: 24px 16px 40px 16px;
+  position: relative;
   @media screen and (min-width: $tablet) {
     padding: 28px 16px 48px 16px;
   }
-
   @media screen and (min-width: $desktop) {
     padding: 28px 52px 60px 16px;
   }
@@ -60,6 +60,9 @@
       color: #4b48db;
       border: 1px solid #4440f7;
       border-radius: 20px;
+
+      @include transition(color);
+      @include transition(background-color);
     }
   }
 
@@ -69,15 +72,17 @@
     align-items: center;
 
     padding: 8px 21px;
-
     height: 31px;
 
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     color: #4b48db;
-    border: 1px solid #4440f7;
+    border: 1px solid var(--blue-color);
     border-radius: 20px;
+
+    @include transition(color);
+    @include transition(background-color);
   }
 
   &__btn:hover,
@@ -96,6 +101,8 @@
   &__icon-down {
     fill: var(--blue-color);
     margin-left: 10px;
+
+    @include transition(fill);
   }
 
   &__btn-menu:hover &__icon-up,
@@ -110,15 +117,21 @@
 
   &__menu {
     display: inline-block;
-    padding: 14px;
+    padding: 14px 14px 0 14px;
     overflow: auto;
     position: absolute;
+    z-index: 1;
 
-    background-color: #f8f8f8;
+    background-color: var(--text-main-color);
     border-radius: 20px;
-    height: 380px;
+    height: 383px;
     border: 1px solid #4813db;
     filter: drop-shadow(0px 10px 60px rgba(0, 0, 0, 0.1));
+
+    @media screen and (min-width: $tablet) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
   }
 
   &__list {
@@ -127,11 +140,19 @@
 
   &__item {
     color: var(--blue-color);
+      cursor: pointer;
     padding-bottom: 12px;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.01em;
+
+    cursor: pointer;
+    @include transition(text-decoration);
+  }
+
+  &__item:hover {
+    text-decoration: underline;
   }
 }
 
@@ -143,9 +164,18 @@
   position: relative;
 }
 
+.menu:hover .categories__btn-menu {
+  color: var(--white-color);
+  background-color: var(--blue-color);
+}
+
+.menu:hover .categories__icon-up {
+  fill: var(--white-color);
+}
+
 .filter-text {
   display: none;
-  color: #111321;
+  color: var(--black-color);
 
   @media screen and (min-width: $desktop) {
     display: block;

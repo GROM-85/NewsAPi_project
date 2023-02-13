@@ -1,40 +1,49 @@
 import * as key from './const';
 import * as storage from './storageLogic';
+import getRefs from './refs';
+import { cards } from '..';
+import { renderMarkup, clear } from './renderMarkup';
 
-const cardList = document.querySelector('.g');
-// const btnEl = document.querySelector(".favorite-btn");
+const refs = getRefs();
+refs.gallery.addEventListener('click', addToFavorite);
 
-cardList.addEventListener('click', addToFavorite);
-
-function addToFavorite(e) {
+export function addToFavorite(e) {
   const btnEl = e.target.closest('.favorite-btn');
-  if (!btnEl) return;
-  btnEl.classList.toggle('hidden-span');
-  //   console.log(btnEl);
-  const cardId = btnEl.parentNode.id;
-  //   console.log(btnId);
-  let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-  let favCard = collection.find(obj => obj.id === cardId);
-  // const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  const favorites = storage.loadFromLocal(key.KEY_FAVORITE);
-  //   console.log(favorites);
-  if (!btnEl.classList.contains('hidden-span')) {
-    const updatedFavorites = favorites.filter(id => id !== cardId);
-    // localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-    storage.saveToLocal(key.KEY_FAVORITE, updatedFavorites);
-  } else {
-    favorites.push(cardId);
-    // localStorage.setItem('favorites', JSON.stringify(favorites));
-    storage.saveToLocal(key.KEY_FAVORITE, favorites);
+
+  if (btnEl) {
+    // btnEl.classList.toggle('hidden-span');
+
+    const cardId = btnEl.parentNode.parentNode.id;
+    let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+
+    let favCard = collection.find(obj => obj.id === cardId);
+    // console.log(favCard);
+
+    const favorites = storage.loadFromLocal(key.KEY_FAVORITE) || [];
+
+    // console.log(favorites);
+
+    if (btnEl.classList.contains('hidden-span')) {
+      const updatedFavorites = favorites.filter(id => id !== cardId);
+      storage.saveToLocal(key.KEY_FAVORITE, updatedFavorites);
+      btnEl.classList.remove('hidden-span');
+      console.log(updatedFavorites);
+    } else {
+      favorites.push(favCard);
+      storage.saveToLocal(key.KEY_FAVORITE, favorites);
+      btnEl.classList.add('hidden-span');
+    }
   }
 }
-function setFavoritesOnLoad() {
-  // цю функцію потрібно викликати після рендера картки, тобто після newsList.innerHTML = markup
-  // const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+refs.FavBtn.addEventListener('click', createFavorite);
+
+function createFavorite() {
   const favorites = storage.loadFromLocal(key.KEY_FAVORITE);
-  favorites.forEach(id => {
-    const itemNew = document.querySelector(`#${id}`);
-    const favoriteBtn = itemNew.querySelector('.favorite-btn');
-    favoriteBtn.classList.add('hidden-span');
-  });
+  console.log(favorites);
+  if (!favorites) return;
+  let markup = favorites.map(renderMarkup).join('');
+
+  clear(refs.gallery);
+  refs.gallery.insertAdjacentHTML = markup;
 }
