@@ -1,0 +1,139 @@
+.calendar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &__icon {
+        position: absolute;
+        margin: 0;
+        width: 20px;
+        height: 20px;
+        right: 137px;
+        fill: #4440f6;
+
+        &.opened {
+            fill: white;
+        }
+
+        @media screen and (min-width: $mobile) {
+            right: 153px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            right: 190px;
+        }
+    }
+    &__input {
+        padding-left: 46px;
+        cursor: pointer;
+        height: 31px;
+        border: 1px solid rgba(17, 19, 33, 1);
+        border-radius: 20px;
+        width: 152px;
+        font-family: $main-font;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        color: #a2a2a2;
+
+        &.opened {
+            background: #4440f6;
+            color: white;
+        }
+
+        @media screen and (min-width: $mobile) {
+            width: 168px;
+        }
+    }
+
+    &__arrow {
+        position: absolute;
+        margin: 0;
+        width: 20px;
+        height: 15px;
+        right: 25px;
+        fill: #a2a2a2;
+
+        &.opened {
+            fill: white;
+        }
+
+        &.hidden {
+            display: none;
+        }
+
+        @media screen and (min-width: $desktop) {
+            right: 63px;
+        }
+    }
+}
+.air-datepicker-global-container {
+    .air-datepicker {
+        display: flex;
+        --adp-width: 250px;
+        flex-direction: column-reverse;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 15px 40px rgb(0 0 0 / 12%);
+        .air-datepicker-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}
+
+.air-datepicker-buttons {
+    .air-datepicker-button {
+        color: #000000;
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.38;
+
+        &.calendar-title {
+            cursor: unset;
+
+            &:hover {
+                color: unset;
+                background: unset;
+            }
+        }
+        .air-datepicker-nav--action {
+            width: 20px;
+            height: 30px;
+            svg {
+                path {
+                    stroke: #4440f6;
+                }
+            }
+        }
+    }
+}
+
+.air-datepicker-body--day-names {
+    .air-datepicker-body--day-name {
+        color: rgba(60, 60, 67, 0.3);
+        text-align: center;
+        text-transform: uppercase;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8em;
+        display: flex;
+    }
+}
+
+.air-datepicker-body {
+    .air-datepicker-body--cells .air-datepicker-cell {
+        &.-focus-,
+        &:hover,
+        &:focus {
+            border-radius: 50%;
+        }
+        &.-selected- {
+            background: #4440f6;
+            border-radius: 50%;
+        }
+    }
+}

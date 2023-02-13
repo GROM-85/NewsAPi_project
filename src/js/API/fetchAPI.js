@@ -1,3 +1,4 @@
+import format from "date-fns/format";
 export class NewsAPI{
 
     #BASE_URL = "https://api.nytimes.com/svc/";
@@ -19,9 +20,10 @@ export class NewsAPI{
         this.#period = 7;
         this.category = "all";
         this.#page = 1;
-        this.#beginDate = "20120101";
+        this.#beginDate = format(Date.now(),'yyyyMMdd');
         this.#offset = 0;
     }
+   
 
     async getPopularNews(){
         const response = await fetch(this.#BASE_URL + `mostpopular/v2/viewed/${this.#period}.json?api-key=${this.#API_KEY}`);
@@ -52,7 +54,7 @@ export class NewsAPI{
 
     async getNewsByCategories(){
         
-        const response = await fetch(this.#BASE_URL + `/news/v3/content/inyt/${this.category}.json?` + new URLSearchParams({
+        const response = await fetch(this.#BASE_URL + `news/v3/content/nyt/${this.category}.json?` + new URLSearchParams({
             "api-key": this.#API_KEY,
             offset: this.#offset, // divisible by 20
         }));
@@ -71,12 +73,6 @@ export class NewsAPI{
         }
         const {results} =  await response.json();
         return results;
-    }
-
-    async getNewsById(array){
-        const promises = array.map(id => {
-            return fetch(this.#BASE_URL)
-        })
     }
 
     get query(){

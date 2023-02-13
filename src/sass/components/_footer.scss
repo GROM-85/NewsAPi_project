@@ -1,0 +1,9 @@
+.footer{
+    width: 100%;
+    height: 120px;
+    background: #7A7A7A;
+
+    @media screen and (min-width:$mobile) {
+        height: 146px;
+    }
+}
