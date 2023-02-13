@@ -1,0 +1,164 @@
+// BASE AND PHONE STYLES
+
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  height: 81px;
+  align-items: center;
+  align-content: center;
+  padding: 0 16px;
+  @media screen and (min-width: 767.9px) {
+    height: 106px;
+  }
+}
+
+.logo__link {
+  display: inline-block;
+  margin-right: 14px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  @media screen and (min-width: 767.99px) {
+    margin-right: 48px;
+    font-size: 32px;
+  }
+
+  @media screen and (min-width: 1279.99px) {
+    margin-right: auto;
+    font-size: 42px;
+    padding-bottom: 10px;
+  }
+}
+
+.search-form {
+  position: relative;
+  margin-right: 16px;
+  margin-left: auto;
+  @media screen and (min-width: 767.9px) {
+    margin-left: 32px;
+    margin-right: 24px;
+  }
+
+  @media screen and (min-width: 1279.9px) {
+    margin-left: 147px;
+    margin-right: 147px;
+  }
+}
+
+.form__input-close {
+  opacity: 0;
+  display: none;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.form__input-show {
+  // position: relative;
+  outline: none;
+  opacity: 1;
+  display: inline-block;
+  visibility: visible;
+  pointer-events: auto;
+  max-width: 173px;
+  padding: 4.5px 0 6px 48px;
+  border: 1px solid var(--text-main-color);
+  border-radius: 20px;
+  background-color: var(--bcg-main-color);
+
+  &:focus {
+    border: 1.6px solid var(--text-main-color);
+  }
+  &::placeholder {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 1.17;
+    @media screen and (min-width: 1279.99px) {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (min-width: 767.9px) {
+    max-width: 213px;
+  }
+
+  @media screen and (min-width: 1279.9px) {
+    max-width: 288px;
+  }
+}
+
+.search__icon-hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.search__icon-show {
+  fill: var(--text-main-color);
+  display: inline-block;
+  opacity: 1;
+  visibility: visible;
+  position: absolute;
+  top: 6px;
+  left: 20px;
+}
+
+.search__button-hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: auto;
+  & svg {
+    fill: purple;
+  }
+}
+
+.search__button-show {
+  & svg {
+    fill: var(--text-main-color);
+  }
+  @media screen and (min-width: 767.99px) {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.menu-icon {
+  stroke: var(--text-main-color);
+  display: inline-block;
+}
+
+// TABLET STYLES //
+
+.list-navigation {
+  display: none;
+  @media screen and (min-width: 767.9px) {
+    display: flex;
+  }
+}
+
+.list-navigation__item {
+  padding: 8px 0;
+}
+
+.list-navigation__item:not(:last-child) {
+  margin-right: 44px;
+  @media screen and (min-width: 1279.99px) {
+    margin-right: 69px;
+  }
+}
+
+.list-navigation__link {
+  color: var(--text-main-color);
+  font-size: 16px;
+  font-weight: 700;
+
+  @media screen and (min-width: 1279.99px) {
+    font-size: 18px;
+  }
+}
