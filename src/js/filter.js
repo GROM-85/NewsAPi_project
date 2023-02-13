@@ -1,49 +1,59 @@
 import { NewsAPI } from './API/fetchAPI';
-import getRefs from './refs';
-import { renderMarkup, clear, renderWether } from './renderMarkup';
+import { refs } from './refs';
+import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as key from './const';
 import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
 import format from 'date-fns/format';
-import { addToFavorite, setFavoritesOnLoad } from './addToFavorites';
+import { selectedDate } from './calendar';
+import { addToFavorite } from './addToFavorites';
 
 const newsFetch = new NewsAPI();
-const refs = getRefs();
 
 refs.filter.addEventListener(`submit`, filterQuery);
 
+
 async function filterQuery(e) {
   e.preventDefault();
-
-  let date = format(Date.now(), 'yyyyMMdd');
-
   newsFetch.resetPage();
-
-  newsFetch.query = refs.filterInput.value;
-
+  //повертає значення з імпуту
+  const form = e.currentTarget.elements.searchArt.value;
+  // не здійснює пошук, якщо нічого не введено
+   if (!form) {
+     return;
+   }
+  newsFetch.query = form;
   const { docs, meta } = await newsFetch.getNewsByQuery();
+  //якщо не знайдено даних по запиту, вертає NOT A FOUND
+  if (docs.length=== 0) {
+    console.log("NOT A FOUND")
+  }
 
   let collectionByQuery = [];
+  console.log("docsQuery",docs);
   collectionByQuery = docs.map(result => {
-    const { abstract, pub_date, uri, url, multimedia, section_name, headline } =
+    const { abstract, pub_date, uri, web_url, multimedia, section_name, headline } =
       result;
     console.log('result', result);
-    if (multimedia) {
+    let imgUrl;
+    if (multimedia.length !== 0) {
+
       imgUrl = 'https://www.nytimes.com/' + multimedia[2]['url'];
       console.log(imgUrl);
     } else {
       imgUrl =
-        'https://www.shutterstock.com/image-photo/canadian-national-flag-overlay-false-260nw-1720481365.jpg';
+        'https://static01.nyt.com/images/2022/10/30/nyregion/30sandy-anniversary-intro/merlin_192440457_cbe91abf-e7f4-467f-b83d-4e7815ef45b7-articleLarge.jpg?quality=75&auto=webp&disable=upscale';
     }
 
     const newDateFormat = corectDate(pub_date);
+    console.log("newDateFormat",newDateFormat)
 
     let obj = {
       imgUrl,
       title: headline.main,
       text: abstract,
       date: newDateFormat,
-      url,
+      url:web_url,
       categorie: section_name,
       id: uri,
     };
@@ -68,10 +78,10 @@ function categoriesOnResizeGallery() {
       collection = collection.slice(0, 8);
     }
     clear(refs.gallery);
-    collectionByPopular = collection.map(renderMarkup).join(``);
+    let collectionByPopular = collection.map(renderMarkup).join(``);
     renderGallery(collectionByPopular);
 
-    wetherRender();
+    // weatherRender();
   });
 }
 function categoriesOnPageLoadGallery() {
@@ -88,27 +98,28 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-  wetherRender();
-}
 
+  //   weather.renderDefaultWeather();
+}
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
   refs.gallery.addEventListener('click', addToFavorite);
 }
 //*******renderedWether******************* */
-function wetherRender() {
+function weatherRender() {
+  let replacedItem;
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     replacedItem = refs.gallery.childNodes[1];
     console.log(replacedItem);
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else if (window.matchMedia('(min-width: 767.98px)').matches) {
     replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else {
     replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`beforebegin`, markup);
   }
 }
@@ -127,3 +138,4 @@ function corectDate(date) {
 
   return newDateFormat;
 }
+//************************ *//
