@@ -1,29 +1,20 @@
 import { NewsAPI } from './API/fetchAPI';
-import getRefs from './refs';
+import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as storage from './storageLogic';
 import * as key from './const';
 import * as newsCard from './newsCard';
 
 const newsFetch = new NewsAPI();
-const REFS = getRefs();
+
 let imgUrl;
 const arrCategories = JSON.parse(localStorage.getItem('results'));
-const refs = {
-  categoriesBtnMenu: document.querySelector('.categories__btn-menu'),
-  categoriesBox: document.querySelector('.categories'),
-  categoriesList: document.querySelector('.categories__list'),
-  categoriesMenu: document.querySelector('.categories__menu'),
-  menu: document.querySelector('.menu'),
-  categoriesIconUp: document.querySelector('.categories__icon-up'),
-  categoriesIconDown: document.querySelector('.categories__icon-down'),
-  categoriesBtnList: document.querySelector('.categories__btn-list'),
-  categoriesBtnMenuText: document.querySelector('.categories__btn-text'),
-};
+
 
 saveCategories();
 categoriesOnResize();
 categoriesOnPageLoad();
+
 refs.categoriesBtnMenu.addEventListener('mouseenter', showCategoriesList);
 refs.menu.addEventListener('mouseleave', showCategoriesList);
 
@@ -141,9 +132,11 @@ async function onCategoriesBtnClick(e) {
     const { abstract, published_date, uri, url, multimedia, section, title } =
       result;
     console.log('result', result);
-
-    if (multimedia) {imgUrl = multimedia[2]['url'];
-      console.log(imgUrl);
+    let imgUrl;
+    if (multimedia) {
+      
+      imgUrl = multimedia[2]['url'];
+      
     } else {
       imgUrl =
         'https://www.shutterstock.com/image-photo/canadian-national-flag-overlay-false-260nw-1720481365.jpg';
@@ -162,7 +155,7 @@ async function onCategoriesBtnClick(e) {
     return obj;
   });
 
-  clear(REFS.gallery);
+  clear(refs.gallery);
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
 
@@ -182,8 +175,7 @@ function categoriesOnResizeGallery() {
     clear(refs.gallery);
     collectionByPopular = collection.map(renderMarkup).join(``);
     renderGallery(collectionByPopular);
-
-    wetherRender();
+    weather.renderDefaultWeather();
   });
 }
 function categoriesOnPageLoadGallery() {
@@ -200,26 +192,27 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-  wetherRender();
+  weatherRender();
 }
 
 function renderGallery(markup) {
-  REFS.gallery.insertAdjacentHTML(`beforeend`, markup);
+  refs.gallery.insertAdjacentHTML(`beforeend`, markup);
 }
 //*******renderedWether******************* */
-function wetherRender() {
+function weatherRender() {
+let replacedItem;
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
-    replacedItem = REFS.gallery.childNodes[1];
+    replacedItem = refs.gallery.childNodes[1];
     console.log(replacedItem);
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else if (window.matchMedia('(min-width: 767.98px)').matches) {
-    replacedItem = REFs.gallery.firstElementChild;
-    const markup = renderWether();
+    replacedItem = refs.gallery.firstElementChild;
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else {
-    replacedItem = REFS.gallery.firstElementChild;
-    const markup = renderWether();
+    replacedItem = refs.gallery.firstElementChild;
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`beforebegin`, markup);
   }
 }

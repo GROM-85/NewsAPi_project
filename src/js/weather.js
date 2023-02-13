@@ -1,8 +1,8 @@
 import { format } from 'date-fns';
-import getRefs from './refs';
+import { refs } from './refs';
 import { renderWeather } from './renderMarkup';
 
-const refs = getRefs();
+
 let weatherMarkup;
 // const refs = {
 //   temp: document.querySelector('.weather__temp'),
@@ -66,7 +66,7 @@ export async function getGeoLocation() {
         console.log(weatherRender(item))
       }));
     
-    return;
+    return  ;
   }
 }
 
