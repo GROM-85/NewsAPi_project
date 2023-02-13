@@ -1,5 +1,6 @@
 import * as key from './const';
 import * as storage from './storageLogic';
+//import { updateCalendarOptions } from './calendar';
 
 const inputSwitches = document.querySelectorAll('#theme-switch');
 
@@ -18,7 +19,16 @@ function onInputChange(evt) {
     document.body.classList.remove('darkMode');
     storage.saveToLocal(key.KEY_THEME, 'light');
   }
+
+  // applyThemeToCalendar();
 }
+
+//TODO: Example for switching calendar theme.
+// function applyThemeToCalendar() {
+//   updateCalendarOptions({
+//     classes: "testClass1 testClass2 testClass3",
+//   })
+// }
 
 function getCurrentTheme(input) {
   const currentTheme = storage.loadFromLocal('theme') || 'light';
