@@ -2,6 +2,7 @@ import * as key from '../const';
 import * as storage from '../storageLogic';
 import { refs } from '../refs';
 import { renderMarkup, clear } from '../renderMarkup';
+import { navArray,toHideCategories } from '../navLogic/navLogic';
 
 refs.gallery.addEventListener('click', addToFavorite);
 
