@@ -1,4 +1,3 @@
-
 export const refs = {
   gallery: document.querySelector(`.card__list`),
   weather: document.querySelector(`.weather`),
@@ -13,6 +12,7 @@ export const refs = {
   categoriesBox: document.querySelector('.categories'),
   categoriesList: document.querySelector('.categories__list'),
   categoriesMenu: document.querySelector('.categories__menu'),
+  categoriesContainer: document.querySelector('.filter-container'),
   menu: document.querySelector('.menu'),
   categoriesIconUp: document.querySelector('.categories__icon-up'),
   categoriesIconDown: document.querySelector('.categories__icon-down'),
@@ -27,8 +27,6 @@ export const refs = {
   ReadBtn: document.querySelector('.js-read'),
   FavBtn: document.querySelector('.js-favorite'),
   HomeBtn: document.querySelector('.js-home'),
-  nav : document.querySelector(".list-navigation"),
-  categContainer : document.querySelector(".filter-container"),
-  
+  nav: document.querySelector('.list-navigation'),
+  categContainer: document.querySelector('.filter-container'),
 };
-
