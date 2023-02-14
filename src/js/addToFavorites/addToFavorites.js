@@ -15,7 +15,8 @@ export function addToFavorite(e) {
     let favCard = collection.find(obj => obj.id === cardId);
 
     const favorites = storage.loadFromLocal(key.KEY_FAVORITE) || [];
-    const currentPage = storage.loadFromLocal(key.KEY_CURRENT_PAGE) || 'Home';
+    const currentPage = storage.loadFromLocal("currentPage") || 'Home';
+    console.log(currentPage)
 
     if (btnEl.classList.contains('hidden-span')) {
       const updatedFavorites = favorites.filter(({ id }) => id !== cardId);
@@ -35,15 +36,38 @@ export function addToFavorite(e) {
 }
 
 refs.FavBtn.addEventListener('click', createFavorite);
+refs.favBtnMob.addEventListener('click', createFavorite);
 
 function createFavorite() {
   const favorites = storage.loadFromLocal(key.KEY_FAVORITE);
-  if (!favorites) return;
+
+  if (favorites.length === 0) {
+    clear(refs.gallery);
+    clear(refs.accordion);
+    refs.gallery.insertAdjacentHTML("beforeend","<h2 class='fav-not-found'>You haven't added anything to favorite!</h2>")
+    return;
+  }
+  
   let markup = favorites.map(renderMarkup).join('');
 
   clear(refs.gallery);
+  clear(refs.accordion);
   refs.gallery.innerHTML = markup;
   Array.from(refs.gallery.children).forEach(item =>
     item.querySelector('.favorite-btn').classList.add('hidden-span')
   );
+}
+
+// ON LOAD
+export function onloadFavorite(){
+  let favCollection = storage.loadFromLocal(key.KEY_FAVORITE) || [];
+  
+  if (favCollection.length === 0) return;
+  
+  for(let obj of favCollection){
+    if(!document.getElementById(`${obj.id}`))continue;
+    let elem = document.getElementById(`${obj.id}`)
+    let favBtn = elem.querySelector('.favorite-btn');
+    favBtn.classList.add('hidden-span');
+  };
 }

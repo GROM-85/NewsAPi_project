@@ -57,10 +57,8 @@ export function toggleToRead(e) {
 
 export function onloadToRead(){
     let readCollection = storage.loadFromLocal(key.KEY_READ) || [];
-    if (readCollection.length === 0) {
-      refs.accordion.insertAdjacentHTML("beforeend","<h2 class='read-not-found'>You haven't read any article</h2>")
-      return;
-    }
+    if (readCollection.length === 0 )return;
+    
     readCollection.forEach(obj => {
       let values = Object.values(obj)[0]; // cause Object.values is ARRAY so need to add [0] as we have one key
       for (let value of values) {

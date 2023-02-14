@@ -24,11 +24,19 @@ export const refs = {
   accordArrow: document.querySelector('.accord__arrow'),
   //Read more && Add
   readMore: document.querySelector('.info__link'),
-  ReadBtn: document.querySelector('.js-read'),
-  FavBtn: document.querySelector('.js-favorite'),
-  HomeBtn: document.querySelector('.js-home'),
+  //nav main btn
+  ReadBtn: document.querySelector('[data-value="Read"]'),
+  FavBtn: document.querySelector('[data-value="Favorite"]'),
+  HomeBtn: document.querySelector('[data-value="Home"]'),
+  // nav mobile btn 
+  readBtnMob: document.querySelector('.js-read'),
+  favBtnMob: document.querySelector('.js-favorite'),
+  homeBtnMob: document.querySelector('.js-home'),
+
   nav : document.querySelector(".list-navigation"),
+  navMobile : document.querySelector(".mobile-menu-list"),
   categContainer : document.querySelector(".filter-container"),
+
   
 };
 

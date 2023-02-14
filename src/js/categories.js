@@ -6,6 +6,7 @@ import * as key from './const';
 import * as newsCard from './newsCard';
 import { onloadToRead } from './addToRead/addToRead';
 import { clearNavCurrent } from './navLogic/navLogic';
+import { onloadFavorite } from './addToFavorites/addToFavorites';
 const newsFetch = new NewsAPI();
 
 
@@ -178,6 +179,7 @@ function categoriesOnPageLoadGallery() {
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
   onloadToRead();
+  onloadFavorite();
 }
 
 //*******renderedWether******************* */

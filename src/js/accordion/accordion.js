@@ -3,6 +3,7 @@ import { onloadToRead, toggleToRead } from '../addToRead/addToRead';
 import * as storage from '../storageLogic';
 import * as render from '../renderMarkup';
 import { refs } from '../refs';
+import { onloadFavorite } from '../addToFavorites/addToFavorites';
 
 refs.gallery.addEventListener('click', toggleToRead);
 
@@ -28,9 +29,17 @@ refs.accordion.addEventListener('click', e => {
 // CREATE ACCORDION
 //========================
 refs.ReadBtn.addEventListener('click', createAccord);
+refs.readBtnMob.addEventListener('click', createAccord);
 
 function createAccord() {
   let readCollection = storage.loadFromLocal(key.KEY_READ) || [];
+
+  if (readCollection.length === 0) {
+    render.clear(refs.gallery);
+    render.clear(refs.accordion);
+    refs.accordion.insertAdjacentHTML("beforeend","<h2 class='read-not-found'>You haven't read any article</h2>")
+    return;
+  }
 
 //========================
 //SORT BY DATE
@@ -55,6 +64,6 @@ sortedCollection.forEach(obj => {
 render.clear(refs.gallery);
 render.clear(refs.accordion);
 refs.accordion.insertAdjacentHTML('beforeend', markup.join(''));
-
+onloadFavorite();
 onloadToRead();
 }

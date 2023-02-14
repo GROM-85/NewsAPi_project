@@ -9,3 +9,4 @@ import './js/weather';
 import './js/accordion/accordion';
 import './js/addToRead/addToRead';
 import './js/navLogic/navLogic';
+import './js/addToFavorites/addToFavorites';
