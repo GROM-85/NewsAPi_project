@@ -12,7 +12,8 @@ import "./js/calendar";
 import "./js/categories";
 import "./js/newsCard";
 import "./js/filter";
-import "./js/filterByDay"
+import "./js/filterByDay";
+import "./js/pagination"
 
 // const newsFetch = new NewsAPI();
 
