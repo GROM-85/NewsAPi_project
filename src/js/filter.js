@@ -6,12 +6,12 @@ import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
 import format from 'date-fns/format';
 import { selectedDate } from './calendar';
-import { addToFavorite } from './addToFavorites';
+import { addToFavorite } from './addToFavorites/addToFavorites';
+import { onloadToRead } from './addToRead/addToRead';
 
 const newsFetch = new NewsAPI();
 
 refs.filter.addEventListener(`submit`, filterQuery);
-
 
 async function filterQuery(e) {
   e.preventDefault();
@@ -19,25 +19,31 @@ async function filterQuery(e) {
   //повертає значення з імпуту
   const form = e.currentTarget.elements.searchArt.value;
   // не здійснює пошук, якщо нічого не введено
-   if (!form) {
-     return;
-   }
+  if (!form) {
+    return;
+  }
   newsFetch.query = form;
   const { docs, meta } = await newsFetch.getNewsByQuery();
   //якщо не знайдено даних по запиту, вертає NOT A FOUND
-  if (docs.length=== 0) {
-    console.log("NOT A FOUND")
+  if (docs.length === 0) {
+    console.log('NOT A FOUND');
   }
 
   let collectionByQuery = [];
-  console.log("docsQuery",docs);
+  console.log('docsQuery', docs);
   collectionByQuery = docs.map(result => {
-    const { abstract, pub_date, uri, web_url, multimedia, section_name, headline } =
-      result;
+    const {
+      abstract,
+      pub_date,
+      uri,
+      web_url,
+      multimedia,
+      section_name,
+      headline,
+    } = result;
     console.log('result', result);
     let imgUrl;
     if (multimedia.length !== 0) {
-
       imgUrl = 'https://www.nytimes.com/' + multimedia[2]['url'];
       console.log(imgUrl);
     } else {
@@ -46,14 +52,14 @@ async function filterQuery(e) {
     }
 
     const newDateFormat = corectDate(pub_date);
-    console.log("newDateFormat",newDateFormat)
+    console.log('newDateFormat', newDateFormat);
 
     let obj = {
       imgUrl,
       title: headline.main,
       text: abstract,
       date: newDateFormat,
-      url:web_url,
+      url: web_url,
       categorie: section_name,
       id: uri,
     };
@@ -61,29 +67,30 @@ async function filterQuery(e) {
   });
 
   clear(refs.gallery);
-
+  clear(refs.accordion);
   storage.saveToLocal(key.KEY_COLLECTION, collectionByQuery.slice(0, 9));
 
   categoriesOnPageLoadGallery();
-  categoriesOnResizeGallery();
 }
-function categoriesOnResizeGallery() {
-  window.addEventListener('resize', e => {
-    let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-    if (e.currentTarget.innerWidth <= 768) {
-      collection = collection.slice(0, 3);
-    } else if (e.currentTarget.innerWidth <= 1280) {
-      collection = collection.slice(0, 7);
-    } else {
-      collection = collection.slice(0, 8);
-    }
-    clear(refs.gallery);
-    let collectionByPopular = collection.map(renderMarkup).join(``);
-    renderGallery(collectionByPopular);
 
-    // weatherRender();
-  });
-}
+// function categoriesOnResizeGallery() {
+//   window.addEventListener('resize', e => {
+//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+//     if (e.currentTarget.innerWidth <= 768) {
+//       collection = collection.slice(0, 3);
+//     } else if (e.currentTarget.innerWidth <= 1280) {
+//       collection = collection.slice(0, 7);
+//     } else {
+//       collection = collection.slice(0, 8);
+//     }
+//     clear(refs.gallery);
+//     let collectionByPopular = collection.map(renderMarkup).join(``);
+//     renderGallery(collectionByPopular);
+//     onloadToRead();
+//     // weatherRender();
+//   });
+// }
+
 function categoriesOnPageLoadGallery() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;
@@ -98,7 +105,7 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-
+  onloadToRead();
   //   weather.renderDefaultWeather();
 }
 function renderGallery(markup) {

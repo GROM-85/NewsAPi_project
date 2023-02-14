@@ -18,5 +18,17 @@ export const refs = {
   categoriesIconDown: document.querySelector('.categories__icon-down'),
   categoriesBtnList: document.querySelector('.categories__btn-list'),
   categoriesBtnMenuText: document.querySelector('.categories__btn-text'),
+  gallery: document.querySelector('.card__list'),
+  //accordion
+  accordion: document.querySelector('.accordion'),
+  accordArrow: document.querySelector('.accord__arrow'),
+  //Read more && Add
+  readMore: document.querySelector('.info__link'),
+  ReadBtn: document.querySelector('.js-read'),
+  FavBtn: document.querySelector('.js-favorite'),
+  HomeBtn: document.querySelector('.js-home'),
+  nav : document.querySelector(".list-navigation"),
+  categContainer : document.querySelector(".filter-container"),
+  
 };
 

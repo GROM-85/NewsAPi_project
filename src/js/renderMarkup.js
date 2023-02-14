@@ -29,6 +29,11 @@ export function renderMarkup({
                  <path d="M4.66658 2C2.82592 2 1.33325 3.47733 1.33325 5.3C1.33325 6.77133 1.91659 10.2633 7.65859 13.7933C7.76144 13.8559 7.87952 13.889 7.99992 13.889C8.12032 13.889 8.2384 13.8559 8.34125 13.7933C14.0833 10.2633 14.6666 6.77133 14.6666 5.3C14.6666 3.47733 13.1739 2 11.3333 2C9.49259 2 7.99992 4 7.99992 4C7.99992 4 6.50725 2 4.66658 2Z"/>
              </svg></span>
                      </button>
+                <p class="read">Already read
+          <svg class="tick" width="25" height="20">
+          <use href='/icons.adfc4680.svg#tick'></use>
+          </svg>
+          </p>
             </div>
             <div class="info__helper">
                 <h2 class="info__title">${text}</h2>
@@ -38,7 +43,7 @@ export function renderMarkup({
                     <div class=info__meta>
                       <p class="info__date">${date}
                       </p>
-                      <a class="info__link" href="${url}">Read more
+                      <a class="info__link" target="_blank" href="${url}">Read more
                       </a>
                     </div>
                   </div>
@@ -81,13 +86,30 @@ export function renderWeather({ temp, icon, main, name }) {
 </li>`;
 }
 
+export function renderAccordion(date) {
+  return `<div class="accord__title">
+  <div class="date__cont">
+      <p class="date">${date}</p>
+      <span class="accord__arrow js-down">
+        <svg >
+          <use href='/icons.adfc4680.svg#arrowDown'></use>
+        </svg>
+        </span>
+        <span class="accord__arrow js-up" hidden><svg class="js-up" >
+          <use href='/icons.adfc4680.svg#arrowUp'></use>
+        </svg>
+      </span>
+  </div>
+  <span class="line"></span>
+  `;
+}
+
 function formatText(text) {
   const maxLength = 110;
   let result;
   // Change code below this line
-
-  if (text.length > maxLength) {
-    text = text.slice(0, maxLength);
+  if (text.length > key.MAXLENGHT) {
+    text = text.slice(0, key.MAXLENGHT);
     result = text + `...`;
   } else {
     result = text;

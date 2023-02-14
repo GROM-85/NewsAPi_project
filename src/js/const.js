@@ -1,5 +1,9 @@
 export const KEY_THEME = 'theme';
 export const KEY_COLLECTION = 'collection';
 export const KEY_FAVORITE = 'favorite';
+export const KEY_CURRENT_PAGE = 'currentPage';
+export const KEY_READ = 'read';
 export const MAXLENGHT = 110;
-export const KEY_CURRENT_PAGE = 'home';
+export const READ = false;
+export const FAVORITE = false;
+export const HOME = false;

@@ -28,6 +28,7 @@ h3,
 h4,
 p {
   margin: 0;
+  text-decoration: none;
 }
 
 ul {
@@ -53,6 +54,7 @@ button {
 }
 
 body {
+  position:relative;
   font-family: $main-font, sans-serif;
   color: var(--text-main-color);
   background-color: var(--bcg-main-color);
@@ -64,6 +66,7 @@ body {
     overflow: hidden;
   }
 }
+
 
 h1,
 h2,
