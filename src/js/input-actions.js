@@ -24,15 +24,3 @@ window.addEventListener('resize', e => {
     return;
   }
 });
-
-//redirect menu mobile nav
-refs.mobileNavItem.addEventListener(`click`, onSelectCurrentItem);
-
-function onSelectCurrentItem(e) {
-  e.preventDefault;
-  const currentActiveLInk = document.querySelector('.menu-current__item');
-  if (currentActiveLInk) {
-    currentActiveLInk.classList.remove('menu-current__item');
-  }
-  e.target.classList.add('menu-current__item');
-}
