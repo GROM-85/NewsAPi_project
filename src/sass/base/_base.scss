@@ -46,24 +46,24 @@ button {
   margin: 0;
   padding: 0;
   font-family: inherit;
-  background-color: transparent;
+  background-color: var(--white-color);
   cursor: pointer;
   box-shadow: none;
   border: none;
 }
 
-body {
-  font-family: $main-font, sans-serif;
-  color: var(--text-main-color);
-  background-color: var(--bcg-main-color);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+// body {
+//   font-family: $main-font, sans-serif;
+//   color: var(--text-main-color);
+//   background-color: var(--bcg-main-color);
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
 
-  &.no-scroll {
-    overflow: hidden;
-  }
-}
+//   &.no-scroll {
+//     overflow: hidden;
+//   }
+// }
 
 h1,
 h2,
@@ -85,15 +85,6 @@ img {
   height: auto;
 }
 
-button {
-  margin: 0;
-  padding: 0;
-  font-family: inherit;
-  background-color: transparent;
-  cursor: pointer;
-  box-shadow: none;
-  border: none;
-}
 
 body {
   font-family: $main-font, sans-serif;

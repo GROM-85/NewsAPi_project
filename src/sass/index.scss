@@ -3,6 +3,7 @@
 @import './utils/variables';
 @import './utils/mixin';
 @import './base/base';
+
 @import './components/header';
 @import './components/footer';
 @import './components/calendar';
@@ -14,3 +15,4 @@
 @import './components/mobile-menu';
 //add switch-theme.scss (dima naumets)
 @import './components/switch-theme';
+@import './components/not-found-page';

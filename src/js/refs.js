@@ -16,4 +16,12 @@ export const refs = {
   categoriesIconDown: document.querySelector('.categories__icon-down'),
   categoriesBtnList: document.querySelector('.categories__btn-list'),
   categoriesBtnMenuText: document.querySelector('.categories__btn-text'),
+
+  notFoundEl: document.querySelector('.not-found'),
+  buttonEL: document.querySelector('.js-button-search'),
+  inputEl: document.querySelector('.form__input-close'),
+  svgEl: document.querySelector('.search__icon-hidden'),
+  iconBtn: document.querySelector('.icon__button-hidden'),
+
+  mobileNavItem: document.querySelector('.mobile-menu-list'),
 };

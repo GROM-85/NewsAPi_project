@@ -8,7 +8,8 @@ display: flex;
 justify-content: space-between;
 flex-direction: column; 
   border-radius: 4px;
-  height: 469px;
+  align-items: center;
+
 
   
     @media screen and (min-width: $tablet) {
@@ -18,10 +19,7 @@ flex-direction: column;
   
     @media screen and (min-width: $desktop) {
       height: 676px;
-    }
-  
-  
-  
+    }  
 }
 
 .weather__info {
@@ -70,6 +68,8 @@ flex-direction: column;
   padding: 9px 8px;
   display: flex;
   gap: 4px;
+  
+  
 
   &-name {
     font-family: Roboto;
@@ -91,6 +91,8 @@ flex-direction: column;
 
 .weather__location-svg {
   fill: currentColor;
+  
+ 
   @media screen and (min-width: $tablet) {
     width: 27px;
     height: 27px;
@@ -102,8 +104,12 @@ flex-direction: column;
 }
 
 .weather__date{
-  margin-bottom: 18px;
+
   text-align: center;
+
+  margin-bottom: 18px;
+
+    
 }
 
 .weather__day {
@@ -137,8 +143,10 @@ flex-direction: column;
   font-family: $weather-font;
   font-size: 16px;
   line-height: calc(19 / 16);
-  padding: 8px 16px;
+  padding: 8px 14px;
   text-align: center;
+  height:34px ;
+  width: 151px;
  
 
   @media screen and (min-width: $tablet) {
@@ -146,5 +154,8 @@ flex-direction: column;
     font-size: 20px;
     line-height: calc(23 / 20);
     padding: 10px 12px;
+    height: 42px;
+      width: 177px;
   }
+  
 }

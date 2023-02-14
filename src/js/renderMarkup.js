@@ -1,7 +1,15 @@
-import format from "date-fns/format";
+import format from 'date-fns/format';
 
-export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) {
-    return `<li class="card__item"  id=${id}>
+export function renderMarkup({
+  imgUrl,
+  title,
+  text,
+  date,
+  url,
+  id,
+  categorie,
+}) {
+  return `<li class="card__item"  id=${id}>
             <div class="thumb" style="background-image: url('${imgUrl}')">
               <span 
                 class="thumb__item" >${categorie}
@@ -28,10 +36,10 @@ export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) 
                     </div>
                   </div> 
             </div>     
-  </li>`
+  </li>`;
 }
 
-export function renderWeather({temp, icon, main, name }) {
+export function renderWeather({ temp, icon, main, name }) {
   return `<li class="card__item card__item__weather">
     <div class="weather__container">
       <div class="weather__info">
@@ -40,7 +48,7 @@ export function renderWeather({temp, icon, main, name }) {
           <p class="weather__desc">${main}</p>
           <div class="weather__city">
             <svg class="weather__location-svg" width="18" height="18">
-              <use href="./images/icons.svg#location"></use>
+              <use href="icons.adfc4680.svg#location"></use>
             </svg>
             <span class="weather__city-name">${name}</span>
           </div>
@@ -60,26 +68,23 @@ export function renderWeather({temp, icon, main, name }) {
         class="weather__link"
         target="_blank"
         rel="noreferrer noopener"
-        >Weather for week</a>
+        >weather for week</a>
     </div>
-</li>`
+</li>`;
 }
-
-
 
 function formatText(text) {
   const maxLength = 110;
   let result;
   // Change code below this line
-  if(text.length > maxLength){
-   text= text.slice(0, maxLength);
-    result= text + `...`;
-  }else{
-    result=text;
+  if (text.length > maxLength) {
+    text = text.slice(0, maxLength);
+    result = text + `...`;
+  } else {
+    result = text;
   }
   return result;
 }
-
 
 export function clear(item) {
   item.innerHTML = ``;

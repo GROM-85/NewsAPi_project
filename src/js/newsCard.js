@@ -7,7 +7,7 @@ import * as weather from './weather';
 
 const newsFetch = new NewsAPI();
 
-//listener update main page with popular news//
+//видає сторінку з попклярними новинами.
 window.addEventListener('load', fetchByPopular);
 
 async function fetchByPopular() {
@@ -16,12 +16,11 @@ async function fetchByPopular() {
   collectionByPopular = docs.map(result => {
     const { uri, section, title, abstract, published_date, url, media } =
       result;
-    let imgUrl;
+
     if (result.media[0] !== undefined) {
       imgUrl = result.media[0]['media-metadata'][2]['url'];
     } else {
-      imgUrl =
-        'https://static01.nyt.com/images/2022/10/30/nyregion/30sandy-anniversary-intro/merlin_192440457_cbe91abf-e7f4-467f-b83d-4e7815ef45b7-articleLarge.jpg?quality=75&auto=webp&disable=upscale';
+      imgUrl = 'https://media4.giphy.com/media/h52OM8Rr5fLiZRqUBD/giphy.gif';
     }
 
     let newDateFormat = published_date.split('-');
@@ -41,25 +40,6 @@ async function fetchByPopular() {
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByPopular.slice(0, 9));
   categoriesOnPageLoad();
-
-  //categoriesOnResize();
-}
-
-export function categoriesOnResize() {
-  window.addEventListener('resize', e => {
-    let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-    if (e.currentTarget.innerWidth <= 768) {
-      collection = collection.slice(0, 3);
-    } else if (e.currentTarget.innerWidth <= 1280) {
-      collection = collection.slice(0, 7);
-    } else {
-      collection = collection.slice(0, 8);
-    }
-    clear(refs.gallery);
-    let collectionByPopular = collection.map(renderMarkup).join(``);
-    renderGallery(collectionByPopular);
-    weather.renderDefaultWeather();
-  });
 }
 
 export function categoriesOnPageLoad() {
@@ -75,9 +55,9 @@ export function categoriesOnPageLoad() {
   collectionByPopular = collection.map(renderMarkup).join(``);
 
   renderGallery(collectionByPopular);
+
+  //weather.getGeoLocation();
   weather.renderDefaultWeather();
-  const t = weather.getGeoLocation();
-  console.log(t);
 }
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
@@ -98,13 +78,23 @@ export function corectDate(date) {
 
   return newDateFormat;
 }
-//******rendered count of outputlist*********** */
-function renderedCountOfCardItem(docs) {
-  if (window.matchMedia('(min-width: 1279.98px)').matches) {
-    docs.length = 9;
-  } else if (window.matchMedia('(min-width: 767.98px)').matches) {
-    docs.length = 8;
-  } else {
-    docs.length = 4;
-  }
-}
+
+//TODO
+// export function categoriesOnResize() {
+//   window.addEventListener('resize', e => {
+//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+//     if (e.currentTarget.innerWidth <= 768) {
+//       collection = collection.slice(0, 3);
+//     } else if (e.currentTarget.innerWidth <= 1280) {
+//       collection = collection.slice(0, 7);
+//     } else {
+//       collection = collection.slice(0, 8);
+//     }
+//     clear(refs.gallery);
+//     let collectionByPopular = collection.map(renderMarkup).join(``);
+//     renderGallery(collectionByPopular);
+
+//     // weather.getGeoLocation();
+//     weather.renderDefaultWeather();
+//   });
+// }

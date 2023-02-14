@@ -24,18 +24,19 @@
         }
     }
     &__input {
-        padding-left: 46px;
+        padding-left: 44px;
         cursor: pointer;
         height: 31px;
-        border: 1px solid rgba(17, 19, 33, 1);
+        border: 1px solid var(--text-main-color);
         border-radius: 20px;
         width: 152px;
         font-family: $main-font;
         font-weight: 400;
-        font-size: 14px;
+        font-size: 12px;
         line-height: 1.5;
         letter-spacing: 0.02em;
         color: #a2a2a2;
+        background-color: var(--bcg-main-color);
 
         &.opened {
             background: #4440f6;
@@ -44,6 +45,7 @@
 
         @media screen and (min-width: $mobile) {
             width: 168px;
+            font-size: 14px;
         }
     }
 

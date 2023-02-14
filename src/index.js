@@ -1,19 +1,18 @@
-
 import { NewsAPI } from './js/API/fetchAPI';
 
+import 'animate.css';
 import './js/mobile-menu';
 
 import './js/input-actions';
 
 import './js/theme-switch';
 
-import { NewsAPI } from "./js/API/fetchAPI";
-import "./js/calendar";
-import "./js/categories";
-import "./js/newsCard";
-import "./js/filter";
-
-import "./js/weather"
+import { NewsAPI } from './js/API/fetchAPI';
+import './js/calendar';
+import './js/categories';
+import './js/newsCard';
+import './js/filter';
+import './js/weather';
 
 // const newsFetch = new NewsAPI();
 
@@ -32,4 +31,3 @@ import "./js/weather"
 
 // // get by category name
 // newsFetch.getNewsByCategories().then(console.log)
-

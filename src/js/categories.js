@@ -3,13 +3,11 @@ import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as storage from './storageLogic';
 import * as key from './const';
-import * as newsCard from './newsCard';
+import * as weather from './weather';
 
 const newsFetch = new NewsAPI();
 
-let imgUrl;
 const arrCategories = JSON.parse(localStorage.getItem('results'));
-
 
 saveCategories();
 categoriesOnResize();
@@ -121,46 +119,53 @@ refs.categoriesBox.addEventListener(`click`, onCategoriesBtnClick);
 
 async function onCategoriesBtnClick(e) {
   e.preventDefault();
-  // if (e.target.nodeName !== 'BUTTON') {
-  //   return;
-  //  }
+  if (!e.target.dataset.value) {
+    return;
+  }
   newsFetch.resetOffset();
+
   newsFetch.category = e.target.dataset.value;
   const docs = await newsFetch.getNewsByCategories();
-  let collectionByCategorie = [];
-  collectionByCategorie = docs.results.map(result => {
-    const { abstract, published_date, uri, url, multimedia, section, title } =
-      result;
-    console.log('result', result);
-    let imgUrl;
-    if (multimedia) {
-      
-      imgUrl = multimedia[2]['url'];
-      
-    } else {
-      imgUrl =
-        'https://www.shutterstock.com/image-photo/canadian-national-flag-overlay-false-260nw-1720481365.jpg';
+  if (docs.length === 0) {
+    if (refs.notFoundEl.classList.contains('hidden')) {
+      refs.notFoundEl.classList.remove('hidden');
     }
-    const newDateFormat = corectDateInCategories(published_date);
+    clear(refs.gallery);
+  } else {
+    if (!refs.notFoundEl.classList.contains('hidden')) {
+      refs.notFoundEl.classList.add('hidden');
+    }
 
-    let obj = {
-      imgUrl,
-      title,
-      text: abstract,
-      date: newDateFormat,
-      url,
-      categorie: section,
-      id: uri,
-    };
-    return obj;
-  });
+    let collectionByCategorie = [];
+    collectionByCategorie = docs.results.map(result => {
+      const { abstract, published_date, uri, url, multimedia, section, title } =
+        result;
 
-  clear(refs.gallery);
+      if (multimedia) {
+        imgUrl = multimedia[2]['url'];
+      } else {
+        imgUrl = 'https://media4.giphy.com/media/h52OM8Rr5fLiZRqUBD/giphy.gif';
+      }
+      const newDateFormat = corectDateInCategories(published_date);
 
-  storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
+      let obj = {
+        imgUrl,
+        title,
+        text: abstract,
+        date: newDateFormat,
+        url,
+        categorie: section,
+        id: uri,
+      };
+      return obj;
+    });
 
-  categoriesOnPageLoadGallery();
-  categoriesOnResizeGallery();
+    clear(refs.gallery);
+
+    storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
+
+    categoriesOnPageLoadGallery();
+  }
 }
 function categoriesOnResizeGallery() {
   window.addEventListener('resize', e => {
@@ -183,8 +188,6 @@ function categoriesOnPageLoadGallery() {
   let collectionByPopular;
   if (window.matchMedia('(max-width: 768px)').matches) {
     collection = collection.slice(0, 3);
-    //   collectionByPopular = collection.map(renderMarkup).join(``);
-    //   renderGallery(collectionByPopular);
   } else if (window.matchMedia('(max-width: 1280px)').matches) {
     collection = collection.slice(0, 7);
   } else {
@@ -192,29 +195,11 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-  weatherRender();
+  weather.renderDefaultWeather();
 }
 
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
-}
-//*******renderedWether******************* */
-function weatherRender() {
-let replacedItem;
-  if (window.matchMedia('(min-width: 1279.98px)').matches) {
-    replacedItem = refs.gallery.childNodes[1];
-    console.log(replacedItem);
-    const markup = renderWeather();
-    replacedItem.insertAdjacentHTML(`afterend`, markup);
-  } else if (window.matchMedia('(min-width: 767.98px)').matches) {
-    replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWeather();
-    replacedItem.insertAdjacentHTML(`afterend`, markup);
-  } else {
-    replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWeather();
-    replacedItem.insertAdjacentHTML(`beforebegin`, markup);
-  }
 }
 
 function corectDateInCategories(date) {
