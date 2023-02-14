@@ -6,6 +6,7 @@ import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
 import format from 'date-fns/format';
 import { selectedDate } from './calendar';
+import { onloadToRead } from './addToRead/addToRead';
 
 const newsFetch = new NewsAPI();
 
@@ -59,29 +60,30 @@ async function filterQuery(e) {
   });
 
   clear(refs.gallery);
-
+  clear(refs.accordion);
   storage.saveToLocal(key.KEY_COLLECTION, collectionByQuery.slice(0, 9));
 
   categoriesOnPageLoadGallery();
-  categoriesOnResizeGallery();
 }
-function categoriesOnResizeGallery() {
-  window.addEventListener('resize', e => {
-    let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-    if (e.currentTarget.innerWidth <= 768) {
-      collection = collection.slice(0, 3);
-    } else if (e.currentTarget.innerWidth <= 1280) {
-      collection = collection.slice(0, 7);
-    } else {
-      collection = collection.slice(0, 8);
-    }
-    clear(refs.gallery);
-    let collectionByPopular = collection.map(renderMarkup).join(``);
-    renderGallery(collectionByPopular);
 
-    // weatherRender();
-  });
-}
+// function categoriesOnResizeGallery() {
+//   window.addEventListener('resize', e => {
+//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+//     if (e.currentTarget.innerWidth <= 768) {
+//       collection = collection.slice(0, 3);
+//     } else if (e.currentTarget.innerWidth <= 1280) {
+//       collection = collection.slice(0, 7);
+//     } else {
+//       collection = collection.slice(0, 8);
+//     }
+//     clear(refs.gallery);
+//     let collectionByPopular = collection.map(renderMarkup).join(``);
+//     renderGallery(collectionByPopular);
+//     onloadToRead();
+//     // weatherRender();
+//   });
+// }
+
 function categoriesOnPageLoadGallery() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;
@@ -96,6 +98,7 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
+  onloadToRead();
   //   weather.renderDefaultWeather();
 }
 function renderGallery(markup) {
@@ -135,3 +138,4 @@ function corectDate(date) {
   return newDateFormat;
 }
 //************************ *//
+

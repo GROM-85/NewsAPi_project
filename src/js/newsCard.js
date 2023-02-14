@@ -3,12 +3,14 @@ import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as key from './const';
 import * as storage from './storageLogic';
-import * as weather from './weather';
+import { onloadToRead } from './addToRead/addToRead';
+import * as weather from "./weather"
 
 const newsFetch = new NewsAPI();
 
 //listener update main page with popular news//
 window.addEventListener('load', fetchByPopular);
+refs.HomeBtn.addEventListener("click",fetchByPopular);
 
 async function fetchByPopular() {
   const docs = await newsFetch.getPopularNews();
@@ -40,27 +42,27 @@ async function fetchByPopular() {
   });
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByPopular.slice(0, 9));
-  categoriesOnPageLoad();
-
-  //categoriesOnResize();
+    categoriesOnPageLoad(); 
+    clear(refs.accordion); 
+    onloadToRead();
 }
 
-export function categoriesOnResize() {
-  window.addEventListener('resize', e => {
-    let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-    if (e.currentTarget.innerWidth <= 768) {
-      collection = collection.slice(0, 3);
-    } else if (e.currentTarget.innerWidth <= 1280) {
-      collection = collection.slice(0, 7);
-    } else {
-      collection = collection.slice(0, 8);
-    }
-    clear(refs.gallery);
-    let collectionByPopular = collection.map(renderMarkup).join(``);
-    renderGallery(collectionByPopular);
-    weather.renderDefaultWeather();
-  });
-}
+// export function categoriesOnResize() {
+//   window.addEventListener('resize', e => {
+//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+//     if (e.currentTarget.innerWidth <= 768) {
+//       collection = collection.slice(0, 3);
+//     } else if (e.currentTarget.innerWidth <= 1280) {
+//       collection = collection.slice(0, 7);
+//     } else {
+//       collection = collection.slice(0, 8);
+//     }
+//     clear(refs.gallery);
+//     let collectionByPopular = collection.map(renderMarkup).join(``);
+//     renderGallery(collectionByPopular);
+//     weather.renderDefaultWeather();
+//   });
+// }
 
 export function categoriesOnPageLoad() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
@@ -79,26 +81,35 @@ export function categoriesOnPageLoad() {
   const t = weather.getGeoLocation();
   console.log(t);
 }
+
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
 }
 
 //*********corect dateformat for the card*********** */
 export function corectDate(date) {
-  let newDateFormat = date.split('-');
-  let maxElement = { index: length };
-
-  newDateFormat.forEach((el, index) => {
-    maxElement.index = index;
-    maxElement.length = length;
-  });
-  newDateFormat[maxElement.index] = newDateFormat[maxElement.index].slice(0, 2);
-  newDateFormat = newDateFormat.slice(0, 3);
-  newDateFormat = newDateFormat.join('/');
-
-  return newDateFormat;
-}
+     let newDateFormat = date.split('-');
+     let maxElement={index:length};
+    
+     newDateFormat.forEach((el, index) => {
+         maxElement.index = index;
+         maxElement.length = length;
+        
+     })
+     newDateFormat[maxElement.index] = newDateFormat[maxElement.index].slice(0, 2);
+     newDateFormat = newDateFormat.slice(0, 3);
+      newDateFormat = newDateFormat.join('/');
+    //   if (newDateFormat.length > 3) {
+    //     newDateFormat[2] = newDateFormat[2].slice(0, 2)
+    //     newDateFormat = newDateFormat.slice(0, 3);
+       
+    //  newDateFormat = newDateFormat.join('/');
+    //   }
+   return newDateFormat;
+ }
 //******rendered count of outputlist*********** */
+
+// TO DELETE
 function renderedCountOfCardItem(docs) {
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     docs.length = 9;

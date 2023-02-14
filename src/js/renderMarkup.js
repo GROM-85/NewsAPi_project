@@ -1,4 +1,5 @@
 import format from "date-fns/format";
+import * as key from "./const"
 
 export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) {
     return `<li class="card__item"  id=${id}>
@@ -14,6 +15,11 @@ export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) 
                       <use href="/icons.adfc4680.svg#heart_empty"/>
                   </svg>
                 </button>
+                <p class="read">Already read
+          <svg class="tick" width="25" height="20">
+          <use href='/icons.adfc4680.svg#tick'></use>
+          </svg>
+          </p>
             </div>
             <div class="info__helper">
                 <h2 class="info__title">${text}</h2>
@@ -23,7 +29,7 @@ export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) 
                     <div class=info__meta>
                       <p class="info__date">${date}
                       </p>
-                      <a class="info__link" href="${url}">Read more
+                      <a class="info__link" target="_blank" href="${url}">Read more
                       </a>
                     </div>
                   </div> 
@@ -66,13 +72,32 @@ export function renderWeather({temp, icon, main, name }) {
 }
 
 
+export function renderAccordion(date){
+  return `<div class="accord__title">  
+  <div class="date__cont">
+      <p class="date">${date}</p>
+      <span class="accord__arrow js-down">
+        <svg >
+          <use href='/icons.adfc4680.svg#arrowDown'></use>
+        </svg>
+        </span>
+        <span class="accord__arrow js-up" hidden><svg class="js-up" >
+          <use href='/icons.adfc4680.svg#arrowUp'></use>
+        </svg>
+      </span>
+  </div>
+  <span class="line"></span>
+  `
+
+}
+
 
 function formatText(text) {
   const maxLength = 110;
   let result;
   // Change code below this line
-  if(text.length > maxLength){
-   text= text.slice(0, maxLength);
+  if(text.length > key.MAXLENGHT){
+   text= text.slice(0, key.MAXLENGHT);
     result= text + `...`;
   }else{
     result=text;

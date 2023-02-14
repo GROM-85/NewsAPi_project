@@ -107,8 +107,6 @@
   justify-content: space-between;
 }
 
-.info__helper {
-}
 
 .info__date {
   @include font(400, 14px, 1.37);
@@ -123,12 +121,13 @@
   @include font(400, 14px, 1.37);
   color: var(--card-blue-color);
 
-  @media screen and (min-width: $tablet) {
-    @include font(400, 16px, 1.37);
-  }
-  @media screen and (min-width: $tablet) {
-    margin-right: 26px;
-  }
+    @media screen and (min-width: $tablet) {
+        @include font(400, 16px, 1.37);
+       
+    }
+        @media screen and (min-width: $tablet) {            
+            margin-right: 26px;
+        }
 }
 
 .favorite-btn {

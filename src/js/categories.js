@@ -3,11 +3,12 @@ import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as storage from './storageLogic';
 import * as key from './const';
-import * as newsCard from './newsCard';
+import * as newsCard from './newsCard'; 
+import { onloadToRead } from './addToRead/addToRead';
 
 const newsFetch = new NewsAPI();
 
-let imgUrl;
+
 const arrCategories = JSON.parse(localStorage.getItem('results'));
 
 
@@ -156,28 +157,29 @@ async function onCategoriesBtnClick(e) {
   });
 
   clear(refs.gallery);
+  clear(refs.accordion);
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
 
   categoriesOnPageLoadGallery();
-  categoriesOnResizeGallery();
+ 
 }
-function categoriesOnResizeGallery() {
-  window.addEventListener('resize', e => {
-    let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-    if (e.currentTarget.innerWidth <= 768) {
-      collection = collection.slice(0, 3);
-    } else if (e.currentTarget.innerWidth <= 1280) {
-      collection = collection.slice(0, 7);
-    } else {
-      collection = collection.slice(0, 8);
-    }
-    clear(refs.gallery);
-    collectionByPopular = collection.map(renderMarkup).join(``);
-    renderGallery(collectionByPopular);
-    weather.renderDefaultWeather();
-  });
-}
+// function categoriesOnResizeGallery() {
+//   window.addEventListener('resize', e => {
+//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
+//     if (e.currentTarget.innerWidth <= 768) {
+//       collection = collection.slice(0, 3);
+//     } else if (e.currentTarget.innerWidth <= 1280) {
+//       collection = collection.slice(0, 7);
+//     } else {
+//       collection = collection.slice(0, 8);
+//     }
+//     clear(refs.gallery);
+//     collectionByPopular = collection.map(renderMarkup).join(``);
+//     renderGallery(collectionByPopular);
+//     weather.renderDefaultWeather();
+//   });
+// }
 function categoriesOnPageLoadGallery() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;
@@ -197,7 +199,9 @@ function categoriesOnPageLoadGallery() {
 
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
+  onloadToRead();
 }
+
 //*******renderedWether******************* */
 function weatherRender() {
 let replacedItem;
