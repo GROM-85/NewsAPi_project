@@ -4,10 +4,8 @@ import * as key from './const';
 import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
 import format from 'date-fns/format';
-
-
-
 import { NewsAPI } from './API/fetchAPI';
+
 const newsFetch = new NewsAPI();
 const refs = getRefs();
 const pg = document.getElementById('pagination');
@@ -30,19 +28,38 @@ function pgBtn() {
   if (valuePage.curPage === 1) {
     btnPrevPg.disabled = true;
     btnNextPg.disabled = false;
-    //   console.log(3);
   } else if (valuePage.curPage === valuePage.lastPage) {
     btnPrevPg.disabled = false;
     btnNextPg.disabled = true;
-    //   console.log(9);
   } else {
     btnPrevPg.disabled = false;
     btnNextPg.disabled = false;
-    //   console.log(0);
   }
 }
 
 console.log(valuePage.curPage);
+
+function btnPgOnResize() {
+  window.addEventListener('resize', e => {
+    if (e.currentTarget.innerWidth >= 767.98) {
+      clearPgContainer();
+      renderPgBtn();
+    } else {
+      clearPgContainer();
+      renderPgBtnMobile();
+    }
+  });
+}
+
+function btnPgOnPageLoad() {
+  if (window.matchMedia('(min-width: 767.98px)').matches) {
+    clearPgContainer();
+    renderPgBtn();
+  } else {
+    clearPgContainer();
+    renderPgBtnMobile();
+  }
+}
 
 function onNextPage(e) {
   e.preventDefault();
@@ -76,27 +93,6 @@ function clearPgContainer() {
   pg.innerHTML = '';
 }
 
-function btnPgOnResize() {
-  window.addEventListener('resize', e => {
-    if (e.currentTarget.innerWidth >= 767.98) {
-      clearPgContainer();
-      renderPgBtn();
-    } else {
-      clearPgContainer();
-      renderPgBtnMobile();
-    }
-  });
-}
-
-function btnPgOnPageLoad() {
-  if (window.matchMedia('(min-width: 767.98px)').matches) {
-    clearPgContainer();
-    renderPgBtn();
-  } else {
-    clearPgContainer();
-    renderPgBtnMobile();
-  }
-}
 function renderPgBtnMobile() {
   const markup = {
     numOfPageFirst: ` <li class="pg-item" data-page="">
@@ -131,6 +127,7 @@ function renderPgBtnMobile() {
       </li>`,
     dot: `<li class="pg-item"><a class="pg-link-dots">...</a></li>`,
   };
+    
   if (
     valuePage.curPage === 1 ||
     valuePage.curPage === 2 ||

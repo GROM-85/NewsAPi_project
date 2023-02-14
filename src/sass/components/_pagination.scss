@@ -3,6 +3,14 @@
 
 // @media screen and (min-width: $desktop) {
 // }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 150px;
+}
+
 .page-container {
   display: flex;
   gap: 10px;
@@ -77,4 +85,9 @@
 .prev-page:hover .arrow-left,
 .prev-page:focus .arrow-left {
   fill: var(--white-color);
+}
+
+.prev-page:disabled,
+.next-page:disabled {
+  opacity: 0.5;
 }
