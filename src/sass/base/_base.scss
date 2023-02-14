@@ -28,6 +28,7 @@ h3,
 h4,
 p {
   margin: 0;
+  text-decoration: none;
 }
 
 ul {
@@ -65,13 +66,6 @@ button {
 //   }
 // }
 
-h1,
-h2,
-h3,
-h4,
-p {
-  margin: 0;
-}
 
 ul {
   list-style-type: none;
@@ -85,6 +79,15 @@ img {
   height: auto;
 }
 
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+}
 
 body {
   font-family: $main-font, sans-serif;
@@ -98,20 +101,21 @@ body {
   main {
     flex: 1 1 auto;
   }
-  .container {
-    margin: 0 auto;
-    padding: 0 16px;
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
 
-    @media screen and (min-width: $mobile) {
-      max-width: $mobile;
-    }
+  @media screen and (min-width: $mobile) {
+    max-width: $mobile;
+  }
 
-    @media screen and (min-width: $tablet) {
-      max-width: $tablet;
-    }
+  @media screen and (min-width: $tablet) {
+    max-width: $tablet;
+  }
 
-    @media screen and (min-width: $desktop) {
-      max-width: $desktop;
-    }
+  @media screen and (min-width: $desktop) {
+    max-width: $desktop;
   }
 }
+}
+

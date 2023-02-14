@@ -182,24 +182,6 @@ function renderGallery(markup) {
   onloadToRead();
   onloadFavorite();
 }
-//*******renderedWether******************* */
-function weatherRender() {
-  let replacedItem;
-  if (window.matchMedia('(min-width: 1279.98px)').matches) {
-    replacedItem = refs.gallery.childNodes[1];
-    console.log(replacedItem);
-    const markup = renderWeather();
-    replacedItem.insertAdjacentHTML(`afterend`, markup);
-  } else if (window.matchMedia('(min-width: 767.98px)').matches) {
-    replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWeather();
-    replacedItem.insertAdjacentHTML(`afterend`, markup);
-  } else {
-    replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWeather();
-    replacedItem.insertAdjacentHTML(`beforebegin`, markup);
-  }
-}
 
 function corectDateInCategories(date) {
   let newDateFormat = date.split('-');

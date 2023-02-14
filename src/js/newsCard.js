@@ -79,9 +79,6 @@ export function corectDate(date) {
   newDateFormat[maxElement.index] = newDateFormat[maxElement.index].slice(0, 2);
   newDateFormat = newDateFormat.slice(0, 3);
   newDateFormat = newDateFormat.join('/');
-  //   if (newDateFormat.length > 3) {
-  //     newDateFormat[2] = newDateFormat[2].slice(0, 2)
-  //     newDateFormat = newDateFormat.slice(0, 3);
 
   return newDateFormat;
 }
