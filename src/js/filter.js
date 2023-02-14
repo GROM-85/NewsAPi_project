@@ -8,6 +8,7 @@ import format from 'date-fns/format';
 import { selectedDate } from './calendar';
 import { addToFavorite } from './addToFavorites/addToFavorites';
 import { onloadToRead } from './addToRead/addToRead';
+import { clearNavCurrent } from './navLogic/navLogic';
 
 const newsFetch = new NewsAPI();
 
@@ -68,6 +69,8 @@ async function filterQuery(e) {
 
   clear(refs.gallery);
   clear(refs.accordion);
+  clearNavCurrent(refs.nav.children);
+  refs.HomeBtn.parentNode.classList.add("current-list__item");
   storage.saveToLocal(key.KEY_COLLECTION, collectionByQuery.slice(0, 9));
 
   categoriesOnPageLoadGallery();

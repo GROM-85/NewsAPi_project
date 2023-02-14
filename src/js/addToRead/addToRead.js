@@ -1,6 +1,6 @@
 import * as key from "../const";
 import * as storage from "../storageLogic";
-import {refs} from "../accordion/accordion";
+import {refs} from "../refs";
 import format from "date-fns/format";
 
 //========================
@@ -16,7 +16,7 @@ export function toggleToRead(e) {
   let readCollection = storage.loadFromLocal(key.KEY_READ) || [];
   let date = format(Date.now(), 'MM/dd/yyyy');
 
-  if (!tickToRead.classList.contains('show')) {
+  if (!tickToRead.classList.contains('show')){
     let readCard = storage
       .loadFromLocal(key.KEY_COLLECTION)
       .find(obj => obj.id === id);
@@ -26,17 +26,16 @@ export function toggleToRead(e) {
           obj[date].push(readCard);
           break;
         } else {
-          readCollection.push({ [date]: [readCard] });
+          readCollection.push({ [date]:[readCard] });
         }
       }
     } else {
       readCollection.push({
-        [date]: [readCard],
+        [date]:[readCard],
       });
     }
     storage.saveToLocal(key.KEY_READ, readCollection);
     tickToRead.classList.add('show');
-    return;
   }
 
   // check to delete
@@ -56,9 +55,12 @@ export function toggleToRead(e) {
 // DURING ON LOAD TO READ , should be added after render markup call
 //========================
 
-export function onloadToRead() {
+export function onloadToRead(){
     let readCollection = storage.loadFromLocal(key.KEY_READ) || [];
-    if (readCollection.length === 0) return;
+    if (readCollection.length === 0) {
+      refs.accordion.insertAdjacentHTML("beforeend","<h2 class='read-not-found'>You haven't read any article</h2>")
+      return;
+    }
     readCollection.forEach(obj => {
       let values = Object.values(obj)[0]; // cause Object.values is ARRAY so need to add [0] as we have one key
       for (let value of values) {

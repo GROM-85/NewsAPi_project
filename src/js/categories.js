@@ -5,7 +5,7 @@ import * as storage from './storageLogic';
 import * as key from './const';
 import * as newsCard from './newsCard';
 import { onloadToRead } from './addToRead/addToRead';
-
+import { clearNavCurrent } from './navLogic/navLogic';
 const newsFetch = new NewsAPI();
 
 
@@ -107,9 +107,6 @@ function showCategoriesList() {
 refs.categoriesBox.addEventListener(`click`, onCategoriesBtnClick);
 async function onCategoriesBtnClick(e) {
   e.preventDefault();
-  // if (e.target.nodeName !== 'BUTTON') {
-  //   return;
-  //  }
   newsFetch.resetOffset();
   newsFetch.category = e.target.dataset.value;
   const docs = await newsFetch.getNewsByCategories();
@@ -139,6 +136,8 @@ async function onCategoriesBtnClick(e) {
   });
   clear(refs.gallery);
   clear(refs.accordion);
+  clearNavCurrent(refs.nav.children);
+  refs.HomeBtn.parentNode.classList.add("current-list__item");
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
   categoriesOnPageLoadGallery();
