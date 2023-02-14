@@ -1,30 +1,42 @@
-import { NewsAPI } from './API/fetchAPI';
-import getRefs from './refs';
+import { ApiService } from './API/fetchAPI';
+import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as key from './const';
 import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
 import format from 'date-fns/format';
 import { selectedDate } from './calendar';
+import { rerenderPaginator } from './pagination';
 
-const newsFetch = new NewsAPI();
-const refs = getRefs();
+const newsFetch = ApiService;
 
+refs.filter.addEventListener(`submit`, (args) => {
+  newsFetch.cleanPagination();
+  rerenderPaginator();
+  filterQuery(args);
+  newsFetch.lastAction.action = filterQuery;
+});
 
-refs.filter.addEventListener(`submit`, filterQuery);
-
-
-let imgUrl;
 async function filterQuery(e) {
-  e.preventDefault();
-  newsFetch.resetPage();
-  //повертає значення з імпуту
-  const form = e.currentTarget.elements.searchArt.value;  
-  // не здійснює пошук, якщо нічого не введено
-   if (!form) {
-     return;  
-   }
-  newsFetch.query = form;
+  let argument = null;
+  if (!!e?.currentTarget?.elements?.searchArt?.value) {
+    e.preventDefault();
+    //newsFetch.resetPage();
+    //повертає значення з імпуту
+    argument = e.currentTarget.elements.searchArt.value;
+    // не здійснює пошук, якщо нічого не введено
+  }
+  else {
+    argument = e;
+  }
+
+  if (!argument) {
+    return;
+  }
+
+  newsFetch.lastAction.arg = argument;
+
+  newsFetch.query = argument;
   const { docs, meta } = await newsFetch.getNewsByQuery();
   //якщо не знайдено даних по запиту, вертає NOT A FOUND
   if (docs.length=== 0) {
@@ -37,6 +49,7 @@ async function filterQuery(e) {
     const { abstract, pub_date, uri, web_url, multimedia, section_name, headline } =
       result;
     console.log('result', result);
+    let imgUrl;
     if (multimedia.length !== 0) {
       imgUrl = 'https://www.nytimes.com/' + multimedia[2]['url'];
       console.log(imgUrl);
@@ -78,10 +91,10 @@ function categoriesOnResizeGallery() {
       collection = collection.slice(0, 8);
     }
     clear(refs.gallery);
-    collectionByPopular = collection.map(renderMarkup).join(``);
+    let collectionByPopular = collection.map(renderMarkup).join(``);
     renderGallery(collectionByPopular);
 
-    // wetherRender();
+    // weatherRender();
   });
 }
 function categoriesOnPageLoadGallery() {
@@ -98,25 +111,26 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-  // wetherRender();
+  //   weather.renderDefaultWeather();
 }
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
 }
 //*******renderedWether******************* */
-function wetherRender() {
+function weatherRender() {
+  let replacedItem;
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     replacedItem = refs.gallery.childNodes[1];
     console.log(replacedItem);
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else if (window.matchMedia('(min-width: 767.98px)').matches) {
     replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else {
     replacedItem = refs.gallery.firstElementChild;
-    const markup = renderWether();
+    const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`beforebegin`, markup);
   }
 }

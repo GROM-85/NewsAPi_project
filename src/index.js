@@ -1,18 +1,12 @@
 
-import { NewsAPI } from './js/API/fetchAPI';
-
+import "./js/pagination"
 import './js/mobile-menu';
-
 import './js/input-actions';
-
 import './js/theme-switch';
-
-import { NewsAPI } from "./js/API/fetchAPI";
 import "./js/calendar";
 import "./js/categories";
 import "./js/newsCard";
 import "./js/filter";
-import "./js/pagination"
 
 import "./js/weather"
 
