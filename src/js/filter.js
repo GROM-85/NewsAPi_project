@@ -6,6 +6,7 @@ import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
 import format from 'date-fns/format';
 import { selectedDate } from './calendar';
+import { addToFavorite } from './addToFavorites/addToFavorites';
 import { onloadToRead } from './addToRead/addToRead';
 import { clearNavCurrent } from './navLogic/navLogic';
 
@@ -13,28 +14,34 @@ const newsFetch = new NewsAPI();
 
 refs.filter.addEventListener(`submit`, filterQuery);
 
-
 async function filterQuery(e) {
   e.preventDefault();
   newsFetch.resetPage();
   //повертає значення з імпуту
-  const form = e.currentTarget.elements.searchArt.value;  
+  const form = e.currentTarget.elements.searchArt.value;
   // не здійснює пошук, якщо нічого не введено
-   if (!form) {
-     return;  
-   }
+  if (!form) {
+    return;
+  }
   newsFetch.query = form;
   const { docs, meta } = await newsFetch.getNewsByQuery();
   //якщо не знайдено даних по запиту, вертає NOT A FOUND
-  if (docs.length=== 0) {
-    console.log("NOT A FOUND")
+  if (docs.length === 0) {
+    console.log('NOT A FOUND');
   }
 
   let collectionByQuery = [];
-  console.log("docsQuery",docs);
+  console.log('docsQuery', docs);
   collectionByQuery = docs.map(result => {
-    const { abstract, pub_date, uri, web_url, multimedia, section_name, headline } =
-      result;
+    const {
+      abstract,
+      pub_date,
+      uri,
+      web_url,
+      multimedia,
+      section_name,
+      headline,
+    } = result;
     console.log('result', result);
     let imgUrl;
     if (multimedia.length !== 0) {
@@ -46,14 +53,14 @@ async function filterQuery(e) {
     }
 
     const newDateFormat = corectDate(pub_date);
-    console.log("newDateFormat",newDateFormat)
+    console.log('newDateFormat', newDateFormat);
 
     let obj = {
       imgUrl,
       title: headline.main,
       text: abstract,
       date: newDateFormat,
-      url:web_url,
+      url: web_url,
       categorie: section_name,
       id: uri,
     };
@@ -106,6 +113,7 @@ function categoriesOnPageLoadGallery() {
 }
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
+  refs.gallery.addEventListener('click', addToFavorite);
 }
 //*******renderedWether******************* */
 function weatherRender() {
@@ -141,4 +149,3 @@ function corectDate(date) {
   return newDateFormat;
 }
 //************************ *//
-

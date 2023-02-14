@@ -1,3 +1,4 @@
+
 export const refs = {
   gallery: document.querySelector(`.card__list`),
   weather: document.querySelector(`.weather`),
@@ -6,6 +7,7 @@ export const refs = {
   filterInput: document.querySelector(`.form__input-close`),
   calendar: document.querySelector(`.calendar`),
   calendarInput: document.querySelector(`.calendar__input`),
+  FavBtn: document.querySelector('.js-favorite'),
 
   categoriesBtnMenu: document.querySelector('.categories__btn-menu'),
   categoriesBox: document.querySelector('.categories'),
@@ -29,3 +31,4 @@ export const refs = {
   categContainer : document.querySelector(".filter-container"),
   
 };
+
