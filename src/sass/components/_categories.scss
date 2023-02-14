@@ -7,15 +7,15 @@
 body .container.filter-container {
   display: flex;
   justify-content: space-between;
- 
+
   padding: 24px 16px 40px 16px;
   position: relative;
   @media screen and (min-width: $tablet) {
     padding: 28px 16px 48px 16px;
   }
- @media screen and (min-width: $desktop) {
-   padding: 28px 52px 60px 52px;
- }
+  @media screen and (min-width: $desktop) {
+    padding: 28px 52px 60px 52px;
+  }
 }
 
 .categories {
@@ -140,7 +140,7 @@ width: 112px;
 
   &__item {
     color: var(--blue-color);
-      cursor: pointer;
+    cursor: pointer;
     padding-bottom: 12px;
     font-weight: 400;
     font-size: 12px;
@@ -187,4 +187,7 @@ width: 112px;
     line-height: 25px;
     text-align: center;
   }
+}
+.filter-container.container.hidden-categories {
+  display: none;
 }

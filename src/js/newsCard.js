@@ -3,12 +3,16 @@ import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as key from './const';
 import * as storage from './storageLogic';
+import { onloadToRead } from './addToRead/addToRead';
 import * as weather from './weather';
+import { onloadFavorite } from './addToFavorites/addToFavorites';
 
 const newsFetch = new NewsAPI();
 
 //видає сторінку з попклярними новинами.
 window.addEventListener('load', fetchByPopular);
+refs.HomeBtn.addEventListener('click', fetchByPopular);
+refs.homeBtnMob.addEventListener('click', fetchByPopular);
 
 async function fetchByPopular() {
   const docs = await newsFetch.getPopularNews();
@@ -22,10 +26,8 @@ async function fetchByPopular() {
     } else {
       imgUrl = 'https://media4.giphy.com/media/h52OM8Rr5fLiZRqUBD/giphy.gif';
     }
-
     let newDateFormat = published_date.split('-');
     newDateFormat = newDateFormat.join('/');
-
     let obj = {
       imgUrl,
       title,
@@ -37,9 +39,12 @@ async function fetchByPopular() {
     };
     return obj;
   });
-
   storage.saveToLocal(key.KEY_COLLECTION, collectionByPopular.slice(0, 9));
+  clear(refs.gallery);
+  clear(refs.accordion);
   categoriesOnPageLoad();
+  onloadToRead();
+  onloadFavorite();
 }
 
 export function categoriesOnPageLoad() {
@@ -53,16 +58,15 @@ export function categoriesOnPageLoad() {
     collection = collection.slice(0, 8);
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
-
   renderGallery(collectionByPopular);
 
   //weather.getGeoLocation();
   weather.renderDefaultWeather();
 }
+
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
 }
-
 //*********corect dateformat for the card*********** */
 export function corectDate(date) {
   let newDateFormat = date.split('-');
@@ -75,6 +79,9 @@ export function corectDate(date) {
   newDateFormat[maxElement.index] = newDateFormat[maxElement.index].slice(0, 2);
   newDateFormat = newDateFormat.slice(0, 3);
   newDateFormat = newDateFormat.join('/');
+  //   if (newDateFormat.length > 3) {
+  //     newDateFormat[2] = newDateFormat[2].slice(0, 2)
+  //     newDateFormat = newDateFormat.slice(0, 3);
 
   return newDateFormat;
 }

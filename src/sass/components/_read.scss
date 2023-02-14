@@ -1,0 +1,23 @@
+.read{
+    position:absolute;
+    right:0;
+    top:0;
+    padding:20px;
+    @include font(700,14,calc(19/14));
+    color:#00DD73;
+    opacity: 0;
+    transform:translateX(-30px);
+    transition: all 0.7s;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+
+
+}
+
+.read.show{
+opacity: 1;
+transform:translateX(0);
+}
