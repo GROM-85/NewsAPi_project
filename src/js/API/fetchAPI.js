@@ -6,6 +6,7 @@ export class NewsAPI {
   #period;
   #query;
   #beginDate;
+
   #page;
   #offset;
   #end_date;
@@ -17,6 +18,10 @@ export class NewsAPI {
     // begin_date: this.#beginDate,
     // end_date:this.#end_date,
   };
+
+  pageLimit = 8;
+  totalCount = 0;
+  currentPage = 1;
 
   constructor() {
     this.#period = 7;

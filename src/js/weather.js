@@ -1,7 +1,5 @@
-import { format } from 'date-fns';
 import { refs } from './refs';
-import { renderWeather } from './renderMarkup';
-
+import { renderWeather, clear } from './renderMarkup';
 
 let weatherMarkup;
 // const refs = {
@@ -39,9 +37,9 @@ const fetchDefaultWeather = async () => {
     .catch(error => {});
 };
 
-export async function renderDefaultWeather() {  
+export async function renderDefaultWeather() {
   const data = await fetchDefaultWeather();
-  const { weather, main, name } = data;  
+  const { weather, main, name } = data;
 
   let item = {
     icon: weather[0].icon,
@@ -50,68 +48,37 @@ export async function renderDefaultWeather() {
     name,
   };
   weatherRender(item);
-
 }
 export async function getGeoLocation() {
   if (navigator.geolocation) {
     await navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }).then(({ weather, main, name }) => {
-        let item = {
-          icon: weather[0].icon,
-          main: weather[0].main,
-          temp: Math.ceil(main.temp),
-          name,
-        }
-        weatherRender(item);
-        console.log(weatherRender(item))
-      }));
-    
-    return  ;
+      ({ coords: { latitude, longitude } }) => {
+        fetchWeather(latitude, longitude).then(({ weather, main, name }) => {
+          let item = {
+            icon: weather[0].icon,
+            main: weather[0].main,
+            temp: Math.ceil(main.temp),
+            name,
+          };
+          weatherRender(item);
+        });
+      }
+    );
   }
 }
 
-//  export async function getGeoLocation() {
-//    if (navigator.geolocation) {
-//      await navigator.geolocation.getCurrentPosition(
-//        ({ coords: { latitude, longitude } }) => {
-//          fetchWeather(latitude, longitude).then(data => {
-//            const { icon } = data.weather[0];
-//            const parametr = data.weather[0];
-//            const { temp } = data.main;
-//            refs.temp.textContent = `${Math.ceil(temp)}°`;
-//            refs.description.textContent = parametr.main;
-//            refs.city.textContent = data.name;
-//            refs.icon.setAttribute(
-//              'src',
-//              `http://openweathermap.org/img/wn/${icon}@4x.png`
-//            );
-//            refs.day.textContent = format(new Date(), 'eee');
-//            refs.year.textContent = format(new Date(), 'dd LLL y');
-//          });
-//        }
-//      );
-//      return;
-//    }
-//  }
 /*******renderedWeather******************* */
 export function weatherRender(item) {
- const markup = renderWeather(item);
-  if (window.matchMedia('(min-width: 1279.98px)').matches) {
-    replacedItem = refs.gallery.childNodes[2];  
-    console.log(replacedItem)
-   
+  const markup = renderWeather(item);
+  if (window.innerWidth >= 1280) {
+    clear(markup);
+    replacedItem = refs.gallery.childNodes[2];
     replacedItem.insertAdjacentHTML(`afterend`, markup);
-  } else if (window.matchMedia('(min-width: 767.98px)').matches) {
+  } else if (window.innerWidth >= 767.98 && window.innerWidth <= 1279.98) {
     replacedItem = refs.gallery.firstElementChild;
-    
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else {
     replacedItem = refs.gallery.firstElementChild;
- 
     replacedItem.insertAdjacentHTML(`beforebegin`, markup);
   }
 }
-
-
-
-// getGeoLocation();
