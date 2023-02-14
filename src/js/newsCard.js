@@ -5,11 +5,13 @@ import * as key from './const';
 import * as storage from './storageLogic';
 import { onloadToRead } from './addToRead/addToRead';
 import * as weather from "./weather"
+import { onloadFavorite } from './addToFavorites/addToFavorites';
 
 const newsFetch = new NewsAPI();
 //listener update main page with popular news//
 window.addEventListener('load', fetchByPopular);
 refs.HomeBtn.addEventListener("click",fetchByPopular);
+refs.homeBtnMob.addEventListener("click",fetchByPopular);
 
 async function fetchByPopular() {
   const docs = await newsFetch.getPopularNews();
@@ -38,9 +40,11 @@ async function fetchByPopular() {
     return obj;
   });
   storage.saveToLocal(key.KEY_COLLECTION, collectionByPopular.slice(0, 9));
-    categoriesOnPageLoad();
+    clear(refs.gallery);
     clear(refs.accordion);
+    categoriesOnPageLoad();
     onloadToRead();
+    onloadFavorite();
 }
 
 // export function categoriesOnResize() {

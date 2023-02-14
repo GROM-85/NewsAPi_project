@@ -6,7 +6,7 @@ import * as storage from './storageLogic';
 import * as newsCard from './newsCard';
 import format from 'date-fns/format';
 import { selectedDate } from './calendar';
-import { addToFavorite } from './addToFavorites/addToFavorites';
+import { addToFavorite, onloadFavorite } from './addToFavorites/addToFavorites';
 import { onloadToRead } from './addToRead/addToRead';
 import { clearNavCurrent } from './navLogic/navLogic';
 
@@ -109,6 +109,7 @@ function categoriesOnPageLoadGallery() {
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
   onloadToRead();
+  onloadFavorite();
   //   weather.renderDefaultWeather();
 }
 function renderGallery(markup) {
