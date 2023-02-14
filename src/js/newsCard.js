@@ -15,6 +15,7 @@ refs.HomeBtn.addEventListener('click', fetchByPopular);
 refs.homeBtnMob.addEventListener('click', fetchByPopular);
 
 async function fetchByPopular() {
+  let imgUrl;
   const docs = await newsFetch.getPopularNews();
   let collectionByPopular = [];
   collectionByPopular = docs.map(result => {

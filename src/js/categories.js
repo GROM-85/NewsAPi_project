@@ -7,6 +7,7 @@ import * as newsCard from './newsCard';
 import { onloadToRead } from './addToRead/addToRead';
 import { clearNavCurrent } from './navLogic/navLogic';
 import { onloadFavorite } from './addToFavorites/addToFavorites';
+import * as weather from './weather';
 const newsFetch = new NewsAPI();
 
 let imgUrl;
@@ -125,8 +126,8 @@ async function onCategoriesBtnClick(e) {
     if (multimedia) {
       imgUrl = multimedia[2]['url'];
     } else {
-      imgUrl =
-        'https://www.shutterstock.com/image-photo/canadian-national-flag-overlay-false-260nw-1720481365.jpg';
+      imgUrl = imgUrl =
+        'https://media4.giphy.com/media/h52OM8Rr5fLiZRqUBD/giphy.gif';
     }
     const newDateFormat = corectDateInCategories(published_date);
 
@@ -147,22 +148,7 @@ async function onCategoriesBtnClick(e) {
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
   categoriesOnPageLoadGallery();
 }
-// function categoriesOnResizeGallery() {
-//   window.addEventListener('resize', e => {
-//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-//     if (e.currentTarget.innerWidth <= 768) {
-//       collection = collection.slice(0, 3);
-//     } else if (e.currentTarget.innerWidth <= 1280) {
-//       collection = collection.slice(0, 7);
-//     } else {
-//       collection = collection.slice(0, 8);
-//     }
-//     clear(refs.gallery);
-//     collectionByPopular = collection.map(renderMarkup).join(``);
-//     renderGallery(collectionByPopular);
-//     weather.renderDefaultWeather();
-//   });
-// }
+
 function categoriesOnPageLoadGallery() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;

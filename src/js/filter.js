@@ -14,6 +14,7 @@ const newsFetch = new NewsAPI();
 refs.filter.addEventListener(`submit`, filterQuery);
 
 async function filterQuery(e) {
+  let imgUrl;
   e.preventDefault();
   newsFetch.resetPage();
   //повертає значення з імпуту
