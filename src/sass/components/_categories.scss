@@ -4,18 +4,18 @@
 // @media screen and (min-width: $desktop) {
 // }
 
-.filter-container {
+body .container.filter-container {
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
+ 
   padding: 24px 16px 40px 16px;
   position: relative;
   @media screen and (min-width: $tablet) {
     padding: 28px 16px 48px 16px;
   }
-  @media screen and (min-width: $desktop) {
-    padding: 28px 52px 60px 16px;
-  }
+ @media screen and (min-width: $desktop) {
+   padding: 28px 52px 60px 52px;
+ }
 }
 
 .categories {
