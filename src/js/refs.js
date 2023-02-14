@@ -1,4 +1,3 @@
-
 export const refs = {
   gallery: document.querySelector(`.card__list`),
   weather: document.querySelector(`.weather`),
@@ -13,6 +12,7 @@ export const refs = {
   categoriesBox: document.querySelector('.categories'),
   categoriesList: document.querySelector('.categories__list'),
   categoriesMenu: document.querySelector('.categories__menu'),
+  categoriesContainer: document.querySelector('.filter-container'),
   menu: document.querySelector('.menu'),
   categoriesIconUp: document.querySelector('.categories__icon-up'),
   categoriesIconDown: document.querySelector('.categories__icon-down'),
@@ -24,6 +24,7 @@ export const refs = {
   accordArrow: document.querySelector('.accord__arrow'),
   //Read more && Add
   readMore: document.querySelector('.info__link'),
+
   //nav main btn
   ReadBtn: document.querySelector('[data-value="Read"]'),
   FavBtn: document.querySelector('[data-value="Favorite"]'),
@@ -39,4 +40,3 @@ export const refs = {
 
   
 };
-

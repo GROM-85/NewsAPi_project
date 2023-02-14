@@ -5,6 +5,7 @@ import * as render from '../renderMarkup';
 
 // import in index.js
 
+
 refs.nav.addEventListener("click",(e)=>{
     let curr = e.target.parentNode;
     let list = e.currentTarget.children;
@@ -37,3 +38,17 @@ export function clearNavCurrent(list){
  })
 
 
+export function clearNavCurrent(root) {
+  Array.from(root).forEach(elem => {
+    if (elem.classList.contains('current-list__item'))
+      elem.classList.remove('current-list__item');
+  });
+}
+const navArray = ['Favorite', 'Read'];
+function toHideCategories(currentPage) {
+  if (navArray.includes(currentPage)) {
+    refs.categoriesContainer.classList.add('hidden-categories');
+  } else {
+    refs.categoriesContainer.classList.remove('hidden-categories');
+  }
+}

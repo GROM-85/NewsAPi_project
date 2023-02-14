@@ -9,7 +9,6 @@ import { clearNavCurrent } from './navLogic/navLogic';
 import { onloadFavorite } from './addToFavorites/addToFavorites';
 const newsFetch = new NewsAPI();
 
-
 const arrCategories = JSON.parse(localStorage.getItem('results'));
 saveCategories();
 categoriesOnResize();
@@ -138,11 +137,10 @@ async function onCategoriesBtnClick(e) {
   clear(refs.gallery);
   clear(refs.accordion);
   clearNavCurrent(refs.nav.children);
-  refs.HomeBtn.parentNode.classList.add("current-list__item");
+  refs.HomeBtn.parentNode.classList.add('current-list__item');
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
   categoriesOnPageLoadGallery();
-
 }
 // function categoriesOnResizeGallery() {
 //   window.addEventListener('resize', e => {
