@@ -4,18 +4,11 @@ import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as key from './const';
 import * as storage from './storageLogic';
 import * as weather from './weather';
-import { addToFavorite } from './addToFavorites';
-
 const newsFetch = new NewsAPI();
-
-
 //listener update main page with popular news//
 window.addEventListener('load', fetchByPopular);
-
 async function fetchByPopular() {
   const docs = await newsFetch.getPopularNews();
-  cards.length = 0;
-  cards.push(...docs);
   let collectionByPopular = [];
   collectionByPopular = docs.map(result => {
     const { uri, section, title, abstract, published_date, url, media } =
@@ -27,10 +20,8 @@ async function fetchByPopular() {
       imgUrl =
         'https://static01.nyt.com/images/2022/10/30/nyregion/30sandy-anniversary-intro/merlin_192440457_cbe91abf-e7f4-467f-b83d-4e7815ef45b7-articleLarge.jpg?quality=75&auto=webp&disable=upscale';
     }
-
     let newDateFormat = published_date.split('-');
     newDateFormat = newDateFormat.join('/');
-
     let obj = {
       imgUrl,
       title,
@@ -42,13 +33,10 @@ async function fetchByPopular() {
     };
     return obj;
   });
-
   storage.saveToLocal(key.KEY_COLLECTION, collectionByPopular.slice(0, 9));
   categoriesOnPageLoad();
-
   //categoriesOnResize();
 }
-
 export function categoriesOnResize() {
   window.addEventListener('resize', e => {
     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
@@ -65,7 +53,6 @@ export function categoriesOnResize() {
     weather.renderDefaultWeather();
   });
 }
-
 export function categoriesOnPageLoad() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;
@@ -77,24 +64,18 @@ export function categoriesOnPageLoad() {
     collection = collection.slice(0, 8);
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
-
   renderGallery(collectionByPopular);
-
   weather.renderDefaultWeather();
   const t = weather.getGeoLocation();
   console.log(t);
 }
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
-  refs.gallery.addEventListener('click', addToFavorite);
 }
-
-
 //*********corect dateformat for the card*********** */
 export function corectDate(date) {
   let newDateFormat = date.split('-');
   let maxElement = { index: length };
-
   newDateFormat.forEach((el, index) => {
     maxElement.index = index;
     maxElement.length = length;

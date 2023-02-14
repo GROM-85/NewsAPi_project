@@ -1,16 +1,26 @@
-import format from "date-fns/format";
+import format from 'date-fns/format';
 import * as key from './const';
 import * as storage from './storageLogic';
 
 const favorites = storage.loadFromLocal(key.KEY_FAVORITE);
-export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) {
-    return `<li class="card__item"  id=${id}>
+const favoritesId = favorites.map(({ id }) => id);
+
+export function renderMarkup({
+  imgUrl,
+  title,
+  text,
+  date,
+  url,
+  id,
+  categorie,
+}) {
+  return `<li class="card__item"  id=${id}>
             <div class="thumb" style="background-image: url('${imgUrl}')">
               <span
                 class="thumb__item" >${categorie}
               </span>
               <button type="button" class="favorite-btn ${
-                favorites.includes(id) ? 'hidden-span' : ''
+                favoritesId.includes(id) ? 'hidden-span' : ''
               }">
                  <span class="icon-span add-favorite">Add to favorite
                  <svg class="icon add-favorite-icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M4.66658 2C2.82592 2 1.33325 3.47733 1.33325 5.3C1.33325 6.77133 1.91659 10.2633 7.65859 13.7933C7.76144 13.8559 7.87952 13.889 7.99992 13.889C8.12032 13.889 8.2384 13.8559 8.34125 13.7933C14.0833 10.2633 14.6666 6.77133 14.6666 5.3C14.6666 3.47733 13.1739 2 11.3333 2C9.49259 2 7.99992 4 7.99992 4C7.99992 4 6.50725 2 4.66658 2Z"/>
@@ -33,10 +43,10 @@ export function renderMarkup({ imgUrl, title, text, date, url, id, categorie }) 
                     </div>
                   </div>
             </div>
-  </li>`
+  </li>`;
 }
 
-export function renderWeather({temp, icon, main, name }) {
+export function renderWeather({ temp, icon, main, name }) {
   return `<li class="card__item card__item__weather">
     <div class="weather__container">
       <div class="weather__info">
@@ -68,21 +78,19 @@ export function renderWeather({temp, icon, main, name }) {
         rel="noreferrer noopener"
         >Weather for week</a>
     </div>
-</li>`
+</li>`;
 }
-
-
 
 function formatText(text) {
   const maxLength = 110;
   let result;
   // Change code below this line
 
-  if(text.length > maxLength){
-   text= text.slice(0, maxLength);
-    result= text + `...`;
-  }else{
-    result=text;
+  if (text.length > maxLength) {
+    text = text.slice(0, maxLength);
+    result = text + `...`;
+  } else {
+    result = text;
   }
   return result;
 }
@@ -90,4 +98,3 @@ function formatText(text) {
 export function clear(item) {
   item.innerHTML = ``;
 }
-

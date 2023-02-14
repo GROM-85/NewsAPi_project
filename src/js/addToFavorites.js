@@ -1,10 +1,9 @@
 import * as key from './const';
 import * as storage from './storageLogic';
-import getRefs from './refs';
+import { refs } from './refs';
 import { cards } from '..';
 import { renderMarkup, clear } from './renderMarkup';
 
-const refs = getRefs();
 refs.gallery.addEventListener('click', addToFavorite);
 
 export function addToFavorite(e) {
@@ -45,5 +44,10 @@ function createFavorite() {
   let markup = favorites.map(renderMarkup).join('');
 
   clear(refs.gallery);
-  refs.gallery.insertAdjacentHTML = markup;
+  refs.gallery.innerHTML = markup;
 }
+// refs.gallery.addEventListener('click', removeFromFavorite);
+// if()
+// const btnEl = e.target.closest('.favorite-btn');
+
+// if (!btnEl) return;

@@ -4,26 +4,19 @@ import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import * as storage from './storageLogic';
 import * as key from './const';
 import * as newsCard from './newsCard';
-import { addToFavorite } from './addToFavorites';
-
 const newsFetch = new NewsAPI();
-
 let imgUrl;
 const arrCategories = JSON.parse(localStorage.getItem('results'));
-
 saveCategories();
 categoriesOnResize();
 categoriesOnPageLoad();
-
 refs.categoriesBtnMenu.addEventListener('mouseenter', showCategoriesList);
 refs.menu.addEventListener('mouseleave', showCategoriesList);
-
 function saveCategories() {
   newsFetch.getCategories().then(results => {
     localStorage.setItem('results', JSON.stringify(results));
   });
 }
-
 function categoriesOnResize() {
   window.addEventListener('resize', e => {
     if (e.currentTarget.innerWidth >= 1279.98) {
@@ -38,7 +31,6 @@ function categoriesOnResize() {
     }
   });
 }
-
 function categoriesOnPageLoad() {
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     clearCategories();
@@ -51,12 +43,10 @@ function categoriesOnPageLoad() {
     markupMobile();
   }
 }
-
 function clearCategories() {
   refs.categoriesBtnList.innerHTML = '';
   refs.categoriesList.innerHTML = '';
 }
-
 function markupTablet() {
   refs.categoriesBtnList.insertAdjacentHTML(
     'afterbegin',
@@ -68,7 +58,6 @@ function markupTablet() {
   );
   refs.categoriesBtnMenuText.textContent = 'Others';
 }
-
 function markupDesktop() {
   refs.categoriesBtnList.insertAdjacentHTML(
     'afterbegin',
@@ -80,7 +69,6 @@ function markupDesktop() {
   );
   refs.categoriesBtnMenuText.textContent = 'Others';
 }
-
 function markupMobile() {
   refs.categoriesList.insertAdjacentHTML(
     'afterbegin',
@@ -88,8 +76,7 @@ function markupMobile() {
   );
   refs.categoriesBtnMenuText.textContent = 'Categories';
 }
-
-function markupCategoriesInBtn(arrCategories = [], begin, end) {
+function markupCategoriesInBtn(arrCategories, begin, end) {
   return arrCategories
     .slice(begin, end)
     .map(
@@ -99,7 +86,6 @@ function markupCategoriesInBtn(arrCategories = [], begin, end) {
     )
     .join(' ');
 }
-
 function markupCategoriesInList(arrCategories, begin, end) {
   return arrCategories
     .slice(begin, end)
@@ -109,13 +95,11 @@ function markupCategoriesInList(arrCategories, begin, end) {
     )
     .join(' ');
 }
-
 function showCategoriesList() {
   refs.categoriesIconUp.classList.toggle('invisible');
   refs.categoriesIconDown.classList.toggle('invisible');
   refs.categoriesMenu.classList.toggle('invisible');
 }
-
 //*****filter categories Btn*****************/
 refs.categoriesBox.addEventListener(`click`, onCategoriesBtnClick);
 async function onCategoriesBtnClick(e) {
@@ -133,15 +117,12 @@ async function onCategoriesBtnClick(e) {
     console.log('result', result);
     let imgUrl;
     if (multimedia) {
-
       imgUrl = multimedia[2]['url'];
-
     } else {
       imgUrl =
         'https://www.shutterstock.com/image-photo/canadian-national-flag-overlay-false-260nw-1720481365.jpg';
     }
     const newDateFormat = corectDateInCategories(published_date);
-
     let obj = {
       imgUrl,
       title,
@@ -153,11 +134,8 @@ async function onCategoriesBtnClick(e) {
     };
     return obj;
   });
-
   clear(refs.gallery);
-
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
-
   categoriesOnPageLoadGallery();
   categoriesOnResizeGallery();
 }
@@ -193,14 +171,12 @@ function categoriesOnPageLoadGallery() {
   renderGallery(collectionByPopular);
   weatherRender();
 }
-
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
-  refs.gallery.addEventListener('click', addToFavorite);
 }
 //*******renderedWether******************* */
 function weatherRender() {
-let replacedItem;
+  let replacedItem;
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     replacedItem = refs.gallery.childNodes[1];
     console.log(replacedItem);
@@ -216,14 +192,11 @@ let replacedItem;
     replacedItem.insertAdjacentHTML(`beforebegin`, markup);
   }
 }
-
 function corectDateInCategories(date) {
   let newDateFormat = date.split('-');
-
   if (newDateFormat.length > 3) {
     newDateFormat[2] = newDateFormat[2].slice(0, 2);
     newDateFormat = newDateFormat.slice(0, 3);
-
     newDateFormat = newDateFormat.join('/');
   }
   return newDateFormat;

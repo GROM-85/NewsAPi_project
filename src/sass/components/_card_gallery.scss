@@ -110,10 +110,6 @@
   flex-wrap: nowrap;
   justify-content: space-between;
 }
-
-.info__helper {
-}
-
 .info__date {
   @include font(400, 14px, 1.37);
   color: var(--grey-color);
@@ -142,7 +138,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 12px;
   border: none;
   background: var(--bcg-main-color);
   border-radius: 20px;
@@ -188,17 +183,6 @@
   margin-bottom: 28px;
   flex: 1 0 0;
 }
-.favorite-icon {
-  margin-left: 4px;
-  fill: transparent;
-  stroke: var(--blue-color);
-}
-
-.favorite-active-icon {
-  margin-left: 4px;
-  fill: var(--favorite-color);
-}
-
 .card__content {
   display: inline;
   flex-direction: column;
