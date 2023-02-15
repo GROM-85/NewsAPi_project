@@ -17,8 +17,16 @@ export const refs = {
   categoriesIconUp: document.querySelector('.categories__icon-up'),
   categoriesIconDown: document.querySelector('.categories__icon-down'),
   categoriesBtnList: document.querySelector('.categories__btn-list'),
+
   categoriesBtnMenuText: document.querySelector('.categories__btn-text'),
-  gallery: document.querySelector('.card__list'),
+  notFoundEl: document.querySelector('.not-found'),
+  buttonEL: document.querySelector('.js-button-search'),
+  inputEl: document.querySelector('.form__input-close'),
+  svgEl: document.querySelector('.search__icon-hidden'),
+  iconBtn: document.querySelector('.icon__button-hidden'),
+
+  mobileNavItem: document.querySelector('.mobile-menu-list'),
+
   //accordion
   accordion: document.querySelector('.accordion'),
   accordArrow: document.querySelector('.accord__arrow'),
@@ -29,7 +37,7 @@ export const refs = {
   ReadBtn: document.querySelector('[data-value="Read"]'),
   FavBtn: document.querySelector('[data-value="Favorite"]'),
   HomeBtn: document.querySelector('[data-value="Home"]'),
-  // nav mobile btn 
+  // nav mobile btn
   readBtnMob: document.querySelector('.js-read'),
   favBtnMob: document.querySelector('.js-favorite'),
   homeBtnMob: document.querySelector('.js-home'),

@@ -4,7 +4,6 @@ import * as storage from './storageLogic';
 const favorites = storage.loadFromLocal(key.KEY_FAVORITE);
 const favoritesId = favorites.map(({ id }) => id);
 
-
 export function renderMarkup({
   imgUrl,
   title,
@@ -59,7 +58,7 @@ export function renderWeather({ temp, icon, main, name }) {
           <p class="weather__desc">${main}</p>
           <div class="weather__city">
             <svg class="weather__location-svg" width="18" height="18">
-              <use href="./images/icons.svg#location"></use>
+              <use href="icons.adfc4680.svg#location"></use>
             </svg>
             <span class="weather__city-name">${name}</span>
           </div>
@@ -80,13 +79,12 @@ export function renderWeather({ temp, icon, main, name }) {
         target="_blank"
 
         rel="noreferrer noopener"
-        >Weather for week</a>
+        >weather for week</a>
     </div>
 </li>`;
 }
 
 export function renderAccordion(date) {
-
   return `<div class="accord__title"> 
   <div class="date__cont">
       <p class="date">${date}</p>
@@ -111,7 +109,7 @@ function formatText(text) {
   // Change code below this line
   if (text.length > key.MAXLENGHT) {
     text = text.slice(0, key.MAXLENGHT);
-    result = text + `...`;
+    result = text + "...";
   } else {
     result = text;
   }

@@ -1,0 +1,94 @@
+// @media screen and (min-width: $tablet) {
+// }
+// @media screen and (min-width: $desktop) {
+// }
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 150px;
+}
+
+.page-container {
+    display: flex;
+    gap: 10px;
+
+    @media screen and (min-width: $desktop) {
+        gap: 8px;
+    }
+}
+
+.arrow-left {
+    margin-right: 10px;
+}
+
+.arrow-right {
+    margin-left: 10px;
+}
+
+.prev-page,
+.next-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    @include font(500, 16px, 22px);
+    color: var(--black-color);
+    background: #F4F4F4;
+    border: 1px solid var(--blue-color);
+    border-radius: 2px;
+    // margin-right: 8px;
+}
+
+.numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // margin: 0px 8px;
+    gap: 8px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.pg-link {
+    padding: 4px 12px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--black-color);
+    background: #F4F4F4;
+    border: 1px solid var(--blue-color);
+    border-radius: 2px;
+    text-decoration: none;
+
+    @media screen and (min-width: $desktop) {
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
+
+.pg-link:hover,
+.pg-link:focus,
+.prev-page:hover,
+.prev-page:focus,
+.next-page:hover,
+.next-page:focus {
+    background-color: var(--blue-color);
+    color: var(--white-color);
+}
+
+.next-page:hover .arrow-right,
+.next-page:focus .arrow-right,
+.prev-page:hover .arrow-left,
+.prev-page:focus .arrow-left {
+    fill: var(--white-color);
+}
+
+.prev-page:disabled,
+.next-page:disabled {
+    opacity: 0.5;
+}
+
