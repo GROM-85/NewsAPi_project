@@ -50,18 +50,16 @@ class NewsAPI {
     } else {
       newDate = selectedDate;
       params = {
-        'api-key': this.#API_KEY,
         q: this.#query,
         begin_date: this.#beginDate,
         end_date: this.#end_date,
       };
-      Object.assign(this.#params, {
-        q: this.#query,
-        begin_date: newDate,
-        end_date: newDate,
-      });
     }
-
+    Object.assign(this.#params, {
+      q: this.#query,
+      begin_date: newDate,
+      end_date: newDate,
+    });
     const response = await fetch(
       `${this.#BASE_URL}search/v2/articlesearch.json?` +
       new URLSearchParams(params)

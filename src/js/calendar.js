@@ -2,7 +2,6 @@ import AirDatepicker from 'air-datepicker';
 import 'air-datepicker/air-datepicker.css';
 import format from 'date-fns/format';
 
-export let selectedDate;
 document.addEventListener('DOMContentLoaded', () => {
   const yearTitle = {
     tagName: 'span',
@@ -22,9 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
       '<div class="air-datepicker-nav--action"><svg><path d="M 18,10 l -5,6 l 5,6"></path></svg></div>',
     className: 'my--buttons',
     onClick: dp => {
-      let newDate = new Date(dp.viewDate);
-      newDate.setFullYear(dp.viewDate.getFullYear() - 1);
-      dp.setFocusDate(newDate);
+      const currentDate = dp.selectedDates[0];
+      let newDate = new Date(currentDate);
+      newDate.setFullYear(currentDate.getFullYear() - 1);
+      dp.selectDate(newDate, {
+        silent: true
+      });
       dp.setViewDate(newDate);
     },
   };
@@ -33,9 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
       '<div class="air-datepicker-nav--action"><svg><path d="M 2,10 l 5,6 l -5,6"></path></svg></div>',
     className: 'my--buttons',
     onClick: dp => {
-      let newDate = new Date(dp.viewDate);
-      newDate.setFullYear(dp.viewDate.getFullYear() + 1);
-      dp.setFocusDate(newDate);
+      const currentDate = dp.selectedDates[0];
+      let newDate = new Date(currentDate);
+      newDate.setFullYear(currentDate.getFullYear() + 1);
+      dp.selectDate(newDate, {
+        silent: true
+      });
       dp.setViewDate(newDate);
     },
   };
@@ -44,9 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
       '<div class="air-datepicker-nav--action"><svg><path d="M 14,7 l -5,9 l 5,9"></path></svg></div>',
     className: 'my--buttons',
     onClick: dp => {
-      let newDate = new Date(dp.viewDate);
-      newDate.setMonth(dp.viewDate.getMonth() - 1);
-      dp.setFocusDate(newDate);
+      const currentDate = dp.selectedDates[0];
+      let newDate = new Date(currentDate);
+      newDate.setMonth(currentDate.getMonth() - 1);
+      dp.selectDate(newDate, {
+        silent: true
+      });
       dp.setViewDate(newDate);
     },
   };
@@ -55,9 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
       '<div class="air-datepicker-nav--action"><svg><path d="M 14,7 l 5,9 l -5,9"></path></svg></div>',
     className: 'my--buttons',
     onClick: dp => {
-      let newDate = new Date(dp.viewDate);
-      newDate.setMonth(dp.viewDate.getMonth() + 1);
-      dp.setFocusDate(newDate);
+      const currentDate = dp.selectedDates[0];
+      let newDate = new Date(currentDate);
+      newDate.setMonth(currentDate.getMonth() + 1);
+      dp.selectDate(newDate, {
+        silent: true
+      });
       dp.setViewDate(newDate);
     },
   };
@@ -104,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       dateFormat: 'dd/MM/yyyy',
     },
-    autoClose: true,
+    toggleSelected: false,
     selectedDates: [new Date()],
     onShow(animationDone) {
       let header = document.getElementsByClassName(
@@ -125,6 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!animationDone) {
         toggleArrowsAndInput();
       }
+    },
+    onSelect({ datepicker }) {
+      datepicker.hide();
     },
     position({ $datepicker, $target, $pointer }) {
       let coords = $target.getBoundingClientRect();
@@ -149,14 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let temp = selectedDate.toString();
     selectedDate = format(new Date(temp), 'yyyyMMdd');
   }
-
   const svgs = [
     ...document.getElementById('calendar-section').getElementsByTagName('svg'),
   ];
   svgs.forEach(it =>
     it.addEventListener('click', event => {
       event.stopPropagation();
-
       if (!datePicker.visible) {
         datePicker.$el.focus();
       }

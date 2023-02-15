@@ -8,8 +8,6 @@ import { ApiService } from './API/fetchAPI';
 import { refs } from './refs';
 
 const pg = document.getElementById('pagination');
-const pgChild = pg.children;
-const btnPg = document.querySelector('.pg-link');
 const btnNextPg = document.querySelector('button.next-page');
 const btnPrevPg = document.querySelector('button.prev-page');
 let pgLastPage; 

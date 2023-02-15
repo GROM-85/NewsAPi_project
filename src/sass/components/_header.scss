@@ -57,7 +57,7 @@
 }
 
 .form__input-show {
-  // position: relative;
+  
   outline: none;
   opacity: 1;
   display: inline-block;
@@ -68,6 +68,7 @@
   border: 1px solid var(--text-main-color);
   border-radius: 20px;
   background-color: var(--bcg-main-color);
+  color:var(--text-main-color);
 
   &:focus {
     border: 1.6px solid var(--text-main-color);
