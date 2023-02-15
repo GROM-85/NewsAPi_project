@@ -5,6 +5,7 @@ import * as storage from './storageLogic';
 import * as key from './const';
 import * as newsCard from './newsCard';
 import { rerenderPaginator } from './pagination';
+import * as weather from './weather';
 
 const newsFetch = ApiService;
 
@@ -172,7 +173,6 @@ async function onCategoriesBtnClick(e) {
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
 
   categoriesOnPageLoadGallery();
-  categoriesOnResizeGallery();
 }
 function categoriesOnResizeGallery() {
   window.addEventListener('resize', e => {
@@ -204,7 +204,7 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-  weatherRender();
+  weather.weatherRender();
 }
 
 function renderGallery(markup) {

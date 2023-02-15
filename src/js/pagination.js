@@ -12,9 +12,9 @@ const pgChild = pg.children;
 const btnPg = document.querySelector('.pg-link');
 const btnNextPg = document.querySelector('button.next-page');
 const btnPrevPg = document.querySelector('button.prev-page');
+let pgLastPage; 
 
 let arrPopular;
-
 
 pgBtn();
 savePopular();
@@ -97,7 +97,7 @@ function pgOnPageLoad(arrPopular) {
 }
 
 function renderPopular(e) {
-  // e.preventDefault();
+  e.preventDefault();
   arrPopular = JSON.parse(localStorage.getItem('popular'));
   let newCollectionOfPopular;
 
@@ -118,8 +118,10 @@ function renderPopular(e) {
 
 function onNextPage(e) {
   e.preventDefault();
-
-  if (ApiService.currentPage >= ApiService.lastPage()) {
+  if (ApiService.currentPage === 1) {
+  pgLastPage=ApiService.lastPage()
+}
+  if (ApiService.currentPage >= ApiService.lastPage()) { 
     pgBtn();
     return;
   }
@@ -203,7 +205,7 @@ function btnPgOnPageLoad() {
   // btnNextPg.disabled = true;
   //   pg.insertAdjacentHTML('afterbegin', markup.numOfPageStart);
   //   return;
-  // } 
+  // }
   if (window.matchMedia('(min-width: 767.98px)').matches) {
     clearPgContainer();
     renderPgBtn();
@@ -215,6 +217,9 @@ function btnPgOnPageLoad() {
 
 function setCurPage(e) {
   e.preventDefault();
+  if (ApiService.currentPage === 1) {
+   pgLastPage = ApiService.lastPage();
+ }
   if (e.target.textContent === '...') {
     return;
   }
@@ -230,7 +235,7 @@ function renderPgBtnMobile() {
         <a class="pg-link" href="#">1</a>
     </li>`,
     numOfPageLast: `<li class="pg-item" data-page="">
-        <a class="pg-link" href="#">${ApiService.lastPage()}</a>
+        <a class="pg-link" href="#">${pgLastPage}</a>
     </li>`,
     numOfPageStart: `<li class="pg-item" data-page="">
         <a class="pg-link" href="#">1</a>
@@ -262,12 +267,12 @@ function renderPgBtnMobile() {
     dot: `<li class="pg-item"><a class="pg-link-dots">...</a></li>`,
   };
 
-  // if (ApiService.lastPage() <= 3) {
-  //   clearPgContainer();
-  //   btnNextPg.disabled = true;
-  //   pg.insertAdjacentHTML('afterbegin', markup.numOfPageStart);
-  //   return;
-  // }
+  if (!ApiService.isCategories) {
+    ApiService.isCategories = true;
+     btnNextPg.disabled = true;
+     pg.insertAdjacentHTML('afterbegin', markup.numOfPageStart);
+     return;
+   }
 
   if (
     ApiService.currentPage === 1 ||
@@ -301,12 +306,15 @@ function renderPgBtnMobile() {
 }
 
 function renderPgBtn() {
+  console.log("current",ApiService.currentPage)
+  
+  console.log(pgLastPage)
   const markup = {
     numOfPageFirst: ` <li class="pg-item" data-page="">
         <a class="pg-link" href="#">1</a>
     </li>`,
     numOfPageLast: `<li class="pg-item" data-page="">
-        <a class="pg-link" href="#">${ApiService.lastPage()}</a>
+        <a class="pg-link" href="#">${pgLastPage}</a>
     </li>`,
     numOfPageStart: `<li class="pg-item" data-page="">
         <a class="pg-link" href="#">1</a>
@@ -336,7 +344,11 @@ function renderPgBtn() {
   };
   pg.addEventListener('click', setCurPage);
 
-  if (ApiService.lastPage() <= 3) {
+
+  console.log('ApiService.lastPage()', ApiService.lastPage());
+  console.log("isCategories",ApiService.isCategories)
+  if (!ApiService.isCategories) {
+    ApiService.isCategories = true;
     clearPgContainer();
     btnNextPg.disabled = true;
     pg.insertAdjacentHTML('afterbegin', markup.numOfPageStart);

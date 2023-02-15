@@ -7,6 +7,7 @@ class NewsAPI {
   #query;
   #beginDate;
   #end_date;
+  #isCategories;
 
   #params = {
     'api-key': this.#API_KEY,
@@ -23,6 +24,7 @@ class NewsAPI {
     this.#period = 7;
     this.category = 'all';
     this.pageLimitCat = 20;
+    this.#isCategories = false;
     // this.#beginDate = format(Date.now(), 'yyyyMMdd');
     // this.#end_date=format(Date.now(), 'yyyyMMdd');
   }
@@ -86,6 +88,8 @@ class NewsAPI {
 
   async getNewsByCategories() {
     console.log("this.getOffset", this.getOffset())
+    
+    console.log("isCategories",this.isCategories)
     const response = await fetch(
       `${this.#BASE_URL}news/v3/content/nyt/${this.category}.json?` +
       new URLSearchParams({
@@ -161,6 +165,12 @@ class NewsAPI {
   cleanPagination() {
     this.currentPage = 1;
     this.totalCount = 0;
+  }
+    get isCategories() {
+    return this.#isCategories;
+  }
+  set isCategories(isCategories) {
+    this.#isCategories = isCategories;
   }
 }
 
