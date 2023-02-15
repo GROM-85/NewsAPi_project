@@ -63,7 +63,6 @@ export async function getGeoLocation() {
           name,
         }
         weatherRender(item);
-        console.log(weatherRender(item))
       }));
     
     return  ;
@@ -98,7 +97,6 @@ export function weatherRender(item) {
  const markup = renderWeather(item);
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     replacedItem = refs.gallery.childNodes[2];  
-    console.log(replacedItem)
    
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else if (window.matchMedia('(min-width: 767.98px)').matches) {

@@ -77,9 +77,8 @@ export function categoriesOnPageLoad() {
   renderGallery(collectionByPopular);
   weather.renderDefaultWeather();
   const t = weather.getGeoLocation();
-  console.log(t);
 }
-function renderGallery(markup) {
+export function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
 }
 

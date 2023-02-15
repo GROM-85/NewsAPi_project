@@ -40,15 +40,15 @@ async function filterQuery(e) {
   const { docs, meta } = await newsFetch.getNewsByQuery();
   //якщо не знайдено даних по запиту, вертає NOT A FOUND
   if (docs.length=== 0) {
-    console.log("NOT A FOUND")
+    // console.log("NOT A FOUND")
   }
 
   let collectionByQuery = [];
-  console.log("docsQuery",docs);
+  // console.log("docsQuery",docs);
   collectionByQuery = docs.map(result => {
     const { abstract, pub_date, uri, web_url, multimedia, section_name, headline } =
       result;
-    console.log('result', result);
+    // console.log('result', result);
     let imgUrl;
     if (multimedia.length !== 0) {
       imgUrl = 'https://www.nytimes.com/' + multimedia[2]['url'];
@@ -59,7 +59,7 @@ async function filterQuery(e) {
     }
 
     const newDateFormat = corectDate(pub_date);
-    console.log("newDateFormat",newDateFormat)
+    // console.log("newDateFormat",newDateFormat)
 
     let obj = {
       imgUrl,
@@ -121,7 +121,7 @@ function weatherRender() {
   let replacedItem;
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     replacedItem = refs.gallery.childNodes[1];
-    console.log(replacedItem);
+
     const markup = renderWeather();
     replacedItem.insertAdjacentHTML(`afterend`, markup);
   } else if (window.matchMedia('(min-width: 767.98px)').matches) {
@@ -141,7 +141,6 @@ function corectDate(date) {
   newDateFormat.forEach((el, index) => {
     maxElement.index = index;
     maxElement.length = length;
-    console.log(el.length, index);
   });
   newDateFormat[maxElement.index] = newDateFormat[maxElement.index].slice(0, 2);
   newDateFormat = newDateFormat.slice(0, 3);

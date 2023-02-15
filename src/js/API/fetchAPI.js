@@ -15,13 +15,14 @@ class NewsAPI {
     // end_date:this.#end_date,
   };
 
-  pageLimit = 8;
+  pageLimit = 20;
   totalCount = 0;
   currentPage = 1;
 
   constructor() {
     this.#period = 7;
     this.category = 'all';
+    this.pageLimitCat = 20;
     // this.#beginDate = format(Date.now(), 'yyyyMMdd');
     // this.#end_date=format(Date.now(), 'yyyyMMdd');
   }
@@ -82,13 +83,15 @@ class NewsAPI {
     return { docs, meta };
   }
 
+
   async getNewsByCategories() {
+    console.log("this.getOffset", this.getOffset())
     const response = await fetch(
       `${this.#BASE_URL}news/v3/content/nyt/${this.category}.json?` +
       new URLSearchParams({
         'api-key': this.#API_KEY,
         offset: this.getOffset(), // divisible by 20
-        limit: this.pageLimit,
+        // limit: 20,
       })
     );
     if (!response.ok) {
@@ -147,7 +150,7 @@ class NewsAPI {
   }
 
   getOffset() {
-    return (this.currentPage - 1) * this.pageLimit;
+    return (this.currentPage - 1) * this.pageLimitCat;
   }
 
   lastAction = {

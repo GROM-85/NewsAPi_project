@@ -73,7 +73,7 @@ function formatText(text) {
   // Change code below this line
   if(text.length > maxLength){
    text= text.slice(0, maxLength);
-    result= text + `...`;
+    result= text + '...';
   }else{
     result=text;
   }
