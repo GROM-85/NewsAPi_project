@@ -116,5 +116,5 @@ function formatText(text) {
 }
 
 export function clear(item) {
-  item.innerHTML = ``;
+  item.innerHTML = '';
 }
