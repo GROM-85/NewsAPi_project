@@ -9,7 +9,7 @@ import { rerenderPaginator } from './pagination';
 
 const newsFetch = ApiService;
 
-let imgUrl;
+
 import { onloadToRead } from './addToRead/addToRead';
 import { clearNavCurrent } from './navLogic/navLogic';
 import { onloadFavorite } from './addToFavorites/addToFavorites';

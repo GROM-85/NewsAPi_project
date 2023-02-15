@@ -55,7 +55,7 @@ async function filterQuery(e) {
     if (!refs.notFoundEl.classList.contains('hidden')) {
       refs.notFoundEl.classList.add('hidden');
     }
-
+  }
     let collectionByQuery = [];
 
     collectionByQuery = docs.map(result => {
