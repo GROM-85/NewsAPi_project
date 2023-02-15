@@ -3,6 +3,7 @@
 @import './utils/variables';
 @import './utils/mixin';
 @import './base/base';
+
 @import './components/header';
 @import './components/footer';
 @import './components/calendar';
@@ -13,3 +14,7 @@
 @import './components/mobile-menu';
 @import './components/switch-theme';
 @import './components/pagination';
+@import './components/accordion';
+@import './components/read';
+@import './components/loader';
+@import './components/not-found-page'

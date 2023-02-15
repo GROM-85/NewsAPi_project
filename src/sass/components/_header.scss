@@ -74,7 +74,7 @@
   }
 
   &::placeholder {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 12px;
     line-height: 1.17;
 
@@ -92,10 +92,26 @@
   }
 }
 
-.search__icon-hidden {
+.icon__button-hidden {
   display: none;
   opacity: 0;
   visibility: hidden;
+}
+
+.icon__button-show {
+  display: inline-block;
+  opacity: 1;
+  visibility: visible;
+  position: absolute;
+  top: 6px;
+  left: 20px;
+  background-color: var(--bcg-main-color);
+}
+
+.search__icon-hidden {
+  display: none;
+  position: absolute;
+
 }
 
 .search__icon-show {
@@ -104,8 +120,7 @@
   opacity: 1;
   visibility: visible;
   position: absolute;
-  top: 6px;
-  left: 20px;
+  
 }
 
 .search__button-hidden {
@@ -120,8 +135,9 @@
 }
 
 .search__button-show {
+  background-color: var(--bcg-main-color);
   & svg {
-    fill: var(--text-main-color);
+     fill: var(--text-main-color);
   }
 
   @media screen and (min-width: 767.99px) {
@@ -162,6 +178,7 @@
 .list-navigation__link {
   padding-top: 30px;
   padding-bottom: 30px;
+  cursor:pointer;
   color: var(--text-main-color);
   font-size: 16px;
   font-weight: 700;

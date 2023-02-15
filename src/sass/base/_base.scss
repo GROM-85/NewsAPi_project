@@ -3,31 +3,47 @@
   //color
   --blue-color: #4440f6;
   --favorite-color: #4b48da;
-
   --text-main-color: #111321;
   --grey-color: #a8a8a8;
   --bcg-main-color: #ffff;
   --green-color: #00dd73;
   --white-color: #ffff;
   --black-color: #111321;
-
   body.darkMode {
     --text-main-color: #ffff;
     --bcg-main-color: #2e2e2e;
   }
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 h1,
 h2,
 h3,
 h4,
 p {
   margin: 0;
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+button {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  background-color: var(--white-color);
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
 }
 
 ul {
@@ -35,13 +51,11 @@ ul {
   margin: 0;
   padding: 0;
 }
-
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
-
 button {
   margin: 0;
   padding: 0;
@@ -51,7 +65,6 @@ button {
   box-shadow: none;
   border: none;
 }
-
 body {
   font-family: $main-font, sans-serif;
   color: var(--text-main-color);
@@ -59,68 +72,23 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
   &.no-scroll {
     overflow: hidden;
   }
 }
-
-h1,
-h2,
-h3,
-h4,
-p {
-  margin: 0;
+main {
+  flex: 1 1 auto;
 }
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-button {
-  margin: 0;
-  padding: 0;
-  font-family: inherit;
-  background-color: transparent;
-  cursor: pointer;
-  box-shadow: none;
-  border: none;
-}
-
-body {
-  font-family: $main-font, sans-serif;
-  color: var(--text-main-color);
-  background-color: var(--bcg-main-color);
-
-  &.no-scroll {
-    overflow: hidden;
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
+  @media screen and (min-width: $mobile) {
+    max-width: $mobile;
   }
-
-  main {
-    flex: 1 1 auto;
+  @media screen and (min-width: $tablet) {
+    max-width: $tablet;
   }
-  .container {
-    margin: 0 auto;
-    padding: 0 16px;
-
-    @media screen and (min-width: $mobile) {
-      max-width: $mobile;
-    }
-
-    @media screen and (min-width: $tablet) {
-      max-width: $tablet;
-    }
-
-    @media screen and (min-width: $desktop) {
-      max-width: $desktop;
-    }
+  @media screen and (min-width: $desktop) {
+    max-width: $desktop;
   }
 }
