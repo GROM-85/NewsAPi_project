@@ -6,6 +6,7 @@ import * as storage from './storageLogic';
 import { onloadToRead } from './addToRead/addToRead';
 import * as weather from './weather';
 import { onloadFavorite } from './addToFavorites/addToFavorites';
+import { hideLoader,showLoader } from './loader/loader';
 
 const newsFetch = new NewsAPI();
 
@@ -15,6 +16,7 @@ refs.HomeBtn.addEventListener('click', fetchByPopular);
 refs.homeBtnMob.addEventListener('click', fetchByPopular);
 
 async function fetchByPopular() {
+  showLoader();
   let imgUrl;
   const docs = await newsFetch.getPopularNews();
   let collectionByPopular = [];
@@ -59,6 +61,7 @@ export function categoriesOnPageLoad() {
     collection = collection.slice(0, 8);
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
+  hideLoader();
   renderGallery(collectionByPopular);
 
   //weather.getGeoLocation();

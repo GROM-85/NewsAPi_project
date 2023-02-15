@@ -26,7 +26,7 @@ p{
     
 
     & > svg{
-        fill:currentColor;
+        fill:var(--main-color);
         width:15px;
         height:10px;
         pointer-events: none;

@@ -10,14 +10,13 @@ import { onloadFavorite } from './addToFavorites/addToFavorites';
 import * as weather from './weather';
 const newsFetch = new NewsAPI();
 
-let imgUrl;
 const arrCategories = JSON.parse(localStorage.getItem('results'));
 
 saveCategories();
 categoriesOnResize();
 categoriesOnPageLoad();
-refs.categoriesBtnMenu.addEventListener('mouseenter', showCategoriesList);
-refs.menu.addEventListener('mouseleave', showCategoriesList);
+// refs.categoriesBtnMenu.addEventListener('focus', showCategoriesList);
+refs.menu.addEventListener('click', showCategoriesList);
 function saveCategories() {
   newsFetch.getCategories().then(results => {
     localStorage.setItem('results', JSON.stringify(results));

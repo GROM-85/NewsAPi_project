@@ -5,6 +5,7 @@ import { renderMarkup, clear } from '../renderMarkup';
 import { navArray,toHideCategories } from '../navLogic/navLogic';
 
 refs.gallery.addEventListener('click', addToFavorite);
+refs.accordion.addEventListener('click', addToFavorite);
 
 export function addToFavorite(e) {
   const btnEl = e.target.closest('.favorite-btn');

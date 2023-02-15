@@ -75,33 +75,15 @@ async function filterQuery(e) {
     refs.HomeBtn.parentNode.classList.add('current-list__item');
     storage.saveToLocal(key.KEY_COLLECTION, collectionByQuery.slice(0, 9));
 
-    categoriesOnPageLoadGallery();
-  }
+  categoriesOnPageLoadGallery();
 }
-
-// function categoriesOnResizeGallery() {
-//   window.addEventListener('resize', e => {
-//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-//     if (e.currentTarget.innerWidth <= 768) {
-//       collection = collection.slice(0, 3);
-//     } else if (e.currentTarget.innerWidth <= 1280) {
-//       collection = collection.slice(0, 7);
-//     } else {
-//       collection = collection.slice(0, 8);
-//     }
-//     clear(refs.gallery);
-//     let collectionByPopular = collection.map(renderMarkup).join(``);
-//     renderGallery(collectionByPopular);
-//     onloadToRead();
-//     // weatherRender();
-//   });
-// }
+}
 
 function categoriesOnPageLoadGallery() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;
   if (window.matchMedia('(max-width: 768px)').matches) {
-    collection = collection.slice(0, 4);
+    collection = collection.slice(0, 3);
     //   collectionByPopular = collection.map(renderMarkup).join(``);
     //   renderGallery(collectionByPopular);
   } else if (window.matchMedia('(max-width: 1280px)').matches) {
@@ -113,7 +95,43 @@ function categoriesOnPageLoadGallery() {
   renderGallery(collectionByPopular);
   onloadToRead();
   onloadFavorite();
+  //   weather.renderDefaultWeather();
 }
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
+  refs.gallery.addEventListener('click', addToFavorite);
 }
+//*******renderedWether******************* */
+function weatherRender() {
+  let replacedItem;
+  if (window.matchMedia('(min-width: 1279.98px)').matches) {
+    replacedItem = refs.gallery.childNodes[1];
+    console.log(replacedItem);
+    const markup = renderWeather();
+    replacedItem.insertAdjacentHTML(`afterend`, markup);
+  } else if (window.matchMedia('(min-width: 767.98px)').matches) {
+    replacedItem = refs.gallery.firstElementChild;
+    const markup = renderWeather();
+    replacedItem.insertAdjacentHTML(`afterend`, markup);
+  } else {
+    replacedItem = refs.gallery.firstElementChild;
+    const markup = renderWeather();
+    replacedItem.insertAdjacentHTML(`beforebegin`, markup);
+  }
+}
+function corectDate(date) {
+  let newDateFormat = date.split('-');
+  let maxElement = { index: length };
+
+  newDateFormat.forEach((el, index) => {
+    maxElement.index = index;
+    maxElement.length = length;
+    console.log(el.length, index);
+  });
+  newDateFormat[maxElement.index] = newDateFormat[maxElement.index].slice(0, 2);
+  newDateFormat = newDateFormat.slice(0, 3);
+  newDateFormat = newDateFormat.join('/');
+
+  return newDateFormat;
+}
+//************************ *//

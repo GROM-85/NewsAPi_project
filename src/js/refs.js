@@ -42,7 +42,10 @@ export const refs = {
   favBtnMob: document.querySelector('.js-favorite'),
   homeBtnMob: document.querySelector('.js-home'),
 
-  nav: document.querySelector('.list-navigation'),
-  navMobile: document.querySelector('.mobile-menu-list'),
-  categContainer: document.querySelector('.filter-container'),
+  nav : document.querySelector(".list-navigation"),
+  navMobile : document.querySelector(".mobile-menu-list"),
+  categContainer : document.querySelector(".filter-container"),
+  loader : document.querySelector(".loader"),
+  mobileMenu: document.querySelector('.js-menu-container'),
+  
 };

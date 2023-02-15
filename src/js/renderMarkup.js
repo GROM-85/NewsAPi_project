@@ -104,11 +104,12 @@ export function renderAccordion(date) {
 }
 
 function formatText(text) {
+  
   let result;
   // Change code below this line
   if (text.length > key.MAXLENGHT) {
     text = text.slice(0, key.MAXLENGHT);
-    result = text + `...`;
+    result = text + "...";
   } else {
     result = text;
   }
@@ -116,5 +117,5 @@ function formatText(text) {
 }
 
 export function clear(item) {
-  item.innerHTML = ``;
+  item.innerHTML = '';
 }
