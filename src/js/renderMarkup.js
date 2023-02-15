@@ -106,7 +106,7 @@ export function renderAccordion(date) {
 }
 
 function formatText(text) {
-  const maxLength = 110;
+  
   let result;
   // Change code below this line
   if (text.length > key.MAXLENGHT) {

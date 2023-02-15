@@ -9,12 +9,12 @@ import { clearNavCurrent } from './navLogic/navLogic';
 import { onloadFavorite } from './addToFavorites/addToFavorites';
 const newsFetch = new NewsAPI();
 
-const arrCategories = JSON.parse(localStorage.getItem('results'));
+const arrCategories = JSON.parse(localStorage.getItem('results'));// need to move to async popular
 saveCategories();
 categoriesOnResize();
 categoriesOnPageLoad();
-refs.categoriesBtnMenu.addEventListener('mouseenter', showCategoriesList);
-refs.menu.addEventListener('mouseleave', showCategoriesList);
+// refs.categoriesBtnMenu.addEventListener('focus', showCategoriesList);
+refs.menu.addEventListener('click', showCategoriesList);
 function saveCategories() {
   newsFetch.getCategories().then(results => {
     localStorage.setItem('results', JSON.stringify(results));

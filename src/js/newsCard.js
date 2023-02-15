@@ -6,6 +6,7 @@ import * as storage from './storageLogic';
 import { onloadToRead } from './addToRead/addToRead';
 import * as weather from "./weather"
 import { onloadFavorite } from './addToFavorites/addToFavorites';
+import { hideLoader,showLoader } from './loader/loader';
 
 const newsFetch = new NewsAPI();
 //listener update main page with popular news//
@@ -14,6 +15,7 @@ refs.HomeBtn.addEventListener("click",fetchByPopular);
 refs.homeBtnMob.addEventListener("click",fetchByPopular);
 
 async function fetchByPopular() {
+  showLoader();
   const docs = await newsFetch.getPopularNews();
   let collectionByPopular = [];
   collectionByPopular = docs.map(result => {
@@ -47,23 +49,6 @@ async function fetchByPopular() {
     onloadFavorite();
 }
 
-// export function categoriesOnResize() {
-//   window.addEventListener('resize', e => {
-//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-//     if (e.currentTarget.innerWidth <= 768) {
-//       collection = collection.slice(0, 3);
-//     } else if (e.currentTarget.innerWidth <= 1280) {
-//       collection = collection.slice(0, 7);
-//     } else {
-//       collection = collection.slice(0, 8);
-//     }
-//     clear(refs.gallery);
-//     let collectionByPopular = collection.map(renderMarkup).join(``);
-//     renderGallery(collectionByPopular);
-//     weather.renderDefaultWeather();
-//   });
-// }
-
 export function categoriesOnPageLoad() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;
@@ -75,6 +60,7 @@ export function categoriesOnPageLoad() {
     collection = collection.slice(0, 8);
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
+  hideLoader();
   renderGallery(collectionByPopular);
   weather.renderDefaultWeather();
   const t = weather.getGeoLocation();
@@ -105,15 +91,5 @@ export function corectDate(date) {
     //   }
    return newDateFormat;
  }
-//******rendered count of outputlist*********** */
 
-// TO DELETE
-function renderedCountOfCardItem(docs) {
-  if (window.matchMedia('(min-width: 1279.98px)').matches) {
-    docs.length = 9;
-  } else if (window.matchMedia('(min-width: 767.98px)').matches) {
-    docs.length = 8;
-  } else {
-    docs.length = 4;
-  }
-}
+

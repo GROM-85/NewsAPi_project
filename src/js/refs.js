@@ -37,6 +37,7 @@ export const refs = {
   nav : document.querySelector(".list-navigation"),
   navMobile : document.querySelector(".mobile-menu-list"),
   categContainer : document.querySelector(".filter-container"),
-
+  loader : document.querySelector(".loader"),
+  mobileMenu: document.querySelector('.js-menu-container'),
   
 };

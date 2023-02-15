@@ -27,8 +27,14 @@ async function filterQuery(e) {
   const { docs, meta } = await newsFetch.getNewsByQuery();
   //якщо не знайдено даних по запиту, вертає NOT A FOUND
   if (docs.length === 0) {
-    console.log('NOT A FOUND');
-  }
+    if (refs.notFoundEl.classList.contains('hidden')) {
+      refs.notFoundEl.classList.remove('hidden');
+    }
+    clear(refs.gallery);
+  } else {
+    if (!refs.notFoundEl.classList.contains('hidden')) {
+      refs.notFoundEl.classList.add('hidden');
+    }
 
   let collectionByQuery = [];
   console.log('docsQuery', docs);
@@ -75,32 +81,15 @@ async function filterQuery(e) {
 
   categoriesOnPageLoadGallery();
 }
+}
 
-// function categoriesOnResizeGallery() {
-//   window.addEventListener('resize', e => {
-//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-//     if (e.currentTarget.innerWidth <= 768) {
-//       collection = collection.slice(0, 3);
-//     } else if (e.currentTarget.innerWidth <= 1280) {
-//       collection = collection.slice(0, 7);
-//     } else {
-//       collection = collection.slice(0, 8);
-//     }
-//     clear(refs.gallery);
-//     let collectionByPopular = collection.map(renderMarkup).join(``);
-//     renderGallery(collectionByPopular);
-//     onloadToRead();
-//     // weatherRender();
-//   });
-// }
 
 function categoriesOnPageLoadGallery() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
   let collectionByPopular;
   if (window.matchMedia('(max-width: 768px)').matches) {
     collection = collection.slice(0, 3);
-    //   collectionByPopular = collection.map(renderMarkup).join(``);
-    //   renderGallery(collectionByPopular);
+
   } else if (window.matchMedia('(max-width: 1280px)').matches) {
     collection = collection.slice(0, 7);
   } else {
@@ -110,12 +99,14 @@ function categoriesOnPageLoadGallery() {
   renderGallery(collectionByPopular);
   onloadToRead();
   onloadFavorite();
-  //   weather.renderDefaultWeather();
+  
 }
 function renderGallery(markup) {
   refs.gallery.insertAdjacentHTML(`beforeend`, markup);
   refs.gallery.addEventListener('click', addToFavorite);
 }
+
+
 //*******renderedWether******************* */
 function weatherRender() {
   let replacedItem;
@@ -149,4 +140,4 @@ function corectDate(date) {
 
   return newDateFormat;
 }
-//************************ *//
+

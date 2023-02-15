@@ -46,6 +46,7 @@ function toHideCategories(currentPage) {
     e.target.parentNode.classList.add("menu-current__item")
     storage.saveToLocal("currentPage", currPage);
     toHideCategories(currPage);
+    refs.mobileMenu.classList.remove('is-open');
     } 
  
  })
