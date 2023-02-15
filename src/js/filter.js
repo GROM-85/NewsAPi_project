@@ -1,4 +1,4 @@
-import { NewsAPI } from './API/fetchAPI';
+import { ApiService } from './API/fetchAPI';
 import { refs } from './refs';
 import { renderMarkup, clear, renderWeather } from './renderMarkup';
 import { corectDate } from './newsCard';
@@ -8,22 +8,41 @@ import * as storage from './storageLogic';
 import { addToFavorite, onloadFavorite } from './addToFavorites/addToFavorites';
 import { onloadToRead } from './addToRead/addToRead';
 import { clearNavCurrent } from './navLogic/navLogic';
+import { rerenderPaginator } from './pagination';
 
-const newsFetch = new NewsAPI();
+const newsFetch = ApiService;
 
+refs.filter.addEventListener(`submit`, (args) => {
+  newsFetch.cleanPagination();
+  rerenderPaginator();
+  filterQuery(args);
+  newsFetch.lastAction.action = filterQuery;
+});
+
+
+let imgUrl;
 refs.filter.addEventListener(`submit`, filterQuery);
 
 async function filterQuery(e) {
-  let imgUrl;
-  e.preventDefault();
-  newsFetch.resetPage();
-  //повертає значення з імпуту
-  const form = e.currentTarget.elements.searchArt.value;
-  // не здійснює пошук, якщо нічого не введено
-  if (!form) {
+  let argument = null;
+  if (!!e?.currentTarget?.elements?.searchArt?.value) {
+    e.preventDefault();
+    //newsFetch.resetPage();
+    //повертає значення з імпуту
+    argument = e.currentTarget.elements.searchArt.value;
+    // не здійснює пошук, якщо нічого не введено
+  }
+  else {
+    argument = e;
+  }
+
+  if (!argument) {
     return;
   }
-  newsFetch.query = form;
+
+  newsFetch.lastAction.arg = argument;
+
+  newsFetch.query = argument;
   const { docs, meta } = await newsFetch.getNewsByQuery();
   //якщо не знайдено даних по запиту, вертає NOT A FOUND
 
@@ -77,7 +96,7 @@ async function filterQuery(e) {
 
   categoriesOnPageLoadGallery();
 }
-}
+
 
 function categoriesOnPageLoadGallery() {
   let collection = storage.loadFromLocal(key.KEY_COLLECTION);
@@ -126,7 +145,6 @@ function corectDate(date) {
   newDateFormat.forEach((el, index) => {
     maxElement.index = index;
     maxElement.length = length;
-    console.log(el.length, index);
   });
   newDateFormat[maxElement.index] = newDateFormat[maxElement.index].slice(0, 2);
   newDateFormat = newDateFormat.slice(0, 3);
@@ -134,4 +152,4 @@ function corectDate(date) {
 
   return newDateFormat;
 }
-//************************ *//
+

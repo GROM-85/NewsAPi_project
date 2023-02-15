@@ -91,3 +91,8 @@
 .next-page:disabled {
   opacity: 0.5;
 }
+
+.active {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+}
