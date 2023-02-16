@@ -13,7 +13,6 @@ const newsFetch = new NewsAPI();
 const arrCategories = JSON.parse(localStorage.getItem('results'));
 
 saveCategories();
-categoriesOnResize();
 categoriesOnPageLoad();
 // refs.categoriesBtnMenu.addEventListener('focus', showCategoriesList);
 refs.menu.addEventListener('click', showCategoriesList);
@@ -22,20 +21,7 @@ function saveCategories() {
     localStorage.setItem('results', JSON.stringify(results));
   });
 }
-function categoriesOnResize() {
-  window.addEventListener('resize', e => {
-    if (e.currentTarget.innerWidth >= 1279.98) {
-      clearCategories();
-      markupDesktop();
-    } else if (e.currentTarget.innerWidth >= 767.98) {
-      clearCategories();
-      markupTablet();
-    } else {
-      clearCategories();
-      markupMobile();
-    }
-  });
-}
+
 function categoriesOnPageLoad() {
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
     clearCategories();

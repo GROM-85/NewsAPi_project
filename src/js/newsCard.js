@@ -87,22 +87,3 @@ export function corectDate(date) {
   return newDateFormat;
 }
 
-//TODO
-// export function categoriesOnResize() {
-//   window.addEventListener('resize', e => {
-//     let collection = storage.loadFromLocal(key.KEY_COLLECTION);
-//     if (e.currentTarget.innerWidth <= 768) {
-//       collection = collection.slice(0, 3);
-//     } else if (e.currentTarget.innerWidth <= 1280) {
-//       collection = collection.slice(0, 7);
-//     } else {
-//       collection = collection.slice(0, 8);
-//     }
-//     clear(refs.gallery);
-//     let collectionByPopular = collection.map(renderMarkup).join(``);
-//     renderGallery(collectionByPopular);
-
-//     // weather.getGeoLocation();
-//     weather.renderDefaultWeather();
-//   });
-// }

@@ -1,15 +1,6 @@
 import { refs } from './refs';
 import { renderWeather, clear } from './renderMarkup';
 
-let weatherMarkup;
-// const refs = {
-//   temp: document.querySelector('.weather__temp'),
-//   description: document.querySelector('.weather__desc'),
-//   city: document.querySelector('.weather__city-name'),
-//   icon: document.querySelector('.weather__img'),
-//   day: document.querySelector('.weather__day'),
-//   year: document.querySelector('.weather__year'),
-// };
 const WEATHER_KEY = '349c075d2985e4b8a1687be3ae218ac3';
 const BASIC_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
