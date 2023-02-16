@@ -3,6 +3,7 @@ import * as storage from '../storageLogic';
 import { refs } from '../refs';
 import { renderMarkup, clear } from '../renderMarkup';
 import { navArray,toHideCategories } from '../navLogic/navLogic';
+import { onloadToRead } from '../addToRead/addToRead';
 
 refs.gallery.addEventListener('click', addToFavorite);
 refs.accordion.addEventListener('click', addToFavorite);
@@ -42,19 +43,19 @@ refs.favBtnMob.addEventListener('click', createFavorite);
 
 function createFavorite() {
   const favorites = storage.loadFromLocal(key.KEY_FAVORITE);
+  clear(refs.gallery);
+  clear(refs.accordion);
 
   if (favorites.length === 0) {
-    clear(refs.gallery);
-    clear(refs.accordion);
     refs.gallery.insertAdjacentHTML("beforeend","<h2 class='fav-not-found'>You haven't added anything to favorite!</h2>")
     return;
   }
   
   let markup = favorites.map(renderMarkup).join('');
 
-  clear(refs.gallery);
-  clear(refs.accordion);
+  
   refs.gallery.innerHTML = markup;
+  onloadToRead();
   Array.from(refs.gallery.children).forEach(item =>
     item.querySelector('.favorite-btn').classList.add('hidden-span')
   );
