@@ -17,6 +17,7 @@ export function paginationByCategory(collection){
     if(collection > 1000){
         collection = 1000;
     }
+    refs.btnPrevPg.disabled = true;
     valuePage.totalPages = Math.ceil(collection/pageLimit);
     valuePage.curPage = ApiService.offset/20 + 1;
     page.pagination(valuePage);

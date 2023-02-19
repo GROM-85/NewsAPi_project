@@ -32,7 +32,7 @@ export function popularPg(e){
   const elem = e.target;
   if (elem.dataset.page) {
     const pageNumber = parseInt(e.target.dataset.page, 10);
-
+    refs.btnPrevPg.disabled = true;
     valuePage.curPage = pageNumber;
     page.pagination(valuePage);
     console.log(valuePage);
