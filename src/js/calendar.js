@@ -2,6 +2,7 @@ import AirDatepicker from 'air-datepicker';
 import 'air-datepicker/air-datepicker.css';
 import format from 'date-fns/format';
 
+
 export let selectedDate;
 document.addEventListener('DOMContentLoaded', () => {
   const yearTitle = {

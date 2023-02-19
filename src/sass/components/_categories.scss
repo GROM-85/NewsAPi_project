@@ -59,6 +59,7 @@ width: 112px;
       line-height: 16px;
       color: #4b48db;
       border: 1px solid #4440f7;
+      background-color: var(--white-color);
       border-radius: 20px;
 
       @include transition(color);
@@ -80,7 +81,7 @@ width: 112px;
     color: #4b48db;
     border: 1px solid var(--blue-color);
     border-radius: 20px;
-
+    background-color: var(--white-color);
     @include transition(color);
     @include transition(background-color);
   }

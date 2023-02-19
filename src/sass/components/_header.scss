@@ -68,15 +68,19 @@
   border: 1px solid var(--text-main-color);
   border-radius: 20px;
   background-color: var(--bcg-main-color);
+  color:var(--grey-color);
 
   &:focus {
     border: 1.6px solid var(--text-main-color);
+    color:var(--grey-color);
+    background-color: var(--bcg-main-color);
   }
 
   &::placeholder {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     line-height: 1.17;
+    
 
     @media screen and (min-width: 1279.99px) {
       font-size: 14px;

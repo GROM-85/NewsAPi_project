@@ -88,16 +88,12 @@ export function renderAccordion(date) {
   return `<div class="accord__title"> 
   <div class="date__cont">
       <p class="date">${date}</p>
-      <span class="accord__arrow js-down">
-          <svg width="15" height="9" viewBox="0 0 15 9" fill="" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.7625 9.53674e-07L0 1.71255L7.5 9L15 1.71255L13.2375 9.53674e-07L7.5 5.56275L1.7625 9.53674e-07Z" fill="#111321"/>
+      <span class="accord__arrow">
+          <svg class="arrow-js" width="15" height="9" viewBox="0 0 15 9" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.7625 9.53674e-07L0 1.71255L7.5 9L15 1.71255L13.2375 9.53674e-07L7.5 5.56275L1.7625 9.53674e-07Z" fill=""/>
           </svg>
         </span>
-        <span class="accord__arrow js-up" hidden>
-          <svg width="15" height="9" viewBox="0 0 15 9" fill="" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.46336 9L0.818359 7.28745L7.81836 3.23631e-07L14.8184 7.28745L13.1734 9L7.81836 3.43725L2.46336 9Z" fill="#111321"/>
-          </svg>
-      </span>
+      
   </div>
   <span class="line"></span>
   `;

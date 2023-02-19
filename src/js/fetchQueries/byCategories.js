@@ -1,43 +1,47 @@
-import { NewsAPI } from './API/fetchAPI';
-import { refs } from './refs';
-import { renderMarkup, clear, renderWeather } from './renderMarkup';
-import * as storage from './storageLogic';
-import * as key from './const';
-import * as newsCard from './newsCard';
-import { onloadToRead } from './addToRead/addToRead';
-import { clearNavCurrent } from './navLogic/navLogic';
-import { onloadFavorite } from './addToFavorites/addToFavorites';
-import * as weather from './weather';
-const newsFetch = new NewsAPI();
+import { ApiService} from '../API/fetchAPI';
+import { refs } from '../refs';
+import { renderMarkup, clear, renderWeather } from '../renderMarkup';
+import * as storage from '../storageLogic';
+import * as key from '../const';
+import * as newsCard from './byPopular';
+import { onloadToRead } from '../addToRead/addToRead';
+import { clearNavCurrent } from '../navLogic/navLogic';
+import { onloadFavorite } from '../addToFavorites/addToFavorites';
+import { popularPg,popularPageContainer } from '../pagination/paginationByPopular';
+import { queryPg,queryPageContainer } from '../pagination/paginationByQuery';
+import * as weather from '../weather';
+import { paginationByCategory } from '../pagination/paginationByCategories';
+import { removeEventListeners } from './removeListeners';
+import { showLoader,hideLoader } from '../loader/loader';
+export let arrCategories;
 
-const arrCategories = JSON.parse(localStorage.getItem('results'));
+window.addEventListener("load",async() => {
+  let results = await ApiService.getCategories();
+  storage.saveToLocal(key.CATEGOREIS, results);
+  arrCategories = storage.loadFromLocal(key.CATEGOREIS);
+  categoriesOnPageLoad();
+  
+})
 
-saveCategories();
-categoriesOnPageLoad();
-// refs.categoriesBtnMenu.addEventListener('focus', showCategoriesList);
 refs.menu.addEventListener('click', showCategoriesList);
-function saveCategories() {
-  newsFetch.getCategories().then(results => {
-    localStorage.setItem('results', JSON.stringify(results));
-  });
-}
 
 function categoriesOnPageLoad() {
+  clearCategories();
   if (window.matchMedia('(min-width: 1279.98px)').matches) {
-    clearCategories();
     markupDesktop();
   } else if (window.matchMedia('(min-width: 767.98px)').matches) {
-    clearCategories();
     markupTablet();
   } else {
-    clearCategories();
     markupMobile();
   }
+  refs.categoriesBtnMenu.classList.remove("invisible");
 }
+
 function clearCategories() {
   refs.categoriesBtnList.innerHTML = '';
   refs.categoriesList.innerHTML = '';
 }
+
 function markupTablet() {
   refs.categoriesBtnList.insertAdjacentHTML(
     'afterbegin',
@@ -49,6 +53,7 @@ function markupTablet() {
   );
   refs.categoriesBtnMenuText.textContent = 'Others';
 }
+
 function markupDesktop() {
   refs.categoriesBtnList.insertAdjacentHTML(
     'afterbegin',
@@ -60,6 +65,7 @@ function markupDesktop() {
   );
   refs.categoriesBtnMenuText.textContent = 'Others';
 }
+
 function markupMobile() {
   refs.categoriesList.insertAdjacentHTML(
     'afterbegin',
@@ -67,46 +73,70 @@ function markupMobile() {
   );
   refs.categoriesBtnMenuText.textContent = 'Categories';
 }
+
 function markupCategoriesInBtn(arrCategories, begin, end) {
   return arrCategories
     .slice(begin, end)
     .map(
-      result =>
-        `<li> <button class="categories__btn" data-value="${result.section}">${result.display_name}
+      ({section,display_name}) =>
+        `<li> <button class="categories__btn" data-value="${section}">${display_name}
     </button> </li>`
     )
     .join(' ');
 }
+
 function markupCategoriesInList(arrCategories, begin, end) {
   return arrCategories
     .slice(begin, end)
     .map(
-      result =>
-        `<li class="categories__item" data-value="${result.section}">${result.display_name}</li>`
+      ({section,display_name}) =>
+        `<li class="categories__item" data-value="${section}">${display_name}</li>`
     )
     .join(' ');
 }
+
 function showCategoriesList() {
   refs.categoriesIconUp.classList.toggle('invisible');
   refs.categoriesIconDown.classList.toggle('invisible');
   refs.categoriesMenu.classList.toggle('invisible');
 }
-//*****filter categories Btn*****************/
-refs.categoriesBox.addEventListener(`click`, onCategoriesBtnClick);
+
+// ====================
+// query by CATEGORIES btn click
+//=====================
+refs.categoriesBox.addEventListener(`click`, (e) => {
+  removeEventListeners();
+  onCategoriesBtnClick(e);
+  ApiService.lastAction.action = onCategoriesBtnClick;
+});
+
+// ====================
+// query by CATEGORIES
+//=====================
 async function onCategoriesBtnClick(e) {
-  e.preventDefault();
-  if (!e.target.dataset.value) {
+  console.log(e.target.dataset.value)
+  ApiService.lastAction.searchBy = "category";
+  
+  if (!!e?.target?.dataset?.value && ApiService.lastAction.query !== e.target.dataset.value) {
+    console.log("inside")
+    ApiService.resetOffset();
+    ApiService.category = e.target.dataset.value;
+    ApiService.lastAction.e = e;
+    ApiService.lastAction.query = e.target.dataset.value;
+  }
+  
+  if(e.target.dataset.value !== undefined) { // check for Others onCLick
+    showLoader();
+  }
+  else{
     return;
   }
-  newsFetch.resetOffset();
-
-  newsFetch.category = e.target.dataset.value;
-  const docs = await newsFetch.getNewsByCategories();
+  
+  const {results,num_results} = await ApiService.getNewsByCategories();
   let collectionByCategorie = [];
-  collectionByCategorie = docs.results.map(result => {
-    const { abstract, published_date, uri, url, multimedia, section, title } =
-      result;
-    console.log('result', result);
+  
+  collectionByCategorie = results.map(result => {
+    const { abstract, published_date, uri, url, multimedia, section, title } = result;
     let imgUrl;
     if (multimedia) {
       imgUrl = multimedia[2]['url'];
@@ -131,6 +161,8 @@ async function onCategoriesBtnClick(e) {
   clear(refs.gallery);
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
+  console.log(ApiService.offset)
+  if(ApiService.offset === 0) paginationByCategory(num_results);
   categoriesOnPageLoadGallery();
 }
 
@@ -146,12 +178,18 @@ function categoriesOnPageLoadGallery() {
   }
   collectionByPopular = collection.map(renderMarkup).join(``);
   renderGallery(collectionByPopular);
-  weather.renderDefaultWeather();
+  // weather.renderDefaultWeather();
 }
+
 function renderGallery(markup) {
-  refs.gallery.insertAdjacentHTML(`beforeend`, markup);
+
+  refs.gallery.insertAdjacentHTML(`beforeend`,markup);
   onloadToRead();
   onloadFavorite();
+  hideLoader();
+  setTimeout(()=> {
+    refs.pageContainer.classList.add("show");
+  },500) 
 }
 
 function corectDateInCategories(date) {

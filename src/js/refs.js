@@ -47,5 +47,11 @@ export const refs = {
   categContainer : document.querySelector(".filter-container"),
   loader : document.querySelector(".loader"),
   mobileMenu: document.querySelector('.js-menu-container'),
+  //pagination 
+  pageContainer : document.querySelector('.page-container'),
+  pg : document.getElementById('pagination'),
+  btnNextPg : document.querySelector('button.next-page'),
+  btnPrevPg : document.querySelector('button.prev-page'),
+  
   
 };

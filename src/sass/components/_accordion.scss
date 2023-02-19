@@ -26,10 +26,19 @@ p{
     
 
     & > svg{
-        fill:var(--main-color);
+        fill:currentColor;
         width:15px;
-        height:10px;
+        height:9px;
         pointer-events: none;
+        transition:transform 0.25s ease-in-out;
+    }
+}
+
+.arrow-js{
+    transform: rotate(0);
+
+    &.up{
+        transform: rotate(180deg);
     }
 }
 

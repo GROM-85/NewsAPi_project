@@ -4,6 +4,4 @@ export const KEY_FAVORITE = 'favorite';
 export const KEY_CURRENT_PAGE = 'current';
 export const KEY_READ = 'read';
 export const MAXLENGHT = 110;
-export const READ = false;
-export const FAVORITE = false;
-export const HOME = false;
+export const CATEGOREIS = "categories";

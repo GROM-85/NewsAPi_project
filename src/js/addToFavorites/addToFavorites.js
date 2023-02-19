@@ -29,6 +29,9 @@ export function addToFavorite(e) {
       if (currentPage === 'Favorite') {
         const cardItem = btnEl.closest('.card__item');
         cardItem.remove();
+        if(updatedFavorites.length === 0){
+          refs.gallery.insertAdjacentHTML("beforeend","<h2 class='fav-not-found'>Favorites are empty!</h2>");
+        }
       }
     } else {
       favorites.push(favCard);
@@ -45,6 +48,8 @@ function createFavorite() {
   const favorites = storage.loadFromLocal(key.KEY_FAVORITE);
   clear(refs.gallery);
   clear(refs.accordion);
+  refs.pageContainer.classList.remove("show");
+  refs.notFoundEl.classList.add('hidden');
 
   if (favorites.length === 0) {
     refs.gallery.insertAdjacentHTML("beforeend","<h2 class='fav-not-found'>You haven't added anything to favorite!</h2>")

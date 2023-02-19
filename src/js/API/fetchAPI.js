@@ -5,31 +5,26 @@ export class NewsAPI {
   #API_KEY = 'Y0rMFldQHIhCKPc5jiggZphSD4GPFMzb';
   #period;
   #query;
-  #beginDate;
+  #begin_date;
+  #end_date;
 
   #page;
   #offset;
-  #end_date;
+  
 
   #params = {
     'api-key': this.#API_KEY,
     q: this.#query,
     page: this.#page,
-    // begin_date: this.#beginDate,
-    // end_date:this.#end_date,
   };
-
-  pageLimit = 8;
-  totalCount = 0;
-  currentPage = 1;
 
   constructor() {
     this.#period = 7;
     this.category = 'all';
     this.#page = 1;
-    // this.#beginDate = format(Date.now(), 'yyyyMMdd');
     this.#offset = 0;
-    // this.#end_date=format(Date.now(), 'yyyyMMdd');
+    this.#begin_date = '';
+    this.#end_date = '';
   }
 
   async getPopularNews() {
@@ -45,31 +40,8 @@ export class NewsAPI {
   }
 
   async getNewsByQuery() {
-    let newDate = null;
-    //перевіряє чи календар вибраний
-    if (!selectedDate) {
-      newDate = format(Date.now(), 'yyyyMMdd');
-      Object.assign(this.#params, {
-        q: this.#query,
-        page: this.#page,
-      });
-    } else {
-      newDate = selectedDate;
-      this.#params = {
-        'api-key': this.#API_KEY,
-        q: this.#query,
-        page: this.#page,
-        begin_date: this.#beginDate,
-        end_date: this.#end_date,
-      };
-      Object.assign(this.#params, {
-        q: this.#query,
-        page: this.#page,
-        begin_date: newDate,
-        end_date: newDate,
-      });
-    }
-
+    this.updateParams();
+    console.log(this.#params)
     const response = await fetch(
       this.#BASE_URL +
         'search/v2/articlesearch.json?' +
@@ -84,7 +56,6 @@ export class NewsAPI {
       response: { docs, meta },
     } = await response.json();
     // console.log(meta) // {hits: 29412, offset: 10, time: 30}
-    this.updatePage();
     return { docs, meta };
   }
 
@@ -100,7 +71,6 @@ export class NewsAPI {
     if (!response.ok) {
       throw new Error(error);
     }
-    this.updateOffset();
     const { results, num_results } = await response.json();
     return { results, num_results };
   }
@@ -124,24 +94,32 @@ export class NewsAPI {
     this.#query = newQuery;
   }
 
-  updatePage() {
-    this.#page++;
-  }
   resetPage() {
     this.#page = 1;
   }
-
-  get date() {
-    this.#beginDate;
+  get page(){
+    return this.#page;
   }
-  set date(newDate) {
-    this.#beginDate = newDate;
+  set page(newPage){
+    this.#page = newPage;
+  }
+  get beginDate() {
+    this.#begin_date;
+  }
+  set beginDate(newDate) {
+    this.#begin_date = newDate;
   }
   get endDate() {
     this.#end_date;
   }
   set endDate(newDate) {
     this.#end_date = newDate;
+  }
+  get offset(){
+    return this.#offset;
+  }
+  set offset(newOffset){
+    this.#offset = newOffset;
   }
 
   updateOffset() {
@@ -150,4 +128,27 @@ export class NewsAPI {
   resetOffset() {
     this.#offset = 0;
   }
+  updateParams(){
+    if(this.#begin_date !== '' && this.#end_date !== ''){
+      Object.assign(this.#params,{
+        q:this.#query,
+        page:this.#page,
+        begin_date: this.#begin_date,
+        end_date:this.#end_date,
+      })
+    }else{
+      Object.assign(this.#params,{
+        q:this.#query,
+        page:this.#page,
+      })
+    }
+  }
+  lastAction = {
+    action: async () => null,
+    query: null,
+    e:null,
+    searchBy: null,
+  }
 }
+
+export const  ApiService = new NewsAPI();

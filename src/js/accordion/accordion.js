@@ -17,13 +17,9 @@ refs.accordion.addEventListener('click', e => {
   let content =
     e.target.parentNode.parentNode.parentNode.querySelector('.accord__content');
   console.log(content);
-  let arrow = e.target;
-  if (e.target.matches('.js-down')) {
-    arrow.nextElementSibling.hidden = !arrow.nextElementSibling.hidden;
-  } else {
-    arrow.previousElementSibling.hidden = !arrow.previousElementSibling.hidden;
-  }
-  arrow.hidden = !arrow.hidden;
+  let arrow = e.target.firstElementChild;
+  console.dir(arrow)
+  arrow.classList.toggle("up")
   content.classList.toggle('slide');
 });
 //========================
@@ -38,6 +34,8 @@ function createAccord() {
   if (readCollection.length === 0) {
     render.clear(refs.gallery);
     render.clear(refs.accordion);
+    refs.notFoundEl.classList.add('hidden');
+    refs.pageContainer.classList.remove("show");
     refs.accordion.insertAdjacentHTML("beforeend","<h2 class='read-not-found'>You haven't read any article</h2>")
     return;
   }
@@ -64,6 +62,8 @@ sortedCollection.forEach(obj => {
 });
 render.clear(refs.gallery);
 render.clear(refs.accordion);
+refs.pageContainer.classList.remove("show");
+refs.notFoundEl.classList.add('hidden');
 refs.accordion.insertAdjacentHTML('beforeend', markup.join(''));
 onloadFavorite();
 onloadToRead();
