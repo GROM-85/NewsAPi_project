@@ -1,7 +1,7 @@
 .page-container {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     margin-top: 2rem;
     background-color: var(--main-color);
@@ -12,6 +12,9 @@
 
     &.show{
       opacity:1;
+    }
+    @media screen and (min-width: $tablet) {
+     flex-direction: row;
     }
   }
   
@@ -30,9 +33,6 @@
     flex-wrap: wrap;
     opacity:1;
 
-    // &.show{
-    //   opacity:1;
-    // }
   }
   #pagination li {
     list-style: none;
@@ -48,9 +48,12 @@
     color: #fff;
   }
   #pagination li a {
-    padding: 4px 12px;
+    padding: 4px 6px;
     color: var(--black-color);
     pointer-events: none;
+    @media screen and (min-width: $tablet) {
+      padding: 4px 12px;
+     }
   }
 
 .prev-page,
@@ -64,6 +67,10 @@
   background: #f4f4f4;
   border: 1px solid var(--blue-color);
   border-radius: 2px;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 12px;
+   }
 }
 
 .pg-item {

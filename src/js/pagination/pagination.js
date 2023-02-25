@@ -3,8 +3,13 @@ import { refs } from "../refs";
 // DYNAMIC PAGINATION
 export function pagination(valuePage) {
   const { totalPages, curPage, numLinksTwoSide: delta } = valuePage;
-
-  const range = delta + 4; // use for handle visible number of links left side
+  let range;
+  if (window.matchMedia('(max-width: 480px)').matches){
+    range = delta + 2;
+  }else{
+    range = delta + 4; // use for handle visible number of links left side
+  }
+  
 
   let render = '';
   let renderTwoSide = '';
