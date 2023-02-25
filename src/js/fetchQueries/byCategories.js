@@ -96,8 +96,8 @@ function markupCategoriesInList(arrCategories, begin, end) {
 }
 
 function showCategoriesList() {
-  refs.categoriesIconUp.classList.toggle('invisible');
-  refs.categoriesIconDown.classList.toggle('invisible');
+  // refs.categoriesIconUp.classList.toggle('invisible');
+  refs.categoriesIconDown.classList.toggle('up');
   refs.categoriesMenu.classList.toggle('invisible');
 }
 

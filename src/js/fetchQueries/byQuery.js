@@ -137,11 +137,9 @@ async function renderGallery(markup) {
 //==================
 function calendarCheck(){
   if (!selectedDate) {
-    console.log(selectedDate)
     return;
   } else {
-    console.log(selectedDate)
     ApiService.beginDate = selectedDate;
-    ApiService.endDate = selectedDate;
+    // ApiService.endDate = selectedDate;
   }
 }

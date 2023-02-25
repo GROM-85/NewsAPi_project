@@ -30,13 +30,13 @@ p{
         width:15px;
         height:9px;
         pointer-events: none;
-        transition:transform 0.25s ease-in-out;
+        
     }
 }
 
 .arrow-js{
     transform: rotate(0);
-
+    transition:transform 0.25s ease-in-out;
     &.up{
         transform: rotate(180deg);
     }

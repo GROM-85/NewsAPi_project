@@ -129,12 +129,11 @@ export class NewsAPI {
     this.#offset = 0;
   }
   updateParams(){
-    if(this.#begin_date !== '' && this.#end_date !== ''){
+    if(this.#begin_date !== ''){
       Object.assign(this.#params,{
         q:this.#query,
         page:this.#page,
         begin_date: this.#begin_date,
-        end_date:this.#end_date,
       })
     }else{
       Object.assign(this.#params,{

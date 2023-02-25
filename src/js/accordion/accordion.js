@@ -40,25 +40,25 @@ function createAccord() {
     return;
   }
 
-//========================
-//SORT BY DATE
-//========================
+// //========================
+// //SORT BY DATE
+// //========================
 
-let sortedCollection = readCollection.sort(
-  (objA, objB) => Number(Object.keys(objB)[0]) - Number(Object.keys(objA)[0])
-);
+// let sortedCollection = readCollection.sort(
+//   (objA, objB) => Number(Object.keys(objB)[0]) - Number(Object.keys(objA)[0])
+// );
 
 let markup = [];
-sortedCollection.forEach(obj => {
-  console.log(obj);
-  for (let [date, objArr] of Object.entries(obj)) {
-    let accordMarkup = objArr.map(render.renderMarkup).join('');
-    markup.push(
-      `<div class="accord__container">${render.renderAccordion(
-        date
-      )}<div class="accord__content">${accordMarkup}</div></div>`
-    );
-  }
+readCollection.forEach(obj => {
+  const {date, collection} = obj;
+  
+  let accordMarkup = collection.map(render.renderMarkup).join('');
+  markup.push(
+    `<div class="accord__container">${render.renderAccordion(
+      date
+    )}<div class="accord__content">${accordMarkup}</div></div>`
+  );
+  
 });
 render.clear(refs.gallery);
 render.clear(refs.accordion);

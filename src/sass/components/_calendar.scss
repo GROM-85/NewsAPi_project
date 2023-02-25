@@ -2,6 +2,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    pointer-events: auto;
     &__icon {
         position: absolute;
         cursor: pointer;
@@ -57,6 +58,7 @@
         height: 15px;
         right: 25px;
         fill: #a2a2a2;
+        transition:transform 0.25s ease-in-out;
 
         &.opened {
             fill: white;

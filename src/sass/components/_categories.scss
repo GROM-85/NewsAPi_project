@@ -102,8 +102,12 @@ width: 112px;
   &__icon-down {
     fill: var(--blue-color);
     margin-left: 10px;
-
-    @include transition(fill);
+    transform:rotate(0);
+    transition:all 0.2s ease-in-out;
+    // @include transition(fill);
+    &.up{
+      transform:rotate(180deg)
+    }
   }
 
   &__btn-menu:hover &__icon-up,
@@ -119,7 +123,7 @@ width: 112px;
   &__menu {
     display: inline-block;
     padding: 14px 14px 0 14px;
-    overflow: auto;
+    overflow:auto;
     position: absolute;
     z-index: 1;
 
@@ -136,7 +140,7 @@ width: 112px;
   }
 
   &__list {
-    overflow: auto;
+    overflow-y: scroll;
   }
 
   &__item {

@@ -10,7 +10,6 @@ import format from 'date-fns/format';
 export function toggleToRead(e) {
   if (!e.target.matches('.info__link')) return;
   let card = e.target.parentNode.parentNode.parentNode.parentNode;
-  console.log(card);
   let id = card.id;
   let tickToRead = card.querySelector('.read');
   let readCollection = storage.loadFromLocal(key.KEY_READ) || [];
@@ -22,19 +21,17 @@ export function toggleToRead(e) {
       .find(obj => obj.id === id);
     if (readCollection.length !== 0) {
       for (let obj of readCollection) {
-        if (date in obj) {
-          obj[date].push(readCard);
-          break;
-        } else {
-          readCollection.push({ [date]: [readCard] });
-        }
+        if (date === obj.date) {
+          if(obj.collection.some(card => card.id === id)) return;
+          obj.collection.push(readCard); 
+          storage.saveToLocal(key.KEY_READ, readCollection.sort((objA,objB) => new Date(objB.date) - new Date(objA.date)));
+          tickToRead.classList.add('show');
+          return;
+        } 
       }
-    } else {
-      readCollection.push({
-        [date]: [readCard],
-      });
-    }
-    storage.saveToLocal(key.KEY_READ, readCollection);
+    } 
+    readCollection.push({date:date, collection: [readCard]});
+    storage.saveToLocal(key.KEY_READ, readCollection.sort((objA,objB) => new Date(objB.date) - new Date(objA.date)));
     tickToRead.classList.add('show');
   }
 
@@ -59,7 +56,7 @@ export function onloadToRead() {
   if (readCollection.length === 0) return;
 
   readCollection.forEach(obj => {
-    let values = Object.values(obj)[0]; // cause Object.values is ARRAY so need to add [0] as we have one key
+    let values = obj.collection; // cause Object.values is ARRAY so need to add [0] as we have one key
     for (let value of values) {
       if (!document.getElementById(`${value.id}`)) continue;
       let elem = document.getElementById(`${value.id}`);

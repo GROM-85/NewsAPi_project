@@ -66,8 +66,6 @@ async function fetchByPopular() {
   clear(refs.gallery);
   clear(refs.accordion);
   popularOnPageLoad();
-  onloadToRead();
-  onloadFavorite();
   paginationByPopular(collectionByPopular.length);
   setTimeout(()=> {
     refs.pageContainer.classList.add("show");
@@ -96,7 +94,8 @@ export async function renderGallery(markup) {
   let weatherMarkup = await weather.renderDefaultWeather();
   hideLoader();
   refs.gallery.insertAdjacentHTML(`beforeend`,weatherMarkup +  markup);
- 
+  onloadToRead();
+  onloadFavorite();
 }
 
 

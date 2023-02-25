@@ -21,6 +21,7 @@
     "air-datepicker": "^3.3.5",
     "animate.css": "^4.1.1",
     "date-fns": "^2.29.3",
+    "flatpickr": "^4.6.13",
     "modern-normalize": "^1.1.0",
     "parcel": "^2.8.3",
     "throttle-debounce": "^5.0.0"
