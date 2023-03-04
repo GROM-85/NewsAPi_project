@@ -24,10 +24,11 @@ refs.filter.addEventListener(`submit`, (e) => {
 });
 
 async function filterQuery(e) {
+  
   showLoader();
   let query = null;
   ApiService.lastAction.searchBy = "query";
-  if(!!e?.currentTarget?.elements?.query?.value && ApiService.lastAction.query !== e.currentTarget.elements.query.value){
+  if(!!e?.currentTarget?.elements?.query?.value && ApiService.lastAction.query !== e.target.elements.query.value){
     // mean new query
     ApiService.lastAction.e = e;
     query = e.currentTarget.elements.query.value;
@@ -43,8 +44,6 @@ async function filterQuery(e) {
   ApiService.query = query;
   
   const { docs, meta } = await ApiService.getNewsByQuery();
-  console.log(meta.hits);
-  console.log(docs);
   // NOT FOUND PAGE
   if (docs.length === 0) {
     if (refs.notFoundEl.classList.contains('hidden')) {

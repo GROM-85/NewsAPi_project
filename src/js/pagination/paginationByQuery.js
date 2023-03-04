@@ -11,7 +11,7 @@ const valuePage = {
 };
 
 export function paginationByQuery(collection){
-  console.log(ApiService.lastAction.searchBy)
+  
     if(ApiService.lastAction.searchBy !== "query")return;
 
     if(collection > 1000){

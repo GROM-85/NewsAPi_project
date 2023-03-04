@@ -2,8 +2,7 @@ import {KEY_CURRENT_PAGE} from "../const";
 import { refs } from '../refs';
 import * as storage from '../storageLogic';
 import * as render from '../renderMarkup';
-
-// import in index.js
+import { toggleMenu } from "../mobile-menu";
 
 //DESK NAV LOGIC
 refs.nav.addEventListener("click",(e) => {
@@ -39,13 +38,13 @@ export function clearCurrent(list,_class){
     let currPage = e.target.dataset.value;
 
     if(e.target.nodeName === "SPAN" ) {
+    isMobMenuClicked = true;
     let list = e.target.parentNode.parentNode.children;
     clearCurrent(list,"menu-current__item");
     e.target.parentNode.classList.add("menu-current__item")
     storage.saveToLocal("currentPage", currPage);
     toHideCategories(currPage);
-    refs.mobileMenu.classList.remove('is-open');
-    bodyScrollLock.enableBodyScroll(document.body);
+    toggleMenu();
     } 
  
  })

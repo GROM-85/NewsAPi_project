@@ -35,7 +35,7 @@ export function popularPg(e){
     refs.btnPrevPg.disabled = true;
     valuePage.curPage = pageNumber;
     page.pagination(valuePage);
-    console.log(valuePage);
+    
     page.handleButtonLeft(valuePage);
     page.handleButtonRight(valuePage);
     

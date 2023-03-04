@@ -67,6 +67,6 @@ function getCurrentTheme(input) {
   }
 }
 
-// Work with switch text/svg styles//
+
 
 
