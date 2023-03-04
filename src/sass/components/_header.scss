@@ -57,14 +57,19 @@
 }
 
 .form__input-show {
-  // position: relative;
   outline: none;
   opacity: 1;
   display: inline-block;
   visibility: visible;
   pointer-events: auto;
-  max-width: 173px;
-  padding: 4.5px 0 6px 48px;
+  max-width: 288px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 45px;
+  padding-right: 8px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
   border: 1px solid var(--text-main-color);
   border-radius: 20px;
   background-color: var(--bcg-main-color);
@@ -107,8 +112,8 @@
   opacity: 1;
   visibility: visible;
   position: absolute;
-  top: 6px;
-  left: 20px;
+  top: 13%;
+  left: 10%;
   background-color: var(--bcg-main-color);
 }
 

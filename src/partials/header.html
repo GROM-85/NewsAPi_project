@@ -6,7 +6,7 @@
       <li class="list-navigation__item"><span class="list-navigation__link" data-value="Favorite">Favorite</span></li>
       <li class="list-navigation__item"><span class="list-navigation__link" data-value="Read">Read</span></li>
     </ul>
-    <form action="" class="search-form">
+    <form action="" class="search-form" autocomplete="off">
       <input
         type="text"
         name="query"
@@ -26,20 +26,20 @@
       </button>
     </form>
     <div class="toggle-switch">
-      <svg width="21" height="21" class="switch-icon">
+      <svg width="21" height="21" class="switch-icon light">
         <use href="./images/icons.svg#sun"></use>
       </svg>
-      <p class="text-switch_light">Light</p>
+      <p class="text-switch light">Light</p>
       <span>
         <label class="switch">
           <input id="theme-switch" type="checkbox" class="input-switch" />
           <span class="slider round"></span>
         </label>
       </span>
-      <svg width="21" height="21" class="switch-icon">
+      <svg width="21" height="21" class="switch-icon dark">
         <use href="./images/icons.svg#moon"></use>
       </svg>
-      <p class="text-switch">Dark</p>
+      <p class="text-switch dark">Dark</p>
     </div>
     <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
       <svg width="24" height="24" class="menu-icon">

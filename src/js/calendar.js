@@ -26,7 +26,7 @@ const options = {
 
 const input = document.querySelector("#calendar");
 flatpickr(input,options);
-console.log(input.value);
+
 
 function arrowToggle(deg){
   const arrow = document.querySelector(".calendar__arrow");

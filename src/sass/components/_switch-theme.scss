@@ -28,7 +28,12 @@
 }
 
 .switch-icon {
-  fill: transparent;
+  stroke: var(--grey-color);
+  fill:transparent;
+
+  &.active{
+    stroke:var(--blue-color);
+  }
   @media screen and (min-width: 1279.99px) {
     display: none;
   }
@@ -36,15 +41,17 @@
 
 .text-switch {
   display: none;
+
   @media screen and (min-width: 1279.99px) {
     display: inline-block;
-    color: #4b48db;
+    color: var(--grey-color);
     font-family: 'Poppins', sans-serif;
+    font-weight: 400;
     font-size: 18px;
     line-height: 1.3;
   }
-  &_light {
-    color: var(--grey-color);
+  &.active {
+    color: var(--blue-color);
     @media screen and (min-width: 767.99px) {
       display: none;
     }

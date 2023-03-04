@@ -1,15 +1,10 @@
 import { ApiService} from '../API/fetchAPI';
 import { refs } from '../refs';
-import { renderMarkup, clear, renderWeather } from '../renderMarkup';
+import { renderMarkup, clear} from '../renderMarkup';
 import * as storage from '../storageLogic';
 import * as key from '../const';
-import * as newsCard from './byPopular';
 import { onloadToRead } from '../addToRead/addToRead';
-import { clearNavCurrent } from '../navLogic/navLogic';
 import { onloadFavorite } from '../addToFavorites/addToFavorites';
-import { popularPg,popularPageContainer } from '../pagination/paginationByPopular';
-import { queryPg,queryPageContainer } from '../pagination/paginationByQuery';
-import * as weather from '../weather';
 import { paginationByCategory } from '../pagination/paginationByCategories';
 import { removeEventListeners } from './removeListeners';
 import { showLoader,hideLoader } from '../loader/loader';
@@ -114,11 +109,11 @@ refs.categoriesBox.addEventListener(`click`, (e) => {
 // query by CATEGORIES
 //=====================
 async function onCategoriesBtnClick(e) {
-  console.log(e.target.dataset.value)
+  
   ApiService.lastAction.searchBy = "category";
   
   if (!!e?.target?.dataset?.value && ApiService.lastAction.query !== e.target.dataset.value) {
-    console.log("inside")
+    
     ApiService.resetOffset();
     ApiService.category = e.target.dataset.value;
     ApiService.lastAction.e = e;
@@ -161,7 +156,7 @@ async function onCategoriesBtnClick(e) {
   clear(refs.gallery);
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
-  console.log(ApiService.offset)
+  
   if(ApiService.offset === 0) paginationByCategory(num_results);
   categoriesOnPageLoadGallery();
 }

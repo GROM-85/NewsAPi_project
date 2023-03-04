@@ -45,7 +45,7 @@ export function queryPg(e){
     valuePage.curPage = pageNumber;
     ApiService.page = pageNumber;
     page.pagination(valuePage);
-    console.log(valuePage);
+    
     page.handleButtonLeft(valuePage);
     page.handleButtonRight(valuePage);
   }

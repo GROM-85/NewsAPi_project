@@ -21,7 +21,7 @@ body .container.filter-container {
 .categories {
   display: flex;
   margin-right: auto;
-width: 112px;
+  width: 112px;
   @media screen and (min-width: $tablet) {
     margin-right: 40px;
     gap: 14px;
@@ -78,7 +78,7 @@ width: 112px;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    color: #4b48db;
+    color: var(--blue-color);
     border: 1px solid var(--blue-color);
     border-radius: 20px;
     background-color: var(--white-color);
@@ -98,13 +98,13 @@ width: 112px;
     background-color: var(--blue-color);
   }
 
-  &__icon-up,
+  // &__icon-up,
   &__icon-down {
-    fill: var(--blue-color);
+    fill: currentColor;
     margin-left: 10px;
     transform:rotate(0);
-    transition:all 0.2s ease-in-out;
-    // @include transition(fill);
+    transition:all 0.25s ease-in-out;
+    
     &.up{
       transform:rotate(180deg)
     }

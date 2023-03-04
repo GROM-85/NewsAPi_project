@@ -1,6 +1,6 @@
 import { ApiService, NewsAPI } from '../API/fetchAPI';
 import { refs } from '../refs';
-import { renderMarkup, clear, renderWeather } from '../renderMarkup';
+import { renderMarkup, clear} from '../renderMarkup';
 import * as key from '../const';
 import * as storage from '../storageLogic';
 import { onloadToRead } from '../addToRead/addToRead';

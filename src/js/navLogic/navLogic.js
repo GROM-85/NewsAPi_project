@@ -10,14 +10,14 @@ refs.nav.addEventListener("click",(e) => {
     let curr = e.target.parentNode;
     let list = e.currentTarget.children;
     let currPage = e.target.textContent
-    clearNavCurrent(list,"current-list__item");
+    clearCurrent(list,"current-list__item");
     curr.classList.add("current-list__item");
     storage.saveToLocal("currentPage", currPage);
     toHideCategories(currPage);
 })
 
-export function clearNavCurrent(list,_class){
-    console.log(list)
+export function clearCurrent(list,_class){
+    
     Array.from(list).forEach(elem => {
         if(elem.classList.contains(_class)) elem.classList.remove(_class);
     })
@@ -40,7 +40,7 @@ export function clearNavCurrent(list,_class){
 
     if(e.target.nodeName === "SPAN" ) {
     let list = e.target.parentNode.parentNode.children;
-    clearNavCurrent(list,"menu-current__item");
+    clearCurrent(list,"menu-current__item");
     e.target.parentNode.classList.add("menu-current__item")
     storage.saveToLocal("currentPage", currPage);
     toHideCategories(currPage);

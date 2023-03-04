@@ -1,13 +1,13 @@
 import { ApiService } from '../API/fetchAPI';
 import { refs } from '../refs';
-import { renderMarkup, clear, renderWeather } from '../renderMarkup';
+import { renderMarkup, clear} from '../renderMarkup';
 import { formatDate } from './byPopular';
 import * as weather from '../weather';
 import * as key from '../const';
 import * as storage from '../storageLogic';
 import { addToFavorite, onloadFavorite } from '../addToFavorites/addToFavorites';
 import { onloadToRead } from '../addToRead/addToRead';
-import { clearNavCurrent } from '../navLogic/navLogic';
+import { clearCurrent } from '../navLogic/navLogic';
 import { selectedDate } from '../calendar';
 import { removeEventListeners } from './removeListeners';
 import { showLoader,hideLoader } from '../loader/loader';
@@ -112,8 +112,8 @@ function queryOnPageLoadGallery() {
   clear(refs.gallery);
   clear(refs.accordion);
   renderGallery(collectionByQuery);
-  clearNavCurrent(refs.nav.children,"current-list__item");
-  clearNavCurrent(refs.navMobile.children,"menu-current__item");
+  clearCurrent(refs.nav.children,"current-list__item");
+  clearCurrent(refs.navMobile.children,"menu-current__item");
   refs.HomeBtn.parentNode.classList.add('current-list__item');
   refs.homeBtnMob.classList.add("menu-current__item");
   onloadToRead();

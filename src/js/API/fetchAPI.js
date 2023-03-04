@@ -41,7 +41,7 @@ export class NewsAPI {
 
   async getNewsByQuery() {
     this.updateParams();
-    console.log(this.#params)
+    
     const response = await fetch(
       this.#BASE_URL +
         'search/v2/articlesearch.json?' +

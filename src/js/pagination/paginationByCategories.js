@@ -45,8 +45,6 @@ export function categoryPg(e){
     valuePage.curPage = pageNumber;
     ApiService.offset = (pageNumber - 1) * 20;
     page.pagination(valuePage);
-    console.log(valuePage);
-    console.log(ApiService.offset)
     page.handleButtonLeft(valuePage);
     page.handleButtonRight(valuePage);
   }

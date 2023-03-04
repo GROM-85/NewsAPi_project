@@ -4,7 +4,7 @@ import * as storage from '../storageLogic';
 import * as render from '../renderMarkup';
 import { refs } from '../refs';
 import { onloadFavorite } from '../addToFavorites/addToFavorites';
-import { navArray,toHideCategories } from '../navLogic/navLogic';
+
 
 refs.gallery.addEventListener('click', toggleToRead);
 
