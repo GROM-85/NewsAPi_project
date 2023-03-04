@@ -36,9 +36,7 @@ export function clearCurrent(list,_class){
 
  refs.navMobile.addEventListener("click",(e)=>{
     let currPage = e.target.dataset.value;
-
     if(e.target.nodeName === "SPAN" ) {
-    isMobMenuClicked = true;
     let list = e.target.parentNode.parentNode.children;
     clearCurrent(list,"menu-current__item");
     e.target.parentNode.classList.add("menu-current__item")

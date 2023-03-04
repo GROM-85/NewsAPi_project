@@ -36,7 +36,7 @@ function createAccord() {
     render.clear(refs.accordion);
     refs.notFoundEl.classList.add('hidden');
     refs.pageContainer.classList.remove("show");
-    refs.accordion.insertAdjacentHTML("beforeend","<h2 class='read-not-found'>You haven't read any article</h2>")
+    refs.accordion.insertAdjacentHTML("beforeend","<h2 class='read-not-found' >You haven't read any article</h2>")
     return;
   }
 
