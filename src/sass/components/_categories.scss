@@ -123,7 +123,7 @@ body .container.filter-container {
   &__menu {
     display: inline-block;
     padding: 14px 14px 0 14px;
-    overflow:auto;
+    overflow-y:scroll;
     position: absolute;
     z-index: 1;
 
@@ -139,9 +139,9 @@ body .container.filter-container {
     }
   }
 
-  &__list {
-    overflow-y: scroll;
-  }
+  // &__list {
+  //   // overflow-y: scroll;
+  // }
 
   &__item {
     color: var(--blue-color);
