@@ -65,6 +65,7 @@ async function fetchByPopular() {
   storage.saveToLocal(key.KEY_COLLECTION, collectionByPopular);
   clear(refs.gallery);
   clear(refs.accordion);
+  refs.notFoundEl.classList.add('hidden');
   popularOnPageLoad();
   paginationByPopular(collectionByPopular.length);
   setTimeout(()=> {

@@ -110,6 +110,7 @@ function queryOnPageLoadGallery() {
   collectionByQuery = collection.map(renderMarkup).join(``);
   clear(refs.gallery);
   clear(refs.accordion);
+  refs.notFoundEl.classList.add('hidden');
   renderGallery(collectionByQuery);
   clearCurrent(refs.nav.children,"current-list__item");
   clearCurrent(refs.navMobile.children,"menu-current__item");

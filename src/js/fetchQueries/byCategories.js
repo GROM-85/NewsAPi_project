@@ -154,6 +154,7 @@ async function onCategoriesBtnClick(e) {
   });
 
   clear(refs.gallery);
+  refs.notFoundEl.classList.add('hidden');
 
   storage.saveToLocal(key.KEY_COLLECTION, collectionByCategorie.slice(0, 9));
   

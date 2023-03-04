@@ -26,7 +26,7 @@ export function pagination(valuePage) {
 
     // truncate
     if (totalPages >= 2 * range - 1) {
-      if (numberTruncateLeft > 3 && numberTruncateRight < totalPages - 3 + 1) {
+      if (numberTruncateLeft >= 2 && numberTruncateRight <= totalPages - 2 + 1) {
         // truncate 2 side
         if (pos >= numberTruncateLeft && pos <= numberTruncateRight) {
           renderTwoSide += renderPage(pos, active);
