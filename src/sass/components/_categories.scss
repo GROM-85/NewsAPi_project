@@ -123,10 +123,11 @@ body .container.filter-container {
   &__menu {
     display: inline-block;
     padding: 14px 14px 0 14px;
-    overflow-y:scroll;
+    width:160px;
     position: absolute;
     z-index: 1;
-
+    overflow-y:hidden;
+    overflow-x: hidden;
     background-color: var(--white-color);
     border-radius: 20px;
     height: 383px;
@@ -139,9 +140,15 @@ body .container.filter-container {
     }
   }
 
-  // &__list {
-  //   // overflow-y: scroll;
-  // }
+  &__list{
+    position:absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    
+  }
+
 
   &__item {
     color: var(--blue-color);
