@@ -6,6 +6,7 @@ import { toggleMenu } from "../mobile-menu";
 
 //DESK NAV LOGIC
 refs.nav.addEventListener("click",(e) => {
+  if(e.target.nodeName !== "SPAN" )return;
     let curr = e.target.parentNode;
     let list = e.currentTarget.children;
     let currPage = e.target.textContent
